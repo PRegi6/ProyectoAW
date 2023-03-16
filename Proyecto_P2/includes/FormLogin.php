@@ -14,27 +14,38 @@ class FormLogin extends Formulario {
 
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['email', 'password'], $this->errores, 'span', array('class' => 'error'));
+        $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos', 'email', 'password'], $this->errores, 'span', array('class' => 'error'));
 
-        $html = <<<EOF
-            $htmlErroresGlobales
-            <fieldset>
-                <legend>Usuario y contraseña</legend>
-                <div>
-                    <label for="emailUsuario">Email del usuario:</label>
-                    <input type="email" id= "email" name="email" value="$email" />
-                    {$erroresCampos['email']}
-                </div>
-                <div>
-                    <label for="password">Password:</label>
-                    <input id="password" type="password" name="password" />
-                    {$erroresCampos['password']}
-                </div>
-                <div>
-                    <button type="submit" name="login">Entrar</button>
-                </div>
-            </fieldset>
-            EOF;
+
+
+
+        $html = <<<EOS
+        <main class= "panel_inicio">
+            <fieldset class="fieldset_register">
+                <form class="form_registro" action="procesarRegistro.php" method="post"> <!-- en vez de a procesarRegistro.php, que vaya al php de Victor para elegir el tipo de suscripcion (rol) -->
+                    
+                    <h1 id=titulo_panel>Login</h1>
+                
+                    <input type="text" placeholder=" Nombre" id="nombre" name="nombre"><br>
+                    {$erroresCampos['nombre']}<br>
+    
+                    <input type="text" placeholder=" Apellidos" id="apellidos" name="apellidos"><br>
+                    {$erroresCampos['apellidos']}<br>
+    
+                    <input type="email" placeholder=" Email" id="email" name="email"><br>
+                    {$erroresCampos['email']}<br>
+    
+                    <input type="password" placeholder=" Contraseña" id="password" name="password"><br>
+                    {$erroresCampos['password']}<br>
+    
+                    <input class="BotonForm" type="submit" value="Siguiente" name="siguiente"><br><br>
+    
+                    <a href="login.php"><button id="ya_registrado">¿Ya tienes una cuenta?</button></a><br>
+                </form>
+            </fieldset> 
+        </main>
+    EOS;
+
         return $html;
     }
     
