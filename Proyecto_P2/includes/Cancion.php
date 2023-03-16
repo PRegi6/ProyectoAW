@@ -25,6 +25,29 @@ class Cancion{
     }
 
 
+    public static function buscarPorArtista($artista){
+
+        $lista = [];
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM canciones c JOIN subencanciones s WHERE c.idCancion = s.idCancion AND s.email = '%s", $artista->getEmail());
+        $result = $conn->query($query);
+
+        if(!$result->num_rows > 0){
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }else{
+            
+            foreach($result as $rs){
+                $cancion = new Cancion($rs['id'], $rs['nombre'], 
+                $rs['genero'], $rs['nombreAlbum'], $rs['duracion'], 
+                $rs['rutaCancion'], $rs['rutaImagen']);
+                $lista[] = $cancion;
+            }
+
+            $result->free();
+        }
+    }
+
+
     public static function buscarPorAlbum($nombreAlbum){
 
         $lista = [];
