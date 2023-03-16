@@ -1,0 +1,13 @@
+.desc {
+    font-size: 20px;
+}
+
+.container-logo {
+    display: flex;
+    justify-content: center;
+}
+
+    .logo-desc{
+        width: 23%;
+        height: 23%;
+    }

@@ -1,0 +1,119 @@
+.header img{
+    width: 100px;
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header h1 {
+    font-family: sans-serif;
+}
+
+.header {
+    background-color: #465A61;
+    display: flex;
+    justify-content: space-between; /*Deja espacio entre los componentes*/
+}
+
+    .logo-titulo {
+        display: flex; /*Ayuda a distribuir los items de una interfaz a la vez*/
+        justify-content: space-between; /*Deja espacio entre los componentes*/
+        align-items: center;
+    }
+
+    .usuario{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+    }
+    .usuario ul {
+        margin: 0;
+        padding: 0;
+        list-style: none; /*Le quita el punto de la lista*/
+    }
+    
+    .usuario a {
+            text-decoration: none; /*le quito el subrayado*/
+            color: aliceblue;
+        }
+        
+        .usuario ul li {
+            display: inline-block; /*todos los elementos de la lista se pongan en linea*/
+        }
+
+            .usuario ul li a {
+                display: block; 
+                padding: 20px;
+                border-radius: 5px;
+            }
+                .usuario ul li a:hover{
+                    background: #596C76;
+                }
+
+                
+                
+body {
+    background-color: #596C76;
+    margin: 0; /*Quita el margen del body*/
+    display: flex;
+    flex-direction: column;
+}
+    .main{
+        width: 100%;
+        height: calc(100vh - 190px); /*100vh tamaño de mi pantalla menos header y nav*/
+        display: flex; /* las cajas no se apilan */
+        justify-content: center; /*justifica de forma de horizontal en este caso lo centra*/
+        align-items: center; /*justifica de forma de vertical en este caso lo centra*/
+    }
+
+.panelIzquierdo{
+    width: 15%;
+    height: calc(100vh - 190px);
+    background-color: #273236;
+}
+    .panelIzquierdo ul {
+        margin: 0;
+        padding: 0;
+        list-style: none; /*Le quita el punto de la lista*/
+    }
+
+    .panelIzquierdo a {
+            text-decoration: none; /*le quito el subrayado*/
+            color: aliceblue;
+        }
+        
+        .panelIzquierdo ul li {
+            display: block; /*todos los elementos de la lista se pongan en linea*/
+        }
+
+            .panelIzquierdo ul li a {
+                display: block; 
+                padding: 20px;
+            }
+                .panelIzquierdo ul li a:hover{
+                    background: #596C76;
+                }
+
+.panelCentral{
+    width: 100%;
+    height: 100%;
+}
+    .contenidoPrincipal{
+        width: 100%;
+        height: calc(100vh - 340px);
+        display: block;
+        overflow-y: auto;
+    }
+
+    .reproductor{
+        width: 100%;
+        height: 150px;
+
+    }
+
+footer {
+    background-color: #465A61;
+    width: 100%;
+    height: 70px;
+}

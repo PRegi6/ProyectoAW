@@ -1,0 +1,30 @@
+
+
+table{
+    width:50%; 
+    font-size: 20px;
+    margin: 0 auto;
+}
+td{
+    text-align: center;
+    width:50%; 
+    font-size: 20px;
+    margin: 0 auto;
+    border:2px solid black;
+}
+
+.desc{
+    font-size: 20px;
+}
+
+.titulo-desc{
+    font-size: 25px;
+}
+
+.imgGantt{
+    height: 300px;
+    width: 500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}

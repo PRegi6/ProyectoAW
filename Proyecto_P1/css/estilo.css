@@ -1,0 +1,54 @@
+body {
+    background-color: #596C76;
+    margin: 0; /*Quita el margen del body*/
+}
+
+.header {
+    background-color: #465A61;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+    .titulo-logo {
+        display: flex;
+        align-items: center;
+    }
+
+        .titulo-logo h1{
+            font-family: sans-serif;
+            font-size: 40px;
+        }
+        .logo{
+            width: 80px;
+            height: 80px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+    .menu{
+        padding-right: 10px;
+    }
+        .menu ul {
+            margin: 0;
+            padding: 0;
+            list-style: none; /*Le quita el punto de la lista*/
+        }
+            .menu a {
+                text-decoration: none;
+                color: aliceblue;
+            }
+            
+            .menu ul li {
+                display: inline-block; /*todos los elementos de la lista se pongan en linea*/
+            }
+
+                .menu ul li a {
+                    display: block; 
+                    padding: 20px;
+                    border-radius: 5px;
+                }
+                    .menu ul li a:hover{
+                        background: #596C76;
+                    }
+
+                   

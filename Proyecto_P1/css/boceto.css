@@ -1,0 +1,18 @@
+img{
+    width: 600px;
+    width: 600px;
+}
+
+p{
+    font-size: 25px;
+    margin: 10px;
+}
+
+.main{
+    display: block;
+}
+
+    .ImagenTexto{
+        display: flex;
+
+    }
