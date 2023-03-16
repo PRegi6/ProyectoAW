@@ -25,29 +25,6 @@ class Cancion{
     }
 
 
-    public static function buscarPorArtista($artista){
-
-        $lista = [];
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM canciones c JOIN subencanciones s WHERE c.idCancion = s.idCancion AND s.email = '%s", $artista->getEmail());
-        $result = $conn->query($query);
-
-        if(!$result->num_rows > 0){
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }else{
-            
-            foreach($result as $rs){
-                $cancion = new Cancion($rs['id'], $rs['nombre'], 
-                $rs['genero'], $rs['nombreAlbum'], $rs['duracion'], 
-                $rs['rutaCancion'], $rs['rutaImagen']);
-                $lista[] = $cancion;
-            }
-
-            $result->free();
-        }
-    }
-
-
     public static function buscarPorAlbum($nombreAlbum){
 
         $lista = [];
@@ -60,7 +37,7 @@ class Cancion{
         }else{
             
             foreach($result as $rs){
-                $cancion = new Cancion($rs['id'], $rs['nombre'], 
+                $cancion = new Cancion($rs['idCancion'], $rs['nombre'], 
                 $rs['genero'], $rs['nombreAlbum'], $rs['duracion'], 
                 $rs['rutaCancion'], $rs['rutaImagen']);
                 $lista[] = $cancion;
@@ -70,6 +47,29 @@ class Cancion{
         }
 
         return $lista;
+    }
+
+
+    public static function buscarPorArtista($artista){
+
+        $lista = [];
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM canciones c JOIN subencanciones s WHERE c.idCancion = s.idCancion AND s.email = '%s", $artista->getEmail());
+        $result = $conn->query($query);
+
+        if(!$result->num_rows > 0){
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }else{
+
+            foreach($result as $rs){
+                $cancion = new Cancion($rs['idCancion'], $rs['nombre'], 
+                $rs['genero'], $rs['nombreAlbum'], $rs['duracion'], 
+                $rs['rutaCancion'], $rs['rutaImagen']);
+                $lista[] = $cancion;
+            }
+
+            $result->free();
+        }
     }
 
 
@@ -85,7 +85,7 @@ class Cancion{
         }else{
             
             foreach($result as $rs){
-                $cancion = new Cancion($rs['id'], $rs['nombre'], 
+                $cancion = new Cancion($rs['idCancion'], $rs['nombre'], 
                 $rs['genero'], $rs['nombreAlbum'], $rs['duracion'], 
                 $rs['rutaCancion'], $rs['rutaImagen']);
                 $lista[] = $cancion;
@@ -97,7 +97,27 @@ class Cancion{
         return $lista;
     }
     
-    
+    public static function buscaPorId($id)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM canciones WHERE idCancion='%s'", $id);
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            $datosUsuario = $rs->fetch_assoc();
+            if ($datosUsuario) {
+                $result = new Cancion($datosUsuario['idCancion'], $datosUsuario['nombreCancion'], 
+                $datosUsuario['genero'], $datosUsuario['nombreAlbum'], 
+                $datosUsuario['duracion'], $datosUsuario['rutaCancion'], $datosUsuario['rutaImagen']);
+            }
+            $rs->free();
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
+
+
     public static function buscarPorNombre($nombre){
 
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -110,7 +130,7 @@ class Cancion{
 
             $rs = $result->fetch_assoc();
             if($rs){
-                $cancion = new Cancion($rs['id'], $rs['nombre'], 
+                $cancion = new Cancion($rs['idCancion'], $rs['nombre'], 
                 $rs['genero'], $rs['nombreAlbum'], $rs['duracion'], 
                 $rs['rutaCancion'], $rs['rutaImagen']);
             }

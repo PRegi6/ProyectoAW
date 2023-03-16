@@ -11,7 +11,7 @@ class Admin{
     private $nombre;
     private $apellidos;
     private $rol;
-
+    
 
 
     private function __construct($email, $contrasena, $nombre, $apellidos, $rol)
@@ -71,20 +71,25 @@ class Admin{
     }
 
 
+    public function borrarCancion($idCancion){
 
+        $cancion=Cancion::buscarPorId($idCancion);
+        if($cancion){
+            $conn = Aplicacion::getInstance()->getConexionBd();
+            $query = sprintf("DELETE FROM canciones WHERE idCancion='%s'", $idCancion);
+            $rs = $conn->query($query);
+            $result = false;
+            if ($rs) {
+                $rs->free();
+                $result=true;
+            } else {
+                error_log("Error BD ({$conn->errno}): {$conn->error}");
+            }
+            return $result;
 
+        }
 
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 }

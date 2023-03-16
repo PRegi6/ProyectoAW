@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-03-2023 a las 18:40:32
+-- Tiempo de generación: 16-03-2023 a las 19:24:10
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `beat house`
+-- Base de datos: `beat_house`
 --
 
 -- --------------------------------------------------------
@@ -29,17 +29,12 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `admin` (
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(30) NOT NULL,
+  `contraseña` varchar(100) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `rol` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `admin`
---
-
-TRUNCATE TABLE `admin`;
 -- --------------------------------------------------------
 
 --
@@ -51,11 +46,6 @@ CREATE TABLE `anuncios` (
   `rutaAnuncio` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `anuncios`
---
-
-TRUNCATE TABLE `anuncios`;
 -- --------------------------------------------------------
 
 --
@@ -72,11 +62,6 @@ CREATE TABLE `canciones` (
   `rutaImagen` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `canciones`
---
-
-TRUNCATE TABLE `canciones`;
 -- --------------------------------------------------------
 
 --
@@ -88,11 +73,6 @@ CREATE TABLE `contienen` (
   `idCancion` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `contienen`
---
-
-TRUNCATE TABLE `contienen`;
 -- --------------------------------------------------------
 
 --
@@ -104,11 +84,6 @@ CREATE TABLE `gestionanuncios` (
   `idAnuncio` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `gestionanuncios`
---
-
-TRUNCATE TABLE `gestionanuncios`;
 -- --------------------------------------------------------
 
 --
@@ -117,17 +92,12 @@ TRUNCATE TABLE `gestionanuncios`;
 
 CREATE TABLE `perfil` (
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(30) NOT NULL,
+  `contraseña` varchar(100) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `rol` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `perfil`
---
-
-TRUNCATE TABLE `perfil`;
 -- --------------------------------------------------------
 
 --
@@ -140,11 +110,6 @@ CREATE TABLE `plandepago` (
   `duracionPlan` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `plandepago`
---
-
-TRUNCATE TABLE `plandepago`;
 -- --------------------------------------------------------
 
 --
@@ -158,11 +123,6 @@ CREATE TABLE `playlist` (
   `duracionPlaylist` time NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `playlist`
---
-
-TRUNCATE TABLE `playlist`;
 -- --------------------------------------------------------
 
 --
@@ -174,11 +134,6 @@ CREATE TABLE `subencanciones` (
   `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `subencanciones`
---
-
-TRUNCATE TABLE `subencanciones`;
 -- --------------------------------------------------------
 
 --
@@ -187,7 +142,7 @@ TRUNCATE TABLE `subencanciones`;
 
 CREATE TABLE `usuarios` (
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(30) NOT NULL,
+  `contraseña` varchar(100) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `rol` varchar(10) NOT NULL,
@@ -195,11 +150,6 @@ CREATE TABLE `usuarios` (
   `fechaExpiracionPlan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Truncar tablas antes de insertar `usuarios`
---
-
-TRUNCATE TABLE `usuarios`;
 --
 -- Índices para tablas volcadas
 --
