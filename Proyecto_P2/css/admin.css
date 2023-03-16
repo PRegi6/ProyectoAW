@@ -1,0 +1,39 @@
+.admin{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    /* background-color: aqua; */
+}
+
+.admin p{
+    margin-bottom: 10px;
+    color: red;
+    font-weight: bold;
+}
+
+.formProd{
+    width: 600px;
+    margin-left: 100px;
+    align-items: center;
+}
+
+.formProd div input{
+    display: inline;
+    margin: 10px;
+}
+
+.formCat{
+    width: 300px;
+    margin-right: 200px;
+}
+
+.formCat div input{
+    display: inline;
+    margin: 10px;
+}
+
+select{
+    margin:10px;
+}

@@ -5,7 +5,7 @@ require_once __DIR__.'/Usuario.php';
 class FormLogin extends Formulario {
 
     public function __construct() {
-        parent::__construct('fromLogin', ['urlRedireccion' => 'index.php']);
+        parent::__construct('formLogin', ['urlRedireccion' => 'index.php']);
     }
 
     protected function generaCamposFormulario(&$datos)
@@ -19,16 +19,20 @@ class FormLogin extends Formulario {
         $html = <<<EOS
         <main class= "panel_inicio">
             <fieldset class="fieldset_register">
-                <form action="procesarLogin.php" method="POST">
-                    <h1 id=titulo_panel>Login</h1>
-                    <input type="email" placeholder=" Email" id="email" name="email"><br>
-                    {$erroresCampos['email']}<br>
+                
+                    
+                <h1 id=titulo_panel>Login</h1>
             
-                    <input type="password" placeholder=" Contraseña" id="password" name="password"><br>
-                    {$erroresCampos['password']}<br>
+                <input type="email" placeholder=" Email" id="email" name="email"><br>
+                {$erroresCampos['email']}<br>
+
+                <input type="password" placeholder=" Contraseña" id="password" name="password"><br>
+                {$erroresCampos['password']}<br>
+
+                <input class="BotonForm" type="submit" value="Siguiente" name="siguiente"><br><br>
+
+                <a href="registro.php"<button id="ya_registrado">¿No tienes cuenta? Regístrate</button></a><br>
             
-                    <input class="BotonForm" type="submit" value="Entrar" name="login"><br><br>
-                </form>
             </fieldset> 
         </main>
     EOS;
@@ -64,7 +68,11 @@ class FormLogin extends Formulario {
             else {
                 $_SESSION['login'] = true;
                 $_SESSION['nombre'] = $usuario->getNombre();
-                $_SESSION['esAdmin'] = $usuario->getRol();
+                $_SESSION['rol'] = $usuario->getRol();
+                $_SESSION['email'] = $usuario->getEmail();
+                if($_SESSION['rol']==Usuario::ADMIN_ROLE){
+                    $this->urlRedireccion = "index.php";
+                }
             }
         }
     }

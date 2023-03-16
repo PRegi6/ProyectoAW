@@ -4,7 +4,10 @@ function mostrarSaludo() {
 		return "Bienvenido, {$_SESSION['nombre']} <a href='logout.php'>(salir)</a>";
 		
 	} else {
-		return "Usuario desconocido. <a href='login.php'>Login</a>. .<a href='registro.php'>Registro</a>";
+		return "<ul>
+        <li><a href='registro.php'>Registro</a></li>
+        <li><a href='login.php'>Iniciar Sesión</a></li>
+    </ul>";
 	}
 }
 ?>
