@@ -27,7 +27,14 @@
                 <?=$contenidoPrincipal?>
             </div>
             <?php
-                require(RAIZ_APP.'/vistas/comun/reproductor.php');
+                if(!isset($_SESSION['login'])){
+                    require(RAIZ_APP.'/vistas/comun/reproductor.php');
+                }
+                else{
+                    if($_SESSION['rol']!= 'admin'){
+                        require(RAIZ_APP.'/vistas/comun/reproductor.php');
+                    }
+                }
             ?>
         </section> 
     </main>

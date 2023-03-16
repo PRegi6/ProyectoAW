@@ -22,9 +22,10 @@ class Usuario
     
     public static function crea($datosUsuario)
     {
-        $usuario = new Usuario($datosUsuario[0], $datosUsuario[1], $datosUsuario[2], $datosUsuario[3], self::hashPassword($datosUsuario[4]), $datosUsuario[5], $datosUsuario[6]);
+        $usuario = new Usuario($datosUsuario[0], self::hashPassword($datosUsuario[1]), $datosUsuario[2], $datosUsuario[3], $datosUsuario[4], $datosUsuario[5], $datosUsuario[6]);
         $usuario->insertaPerfil($usuario);
         $usuario->insertaUsuario($usuario);
+
         return $usuario;
     }
 
@@ -33,7 +34,7 @@ class Usuario
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM perfil WHERE email='%s'", $email);
         $rs = $conn->query($query);
-        
+        $result = false;
         if ($rs) {
             $datosUsuario = $rs->fetch_assoc();
             if ($datosUsuario) {
@@ -125,4 +126,21 @@ class Usuario
     {
         $this->contrasena = self::hashPassword($nuevoPassword);
     }
+
+
+    public function borrarUsuario($email){
+
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query=sprintf("DELETE FROM perfil WHERE perfil.email='%s'"
+        , $conn->real_escape_string($usuario->email));
+
+
+        if (!$conn->query($query) ) {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return true;
+    }
+
+
+
 }

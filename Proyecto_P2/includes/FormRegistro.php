@@ -19,8 +19,7 @@ class FormRegistro extends Formulario {
         $html = <<<EOS
             <main class= "panel_inicio">
                 <fieldset class="fieldset_register">
-                    <form class="form_registro" action="procesarRegistro.php" method="post"> <!-- en vez de a procesarRegistro.php, que vaya al php de Victor para elegir el tipo de suscripcion (rol) -->
-                        
+ 
                         <h1 id=titulo_panel>Registro</h1>
                     
                         <input type="text" placeholder=" Nombre" id="nombre" name="nombre"><br>
@@ -37,8 +36,7 @@ class FormRegistro extends Formulario {
         
                         <input class="BotonForm" type="submit" value="Siguiente" name="siguiente"><br><br>
         
-                        <a href="login.php"><button id="ya_registrado">¿Ya tienes una cuenta?</button></a><br>
-                    </form>
+                        <a href="login.php"<button id="ya_registrado">¿Ya tienes una cuenta?</button></a><br>
                 </fieldset> 
             </main>
         EOS;
