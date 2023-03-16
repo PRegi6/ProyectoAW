@@ -16,31 +16,18 @@ class FormLogin extends Formulario {
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos', 'email', 'password'], $this->errores, 'span', array('class' => 'error'));
 
-
-
-
         $html = <<<EOS
         <main class= "panel_inicio">
             <fieldset class="fieldset_register">
-                <form class="form_registro" action="procesarRegistro.php" method="post"> <!-- en vez de a procesarRegistro.php, que vaya al php de Victor para elegir el tipo de suscripcion (rol) -->
-                    
-                    <h1 id=titulo_panel>Login</h1>
-                
-                    <input type="text" placeholder=" Nombre" id="nombre" name="nombre"><br>
-                    {$erroresCampos['nombre']}<br>
-    
-                    <input type="text" placeholder=" Apellidos" id="apellidos" name="apellidos"><br>
-                    {$erroresCampos['apellidos']}<br>
-    
+                <form action="procesarLogin.php" method="POST">
+                    <h1 id=titulo_panel>Registro</h1>
                     <input type="email" placeholder=" Email" id="email" name="email"><br>
                     {$erroresCampos['email']}<br>
-    
+            
                     <input type="password" placeholder=" Contraseña" id="password" name="password"><br>
                     {$erroresCampos['password']}<br>
-    
-                    <input class="BotonForm" type="submit" value="Siguiente" name="siguiente"><br><br>
-    
-                    <a href="login.php"><button id="ya_registrado">¿Ya tienes una cuenta?</button></a><br>
+            
+                    <input class="BotonForm" type="submit" value="Entrar" name="login"><br><br>
                 </form>
             </fieldset> 
         </main>
