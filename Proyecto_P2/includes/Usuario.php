@@ -33,7 +33,7 @@ class Usuario
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM perfil WHERE email='%s'", $email);
         $rs = $conn->query($query);
-        $result = false;
+        
         if ($rs) {
             $datosUsuario = $rs->fetch_assoc();
             if ($datosUsuario) {

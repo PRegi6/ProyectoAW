@@ -3,7 +3,6 @@
 
 class Cancion{
 
-
     private $id;
     private $nombre;
     private $genero;
@@ -23,10 +22,7 @@ class Cancion{
         $this->rutaCancion = $rutaCancion;
         $this->rutaImagen = $rutaImagen;
     }
-
-
-
-
+                  
     public function getId(){
         return $this->id;
     }
