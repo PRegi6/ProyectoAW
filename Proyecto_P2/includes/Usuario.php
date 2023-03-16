@@ -131,7 +131,7 @@ class Usuario
     public function borrarUsuario($email){
 
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query=sprintf("DELETE FROM perfil WHERE perfil.email='%s'"
+        $query=sprintf("DELETE FROM usuarios WHERE usuarios.email='jrubioczo@gmail.com'"
         , $conn->real_escape_string($usuario->email));
 
 

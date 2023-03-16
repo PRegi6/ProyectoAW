@@ -16,9 +16,9 @@
             if($_SESSION['rol']== 'admin'){
                 echo"<ul>
                         <li><a href='GestionUsuarios.php'>Usuarios</a></li>
-                        <li><a href='.html'>Canciones</a></li>
+                        <li><a href='GestionCanciones.php'>Canciones</a></li>
                         <li><a href='.html'>Tendencias</a></li>
-                        <li><a href='.html'>Gestión Plan</a></li>
+                        <li><a href='GestionPlan.php'>Gestión Plan</a></li>
                         <li><a href='.html'>Gestión de anuncios</a></li>
                     </ul>";
             }
