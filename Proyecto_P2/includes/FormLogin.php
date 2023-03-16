@@ -20,7 +20,7 @@ class FormLogin extends Formulario {
         <main class= "panel_inicio">
             <fieldset class="fieldset_register">
                 <form action="procesarLogin.php" method="POST">
-                    <h1 id=titulo_panel>Registro</h1>
+                    <h1 id=titulo_panel>Login</h1>
                     <input type="email" placeholder=" Email" id="email" name="email"><br>
                     {$erroresCampos['email']}<br>
             
