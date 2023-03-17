@@ -50,40 +50,39 @@ class FormRegistro extends Formulario {
 
         $nombre = trim($datos['nombre'] ?? '');
         $nombre = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $nombre || mb_strlen($nombre) < 5) {
+        if (!$nombre || empty($nombre)) {
             $this->errores['nombre'] = 'El nombre tiene que tener una longitud de al menos 5 caracteres.';
         }
 
         $apellidos = trim($datos['apellidos'] ?? '');
         $apellidos = filter_var($apellidos, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $apellidos || mb_strlen($apellidos) < 5 ) {
+        if ( ! $apellidos || empty($apellidos)) {
             $this->errores['apellidos'] = 'El apellido tiene que tener una longitud de al menos 5 caracteres.';
         }
 
         $email = trim($datos['email'] ?? '');
         $email = filter_var($email, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $email || mb_strlen($email) < 10 ) {
+        if ( ! $email || empty($email)) {
             $this->errores['email'] = 'El correo tiene que tener una longitud de al menos 10 caracteres.';
         }
 
         $password = trim($datos['password'] ?? '');
         $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $password || mb_strlen($password) < 5 ) {
+        if (!$password || mb_strlen($password) < 5 || empty($password)) {
             $this->errores['password'] = 'El password tiene que tener una longitud de al menos 5 caracteres.';
         }
 
-        
-
         if (count($this->errores) === 0) {
-            $usuario = Usuario::buscaPorEmail($email);
+            $usuario = Usuario::buscaPerfil($email);
         
             if ($usuario) {
                 $this->errores[] = "El usuario ya existe";
             } 
             else {
-                $usuario = Usuario::crea([$email, $password, $nombre, $apellidos, Usuario::USER_ROLE, null, null]);
-                $_SESSION['login'] = true;
-                $_SESSION['nombre'] = $usuario->getNombre();
+                $info = [$email, $password, $nombre, $apellidos, Usuario::USER_ROLE, "", ""];
+                $info_encoded = urlencode(json_encode($info));
+                header("Location: cambiarPlan.php?datos=$info_encoded");
+                exit();
             }
         }
     }

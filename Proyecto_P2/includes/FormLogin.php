@@ -19,8 +19,6 @@ class FormLogin extends Formulario {
         $html = <<<EOS
         <main class= "panel_inicio">
             <fieldset class="fieldset_register">
-                
-                    
                 <h1 id=titulo_panel>Login</h1>
             
                 <input type="email" placeholder=" Email" id="email" name="email"><br>
@@ -67,11 +65,13 @@ class FormLogin extends Formulario {
             } 
             else {
                 $_SESSION['login'] = true;
-                $_SESSION['nombre'] = $usuario->getNombre();
                 $_SESSION['rol'] = $usuario->getRol();
+                $_SESSION['nombre'] = $usuario->getNombre();
                 $_SESSION['email'] = $usuario->getEmail();
-                if($_SESSION['rol']==Usuario::ADMIN_ROLE){
-                    $this->urlRedireccion = "index.php";
+                if($_SESSION['rol']==Usuario::USER_ROLE){
+                    $usuario = Usuario::buscaUsuario($_SESSION['email']);
+                    $_SESSION['tipoPlan'] = $usuario->getTipoPlan();
+                    $_SESSION['fechaExpiracion'] = $usuario->getTipoPlan();
                 }
             }
         }
