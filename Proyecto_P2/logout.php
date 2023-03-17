@@ -5,9 +5,8 @@
     unset($_SESSION['login']);
     unset($_SESSION['email']);
     unset($_SESSION['nombre']);
-    if($_SESSION['rol']==Usuario::USER_ROLE){
+    if(isset($_SESSION['rol']) && $_SESSION['rol']==Usuario::USER_ROLE){ //Para que no de error cuando cierras sesión
         unset($_SESSION['tipoPlan']);
-        unset($_SESSION['fechaExpiracion']);
     }
     unset($_SESSION['rol']);
 

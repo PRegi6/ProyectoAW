@@ -1,3 +1,12 @@
+Personas de BD
+Administradores:
+ADMIN@gmail.com	ADMINPASS
+ADMIN@gmail.com	ADMINPASS2
+USUARIOS:
+franzroq@ucm.es kezo2002 Artista
+pabloregi@ucm.es	contraseña Premium
+david@ucm.es	polvoron Normal
+
 Funcionalidades: 
 1- Gestión de Administrador
 2- Gestión de recomendación de canciones

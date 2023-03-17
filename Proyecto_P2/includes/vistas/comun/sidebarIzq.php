@@ -2,7 +2,7 @@
     <?php
         if(!isset($_SESSION['login'])){
             echo"<ul>
-                    <li><a href='.html'>Inicio</a></li>
+                    <li><a href='index.php'>Inicio</a></li>
                     <li><a href='.html'>Tendencias</a></li>
                 </ul>";  
         }
