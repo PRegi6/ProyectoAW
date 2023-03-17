@@ -4,4 +4,3 @@
     $contenidoPrincipal = "Aqui hirá lo que viene a ser las tendencias";
 
     require RAIZ_APP."/vistas/plantillas/plantilla.php";
-?>

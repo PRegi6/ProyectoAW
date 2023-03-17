@@ -7,8 +7,8 @@ require_once __DIR__.'/Aplicacion.php';
  */
 define('BD_HOST', 'localhost');
 define('BD_NAME', 'beat_house');
-define('BD_USER', 'root');
-define('BD_PASS', '');
+define('BD_USER', 'beathouse');
+define('BD_PASS', 'beathouse');
 
 /* Parámetros de configuración utilizados para generar las URLs y las rutas a ficheros en la aplicación
  */
@@ -26,5 +26,5 @@ date_default_timezone_set('Europe/Madrid');
 
 // Inicializa la aplicación
 $app = Aplicacion::getInstance();
-$app->init(['host'=>BD_HOST, 'bd'=>BD_NAME, 'user'=>BD_USER, 'pass'=>BD_PASS]);
+$app->init(['host'=> BD_HOST, 'bd'=> BD_NAME, 'user'=> BD_USER, 'pass'=> BD_PASS]);
 register_shutdown_function([$app, 'shutdown']);

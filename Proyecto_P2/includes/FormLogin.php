@@ -1,10 +1,12 @@
 <?php
-require_once __DIR__.'/Formulario.php';
-require_once __DIR__.'/Usuario.php';
+require_once __DIR__ . '/Formulario.php';
+require_once __DIR__ . '/Usuario.php';
 
-class FormLogin extends Formulario {
+class FormLogin extends Formulario
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct('formLogin', ['urlRedireccion' => 'index.php']);
     }
 
@@ -36,7 +38,7 @@ class FormLogin extends Formulario {
 
         return $html;
     }
-    
+
 
     protected function procesaFormulario(&$datos)
     {
@@ -45,35 +47,32 @@ class FormLogin extends Formulario {
         $email = trim($datos['email'] ?? '');
         $email = filter_var($email, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
-        if (!$email || empty($email) ) {
+        if (!$email || empty($email)) {
             $this->errores['email'] = 'El email de usuario no puede estar vacío';
         }
 
         $password = trim($datos['password'] ?? '');
         $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $password || empty($password) ) {
+        if (!$password || empty($password)) {
             $this->errores['password'] = 'El password no puede estar vacío.';
         }
 
         if (count($this->errores) === 0) {
 
             $usuario = Usuario::login($email, $password);
-            
+
             if (!$usuario) {
                 $this->errores[] = "El email o el password no coinciden";
-            } 
-            else {
+            } else {
                 $_SESSION['login'] = true;
                 $_SESSION['rol'] = $usuario->getRol();
                 $_SESSION['nombre'] = $usuario->getNombre();
                 $_SESSION['email'] = $usuario->getEmail();
-                if($_SESSION['rol']==Usuario::USER_ROLE){
+                if ($_SESSION['rol'] == Usuario::USER_ROLE) {
                     $usuario = Usuario::buscaUsuario($_SESSION['email']);
                     $_SESSION['tipoPlan'] = $usuario->getTipoPlan();
                 }
             }
         }
     }
-
 }
-?>

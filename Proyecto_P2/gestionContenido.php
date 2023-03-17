@@ -5,4 +5,3 @@
     $contenidoPrincipal = "Contendra las opciones de añadir canciones etc..";
 
     require RAIZ_APP."/vistas/plantillas/plantilla.php";
-?>

@@ -6,4 +6,3 @@
     $contenidoPrincipal = Admin::mostrarUsuarios();
 
     require RAIZ_APP."/vistas/plantillas/plantilla.php";
-?>

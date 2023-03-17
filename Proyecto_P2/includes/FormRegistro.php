@@ -1,11 +1,13 @@
 <?php
-require_once __DIR__."/config.php";
-require_once __DIR__.'/Formulario.php';
+require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/Formulario.php';
 require_once __DIR__ . "/Usuario.php";
 
-class FormRegistro extends Formulario {
+class FormRegistro extends Formulario
+{
 
-    public function __construct() {
+    public function __construct()
+    {
         parent::__construct('formRegistro', ['urlRedireccion' => 'index.php']);
     }
 
@@ -43,7 +45,7 @@ class FormRegistro extends Formulario {
         EOS;
         return $html;
     }
-    
+
 
     protected function procesaFormulario(&$datos)
     {
@@ -57,13 +59,13 @@ class FormRegistro extends Formulario {
 
         $apellidos = trim($datos['apellidos'] ?? '');
         $apellidos = filter_var($apellidos, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $apellidos || empty($apellidos)) {
+        if (!$apellidos || empty($apellidos)) {
             $this->errores['apellidos'] = 'El apellido tiene que tener una longitud de al menos 5 caracteres.';
         }
 
         $email = trim($datos['email'] ?? '');
         $email = filter_var($email, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $email || empty($email)) {
+        if (!$email || empty($email)) {
             $this->errores['email'] = 'El correo tiene que tener una longitud de al menos 10 caracteres.';
         }
 
@@ -75,11 +77,10 @@ class FormRegistro extends Formulario {
 
         if (count($this->errores) === 0) {
             $usuario = Usuario::buscaPerfil($email);
-        
+
             if ($usuario) {
                 $this->errores[] = "El usuario ya existe";
-            } 
-            else {
+            } else {
                 $info = [$email, $password, $nombre, $apellidos, Usuario::USER_ROLE, "", ""];
                 $info_encoded = urlencode(json_encode($info));
                 header("Location: asignarPlan.php?datos=$info_encoded");

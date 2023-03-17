@@ -10,5 +10,3 @@
     $contenidoPrincipal = $html;
 
     require RAIZ_APP."/vistas/plantillas/plantillaInicio.php";
-
-?>

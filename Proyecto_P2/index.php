@@ -6,4 +6,3 @@
     EOS;
 
     require RAIZ_APP."/vistas/plantillas/plantilla.php";
-?>
