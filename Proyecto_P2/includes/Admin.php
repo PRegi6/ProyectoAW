@@ -75,10 +75,9 @@ class Admin
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar usuarios</h1>";
         $contenidoPrincipal .= "<table border='1'>";
-        $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Tipo Plan</th><th>Fecha Expiracion</th></tr>";
+        $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Tipo Plan</th><th>Fecha Expiracion</th><th>Opcion</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
-            $contenidoPrincipal .= "<td>";
             $contenidoPrincipal .= "<td>" . $fila['email'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['contraseña'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['nombre'] . "</td>";
