@@ -26,8 +26,8 @@ SET time_zone = "+00:00";
 --
 
 INSERT INTO `perfil` (`email`, `contraseña`, `nombre`, `apellidos`, `rol`) VALUES
--- ('ADMIN2@gmail.com', '$2y$10$CVBKGkqrIjBSaNpNQuRms.u6WX3o1eWKtYzPpRVnTy9lQyIaLJyF2', 'Rodrigo', 'Diaz de Vivar', 'admin'),
--- ('ADMIN@gmail.com', '$2y$10$GK0AkUYD2upID9WolIivV.z0jOqFGUXDD/O2iG2xTOmfcj9DaWp6i', 'Ricardo', 'Rodriguez', 'admin'),
+('ADMIN2@gmail.com', '$2y$10$CVBKGkqrIjBSaNpNQuRms.u6WX3o1eWKtYzPpRVnTy9lQyIaLJyF2', 'Rodrigo', 'Diaz de Vivar', 'admin'),
+('ADMIN@gmail.com', '$2y$10$GK0AkUYD2upID9WolIivV.z0jOqFGUXDD/O2iG2xTOmfcj9DaWp6i', 'Ricardo', 'Rodriguez', 'admin'),
 ('david@ucm.es', '$2y$10$4CjTsoBJfPynYq2g2WRPfeXOZlpeIvSmmt4frQArlfPkUXZN4QqwO', 'David', 'Polvoron', 'usuario'),
 ('franzroq@ucm.es', '$2y$10$wKJQ4W5JpsMkf47dHXag8.1kd7VFywHEUE/SJwMH8aojeqQq4KsGa', 'Rodrigo', 'Quispe', 'usuario'),
 ('pabloregi@ucm.es', '$2y$10$.i/OPE7p1MFw3xfDGceH5ejNvEktl0/UsMBQW/vTVXodnlBOnxfh.', 'Pablo', 'Regidor', 'usuario');
@@ -36,10 +36,10 @@ INSERT INTO `perfil` (`email`, `contraseña`, `nombre`, `apellidos`, `rol`) VALU
 -- Volcado de datos para la tabla `plandepago`
 --
 
--- INSERT INTO `plandepago` (`tipoPlan`, `precio`, `duracionPlan`) VALUES
--- ('artista', 19.99, '30'),
--- ('basico', 0, '30'),
--- ('premium', 7.99, '30');
+INSERT INTO `plandepago` (`tipoPlan`, `precio`, `duracionPlan`) VALUES
+('artista', 19.99, '30'),
+('basico', 0, '30'),
+('premium', 7.99, '30');
 
 --
 -- Volcado de datos para la tabla `usuarios`
@@ -54,34 +54,34 @@ INSERT INTO `usuarios` (`email`, `contraseña`, `nombre`, `apellidos`, `rol`, `t
 -- Volcado de datos para la tabla `admin`
 --
 
--- INSERT INTO `admin` (`email`, `contraseña`, `nombre`, `apellidos`, `rol`) VALUES
--- ('ADMIN2@gmail.com', '$2y$10$CVBKGkqrIjBSaNpNQuRms.u6WX3o1eWKtYzPpRVnTy9lQyIaLJyF2', 'Rodrigo', 'Diaz de Vivar', 'admin'),
--- ('ADMIN@gmail.com', '$2y$10$GK0AkUYD2upID9WolIivV.z0jOqFGUXDD/O2iG2xTOmfcj9DaWp6i', 'Ricardo', 'Rodriguez', 'admin');
+INSERT INTO `admin` (`email`, `contraseña`, `nombre`, `apellidos`, `rol`) VALUES
+('ADMIN2@gmail.com', '$2y$10$CVBKGkqrIjBSaNpNQuRms.u6WX3o1eWKtYzPpRVnTy9lQyIaLJyF2', 'Rodrigo', 'Diaz de Vivar', 'admin'),
+('ADMIN@gmail.com', '$2y$10$GK0AkUYD2upID9WolIivV.z0jOqFGUXDD/O2iG2xTOmfcj9DaWp6i', 'Ricardo', 'Rodriguez', 'admin');
 
 -- --
 -- Volcado de datos para la tabla `anuncios`
 --
 
--- INSERT INTO `anuncios` (`idAnuncio`, `rutaAnuncio`) VALUES
--- (1, 'rutaAnuncio1'),
--- (2, 'ruta2');
+INSERT INTO `anuncios` (`idAnuncio`, `rutaAnuncio`) VALUES
+(1, 'rutaAnuncio1'),
+(2, 'ruta2');
 
 -- --
 -- Volcado de datos para la tabla `gestionanuncios`
 --
 
--- INSERT INTO `gestionanuncios` (`email`, `idAnuncio`) VALUES
--- ('ADMIN@gmail.com', 1),
--- ('ADMIN2@gmail.com', 2);
+INSERT INTO `gestionanuncios` (`email`, `idAnuncio`) VALUES
+('ADMIN@gmail.com', 1),
+('ADMIN2@gmail.com', 2);
 
 -- --
 -- Volcado de datos para la tabla `canciones`
 --
 
--- INSERT INTO `canciones` (`idCancion`, `nombreCancion`, `genero`, `nombreAlbum`, `duracion`, `rutaCancion`, `rutaImagen`) VALUES
--- (1, 'cancion1', 'genero1', 'album1', '180', 'rutaCancion1', 'rutaImgC1'),
--- (2, 'cancion2', 'genero1', 'album2', '200', 'rutaCancion2', 'rutaImgC2'),
--- (3, 'cancion3', 'genero2', 'album1', '160', 'rutaCancion3', 'rutaImgC3');
+INSERT INTO `canciones` (`idCancion`, `nombreCancion`, `genero`, `nombreAlbum`, `duracion`, `rutaCancion`, `rutaImagen`) VALUES
+(1, 'cancion1', 'genero1', 'album1', '180', 'rutaCancion1', 'rutaImgC1'),
+(2, 'cancion2', 'genero1', 'album2', '200', 'rutaCancion2', 'rutaImgC2'),
+(3, 'cancion3', 'genero2', 'album1', '160', 'rutaCancion3', 'rutaImgC3');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
