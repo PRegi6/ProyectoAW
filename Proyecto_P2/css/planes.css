@@ -1,0 +1,37 @@
+.planes{
+    display: flex;
+    justify-content: center; /*justifica de forma de horizontal en este caso lo centra*/
+    align-items: start; /*justifica de forma de vertical en este caso lo centra*/
+}  
+    .planes .plan0{
+        border: 5px solid;
+        padding: 20px;
+        margin: 10px;
+    }   
+
+    .planes .plan1{
+        border: 5px solid;
+        padding: 20px;
+        margin: 10px;
+    }
+    .planes .plan2{
+        border: 5px solid;
+        padding: 20px;
+        margin: 10px;
+    }
+
+    .planes .plan0 .boton,
+    .planes .plan1 .boton,
+    .planes .plan2 .boton{
+        display: flex;
+        justify-content: center;
+        border: 2px solid black;
+        border-radius: 5px;
+        font-weight: bold;
+        color: black;
+        cursor: pointer;
+    }
+        .boton:hover {
+            background-color: #596C76;
+        }
+

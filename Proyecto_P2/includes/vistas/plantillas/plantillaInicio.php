@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <title><?= $tituloPagina ?></title>
         <link rel="stylesheet" href="./css/estiloPanelInicio.css">
-        <script src="./jscript/script.js" defer></script>
+        <link rel="stylesheet" href="./css/planes.css">
         <link rel="shortcut icon" href='<?=RUTA_IMGS?>/Altavoz2.png' type="image/x-icon">
     </head>
     

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-03-2023 a las 19:24:10
+-- Tiempo de generación: 17-03-2023 a las 15:47:27
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -55,9 +55,9 @@ CREATE TABLE `anuncios` (
 CREATE TABLE `canciones` (
   `idCancion` int(11) NOT NULL,
   `nombreCancion` varchar(20) NOT NULL,
-  `genero` varchar(20) NOT NULL,
-  `nombreAlbum` varchar(20) NOT NULL,
-  `duracion` int(11) NOT NULL,
+  `genero` varchar(30) NOT NULL,
+  `nombreAlbum` varchar(30) NOT NULL,
+  `duracion` varchar(20) NOT NULL,
   `rutaCancion` varchar(150) NOT NULL,
   `rutaImagen` varchar(150) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -95,7 +95,7 @@ CREATE TABLE `perfil` (
   `contraseña` varchar(100) NOT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
-  `rol` varchar(10) NOT NULL
+  `rol` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -107,7 +107,7 @@ CREATE TABLE `perfil` (
 CREATE TABLE `plandepago` (
   `tipoPlan` varchar(20) NOT NULL,
   `precio` float NOT NULL,
-  `duracionPlan` time NOT NULL
+  `duracionPlan` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -118,9 +118,9 @@ CREATE TABLE `plandepago` (
 
 CREATE TABLE `playlist` (
   `idPlaylist` int(11) NOT NULL,
-  `nombrePlaylist` varchar(20) NOT NULL,
+  `nombrePlaylist` varchar(30) NOT NULL,
   `email` varchar(50) NOT NULL,
-  `duracionPlaylist` time NOT NULL
+  `duracionPlaylist` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -130,7 +130,7 @@ CREATE TABLE `playlist` (
 --
 
 CREATE TABLE `subencanciones` (
-  `idCancion` int(11) NOT NULL,
+  `IdCancion` int(11) NOT NULL,
   `email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -147,7 +147,7 @@ CREATE TABLE `usuarios` (
   `apellidos` varchar(50) NOT NULL,
   `rol` varchar(10) NOT NULL,
   `tipoPlan` varchar(20) NOT NULL,
-  `fechaExpiracionPlan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `fechaExpiracionPlan` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -176,15 +176,15 @@ ALTER TABLE `canciones`
 -- Indices de la tabla `contienen`
 --
 ALTER TABLE `contienen`
-  ADD KEY `idCancion` (`idCancion`),
+  ADD KEY `contienen_ibfk_1` (`idCancion`),
   ADD KEY `idPlaylist` (`idPlaylist`);
 
 --
 -- Indices de la tabla `gestionanuncios`
 --
 ALTER TABLE `gestionanuncios`
-  ADD KEY `email` (`email`),
-  ADD KEY `idAnuncio` (`idAnuncio`);
+  ADD KEY `gestionanuncios_ibfk_1` (`email`),
+  ADD KEY `gestionanuncios_ibfk_2` (`idAnuncio`);
 
 --
 -- Indices de la tabla `perfil`
@@ -210,7 +210,7 @@ ALTER TABLE `playlist`
 --
 ALTER TABLE `subencanciones`
   ADD KEY `email` (`email`),
-  ADD KEY `idCancion` (`idCancion`);
+  ADD KEY `IdCancion` (`IdCancion`);
 
 --
 -- Indices de la tabla `usuarios`
@@ -227,40 +227,40 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `admin`
 --
 ALTER TABLE `admin`
-  ADD CONSTRAINT `admin_ibfk_1` FOREIGN KEY (`email`) REFERENCES `perfil` (`email`);
+  ADD CONSTRAINT `email` FOREIGN KEY (`email`) REFERENCES `perfil` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `contienen`
 --
 ALTER TABLE `contienen`
-  ADD CONSTRAINT `contienen_ibfk_1` FOREIGN KEY (`idCancion`) REFERENCES `canciones` (`idCancion`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `contienen_ibfk_2` FOREIGN KEY (`idPlaylist`) REFERENCES `playlist` (`idPlaylist`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `contienen_ibfk_1` FOREIGN KEY (`idCancion`) REFERENCES `canciones` (`idCancion`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `contienen_ibfk_2` FOREIGN KEY (`idPlaylist`) REFERENCES `playlist` (`idPlaylist`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `gestionanuncios`
 --
 ALTER TABLE `gestionanuncios`
-  ADD CONSTRAINT `gestionanuncios_ibfk_1` FOREIGN KEY (`email`) REFERENCES `admin` (`email`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `gestionanuncios_ibfk_2` FOREIGN KEY (`idAnuncio`) REFERENCES `anuncios` (`idAnuncio`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `gestionanuncios_ibfk_1` FOREIGN KEY (`email`) REFERENCES `admin` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `gestionanuncios_ibfk_2` FOREIGN KEY (`idAnuncio`) REFERENCES `anuncios` (`idAnuncio`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `playlist`
 --
 ALTER TABLE `playlist`
-  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuarios` (`email`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `playlist_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuarios` (`email`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `subencanciones`
 --
 ALTER TABLE `subencanciones`
-  ADD CONSTRAINT `subencanciones_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuarios` (`email`) ON UPDATE CASCADE,
-  ADD CONSTRAINT `subencanciones_ibfk_2` FOREIGN KEY (`idCancion`) REFERENCES `canciones` (`idCancion`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `subencanciones_ibfk_1` FOREIGN KEY (`email`) REFERENCES `usuarios` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `subencanciones_ibfk_2` FOREIGN KEY (`IdCancion`) REFERENCES `canciones` (`idCancion`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`email`) REFERENCES `perfil` (`email`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `usuarios_ibfk_1` FOREIGN KEY (`email`) REFERENCES `perfil` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `usuarios_ibfk_2` FOREIGN KEY (`tipoPlan`) REFERENCES `plandepago` (`tipoPlan`) ON UPDATE CASCADE;
 COMMIT;
 

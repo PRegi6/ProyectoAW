@@ -30,6 +30,7 @@ if (isset($_GET["datos"])) {
         $_SESSION['nombre'] = $usuario->getNombre();
         $_SESSION['rol'] = $usuario->getRol();
         $_SESSION['email'] = $usuario->getEmail();
+        $_SESSION['tipoPlan'] = $usuario->getTipoPlan();
         header("Location: index.php");
         exit();
     } else if (isset($_POST["artista"])) {
@@ -38,6 +39,7 @@ if (isset($_GET["datos"])) {
         $_SESSION['nombre'] = $usuario->getNombre();
         $_SESSION['rol'] = $usuario->getRol();
         $_SESSION['email'] = $usuario->getEmail();
+        $_SESSION['tipoPlan'] = $usuario->getTipoPlan();
         header("Location: index.php");
         exit();
     } else {

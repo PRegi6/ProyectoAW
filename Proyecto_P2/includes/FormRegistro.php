@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__."/config.php";
 require_once __DIR__.'/Formulario.php';
+require_once __DIR__ . "/Usuario.php";
 
 class FormRegistro extends Formulario {
 
@@ -21,7 +22,7 @@ class FormRegistro extends Formulario {
                 <fieldset class="fieldset_register">
  
                         <h1 id=titulo_panel>Registro</h1>
-                    
+                        {$htmlErroresGlobales}
                         <input type="text" placeholder=" Nombre" id="nombre" name="nombre"><br>
                         {$erroresCampos['nombre']}<br>
         
@@ -81,11 +82,9 @@ class FormRegistro extends Formulario {
             else {
                 $info = [$email, $password, $nombre, $apellidos, Usuario::USER_ROLE, "", ""];
                 $info_encoded = urlencode(json_encode($info));
-                header("Location: cambiarPlan.php?datos=$info_encoded");
+                header("Location: asignarPlan.php?datos=$info_encoded");
                 exit();
             }
         }
     }
 }
-
-?>

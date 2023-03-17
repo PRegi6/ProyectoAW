@@ -1,5 +1,6 @@
 <?php 
     require_once __DIR__.'/includes/config.php';
+    require_once __DIR__.'/includes/Usuario.php';
 
     unset($_SESSION['login']);
     unset($_SESSION['email']);

@@ -72,7 +72,7 @@ class Usuario
         $query = sprintf(
             "INSERT INTO perfil(email, contraseña, nombre, apellidos, rol) VALUES ('%s', '%s', '%s', '%s', '%s')",
             $conn->real_escape_string($usuario->email),
-            $conn->real_escape_string($usuario->contrasena),
+            $conn->real_escape_string($usuario->password),
             $conn->real_escape_string($usuario->nombre),
             $conn->real_escape_string($usuario->apellidos),
             $conn->real_escape_string($usuario->rol)
@@ -89,7 +89,7 @@ class Usuario
         $query = sprintf(
             "INSERT INTO usuarios(email, contraseña, nombre, apellidos, rol, tipoPlan, fechaExpiracionPlan) VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
             $conn->real_escape_string($usuario->email),
-            $conn->real_escape_string($usuario->contrasena),
+            $conn->real_escape_string($usuario->password),
             $conn->real_escape_string($usuario->nombre),
             $conn->real_escape_string($usuario->apellidos),
             $conn->real_escape_string($usuario->rol),

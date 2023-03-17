@@ -15,12 +15,11 @@ class FormLogin extends Formulario {
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos', 'email', 'password'], $this->errores, 'span', array('class' => 'error'));
-
         $html = <<<EOS
         <main class= "panel_inicio">
             <fieldset class="fieldset_register">
                 <h1 id=titulo_panel>Login</h1>
-            
+                {$htmlErroresGlobales}
                 <input type="email" placeholder=" Email" id="email" name="email"><br>
                 {$erroresCampos['email']}<br>
 
@@ -71,7 +70,6 @@ class FormLogin extends Formulario {
                 if($_SESSION['rol']==Usuario::USER_ROLE){
                     $usuario = Usuario::buscaUsuario($_SESSION['email']);
                     $_SESSION['tipoPlan'] = $usuario->getTipoPlan();
-                    $_SESSION['fechaExpiracion'] = $usuario->getTipoPlan();
                 }
             }
         }
