@@ -3,34 +3,34 @@
         if(!isset($_SESSION['login'])){
             echo"<ul>
                     <li><a href='index.php'>Inicio</a></li>
-                    <li><a href='.html'>Tendencias</a></li>
+                    <li><a href='tendencias.php'>Tendencias</a></li>
                 </ul>";  
         }
         else{
             if($_SESSION['rol']== 'admin'){
                 echo"<ul>
-                        <li><a href='GestionUsuarios.php'>Usuarios</a></li>
-                        <li><a href='GestionCanciones.php'>Canciones</a></li>
-                        <li><a href='.html'>Tendencias</a></li>
-                        <li><a href='GestionPlan.php'>Gestión Plan</a></li>
-                        <li><a href='.html'>Gestión de anuncios</a></li>
+                        <li><a href='gestionUsuarios.php'>Usuarios</a></li> 
+                        <li><a href='gestionCanciones.php'>Canciones</a></li>
+                        <li><a href='gestionTendencias.php'>Tendencias</a></li>
+                        <li><a href='gestionPlan.php'>Gestión Plan</a></li>
+                        <li><a href='gestionAnuncios.php'>Gestión de anuncios</a></li>
                     </ul>";
             }
             else if ($_SESSION['tipoPlan'] == 'artista'){
                 echo"<ul>
-                    <li><a href='.html'>Inicio</a></li>
-                    <li><a href='.html'>Tendencias</a></li>
-                    <li><a href='.html'>Me gusta</a></li>
-                    <li><a href='.html'>Playlist</a></li>
-                    <li><a href='.html'>Gestion de Contenido</a></li>
+                    <li><a href='index.php'>Inicio</a></li>
+                    <li><a href='tendencias.php'>Tendencias</a></li>
+                    <li><a href='meGusta.php'>Me gusta</a></li>
+                    <li><a href='playlist.php'>Playlist</a></li>
+                    <li><a href='gestionContenido.php'>Gestion de Contenido</a></li>
                 </ul>";
             }
             else {
                 echo"<ul>
-                    <li><a href='.html'>Inicio</a></li>
-                    <li><a href='.html'>Tendencias</a></li>
-                    <li><a href='.html'>Me gusta</a></li>
-                    <li><a href='.html'>Playlist</a></li>
+                    <li><a href='index.php'>Inicio</a></li>
+                    <li><a href='tendencias.php'>Tendencias</a></li>
+                    <li><a href='meGusta.php'>Me gusta</a></li>
+                    <li><a href='playlist.php'>Playlist</a></li>
                 </ul>";
             }
         }
