@@ -86,6 +86,9 @@ class Admin
             $contenidoPrincipal .= "<td>" . $fila['tipoPlan'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['fechaExpiracionPlan'] . "</td>";
             $contenidoPrincipal .= "<td><a href='borrarUsuario.php?email={$fila['email']}'>Borrar</td>";
+            $info = [$fila['email'], $fila['contraseña'], $fila['nombre'], $fila['apellidos'], $fila['rol'], $fila['tipoPlan'], $fila['fechaExpiracionPlan']];
+            $info_encoded = urlencode(json_encode($info));
+            $contenidoPrincipal .= "<td><a href='modificarUsuario.php?info={$info_encoded}'>Editar</td>";
             $contenidoPrincipal .= "</tr>";
         }
 

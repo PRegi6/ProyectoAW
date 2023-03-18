@@ -16,6 +16,8 @@ abstract class Formulario
 
     protected $errores;
 
+    protected $info;
+
 
     public function __construct($formId, $opciones = array())
     {
@@ -60,6 +62,31 @@ abstract class Formulario
         }
     }
 
+    public function gestiona2($valores)
+    {
+        $datos = &$_POST;
+        if (strcasecmp('GET', $this->method) == 0) {
+            $datos = &$_GET;
+        }
+        $this->errores = [];
+        
+        if (!$this->formularioEnviado($datos)) {
+            return $this->generaFormulario2($valores);
+        }
+
+        $this->procesaFormulario($datos);
+        $esValido = count($this->errores) === 0;
+
+        if (! $esValido ) {
+            return $this->generaFormulario($valores);
+        }
+
+        if ($this->urlRedireccion !== null) {
+            header("Location: {$this->urlRedireccion}");
+            exit();
+        }
+    }
+
     protected function formularioEnviado(&$datos)
     {
         return isset($datos['formId']) && $datos['formId'] == $this->formId;
@@ -82,7 +109,29 @@ abstract class Formulario
         return $htmlForm;
     }
 
+    protected function generaFormulario2(&$datos)
+    {
+        $htmlCamposFormularios = $this->generaCamposFormulario($datos);
+
+        $classAtt = $this->classAtt != null ? "class=\"{$this->classAtt}\"" : '';
+
+        $enctypeAtt = $this->enctype != null ? "enctype=\"{$this->enctype}\"" : '';
+
+        $htmlForm = <<<EOS
+        <form method="{$this->method}" action="{$this->action}" id="{$this->formId}" {$classAtt} {$enctypeAtt}>
+            <input type="hidden" name="formId" value="{$this->formId}" />
+            $htmlCamposFormularios
+        </form>
+        EOS;
+        return $htmlForm;
+    }
+
     protected function generaCamposFormulario(&$datos)
+    {
+        return '';
+    }
+
+    protected function generaCamposFormulario2(&$datos, $valores)
     {
         return '';
     }
