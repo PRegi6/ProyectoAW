@@ -71,7 +71,7 @@ abstract class Formulario
         $this->errores = [];
         
         if (!$this->formularioEnviado($datos)) {
-            return $this->generaFormulario2($valores);
+            return $this->generaFormulario($valores);
         }
 
         $this->procesaFormulario($datos);
@@ -109,29 +109,8 @@ abstract class Formulario
         return $htmlForm;
     }
 
-    protected function generaFormulario2(&$datos)
-    {
-        $htmlCamposFormularios = $this->generaCamposFormulario($datos);
-
-        $classAtt = $this->classAtt != null ? "class=\"{$this->classAtt}\"" : '';
-
-        $enctypeAtt = $this->enctype != null ? "enctype=\"{$this->enctype}\"" : '';
-
-        $htmlForm = <<<EOS
-        <form method="{$this->method}" action="{$this->action}" id="{$this->formId}" {$classAtt} {$enctypeAtt}>
-            <input type="hidden" name="formId" value="{$this->formId}" />
-            $htmlCamposFormularios
-        </form>
-        EOS;
-        return $htmlForm;
-    }
 
     protected function generaCamposFormulario(&$datos)
-    {
-        return '';
-    }
-
-    protected function generaCamposFormulario2(&$datos, $valores)
     {
         return '';
     }

@@ -146,6 +146,22 @@ class Admin
         return $contenidoPrincipal;
     }
 
+    public static function selectorPlanes($tipoPlan)
+    {
+        // Consulta SQL para obtener los datos de la tabla
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $consulta = "SELECT * FROM plandepago";
+        $resultado = $conn->query($consulta);
+        
+        $contenidoPrincipal = "<select name= 'tipoPlan'>";
+        while ($fila = $resultado->fetch_assoc()) {
+            $selecionado = ($fila['tipoPlan'] == $tipoPlan) ? " selected" : "";
+            $contenidoPrincipal .= "<option value=" . $fila['tipoPlan'] . $selecionado . " > " . $fila['tipoPlan'] . "</option>";
+        }
+        $contenidoPrincipal .= "</select>";
+        return $contenidoPrincipal;
+    }
+
     public static function mostrarAnuncios($email)
     {
         // Consulta SQL para obtener los datos de la tabla
