@@ -15,6 +15,7 @@ class Admin
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
+            $rs->free();
             $result = true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
@@ -29,7 +30,7 @@ class Admin
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
-            echo "bien";
+            $rs->free();
             $result = true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
@@ -61,8 +62,6 @@ class Admin
         $user->cambiaPassword($nuevoPass);
     }
 
-
-
     //FUNCIONES PARA OBTENER DATOS DE BD
 
     public static function mostrarUsuarios()
@@ -91,6 +90,7 @@ class Admin
             $contenidoPrincipal .= "<td><a href='modificarUsuario.php?info={$info_encoded}'>Editar</td>";
             $contenidoPrincipal .= "</tr>";
         }
+        $resultado->free();
 
         $contenidoPrincipal .= "</table>";
         return $contenidoPrincipal;
@@ -119,6 +119,7 @@ class Admin
             $contenidoPrincipal .= "<td><a href='borrarCancion.php?id={$fila['idCancion']}'>Borrar</td>";
             $contenidoPrincipal .= "</tr>";
         }
+        $resultado->free();
 
         $contenidoPrincipal .= "</table>";
         return $contenidoPrincipal;
@@ -142,6 +143,8 @@ class Admin
             $contenidoPrincipal .= "<td>" . $fila['duracionPlan'] . "</td>";
             $contenidoPrincipal .= "</tr>";
         }
+        $resultado->free();
+        
         $contenidoPrincipal .= "</table>";
         return $contenidoPrincipal;
     }
@@ -158,6 +161,8 @@ class Admin
             $selecionado = ($fila['tipoPlan'] == $tipoPlan) ? " selected" : "";
             $contenidoPrincipal .= "<option value=" . $fila['tipoPlan'] . $selecionado . " > " . $fila['tipoPlan'] . "</option>";
         }
+        $resultado->free();
+
         $contenidoPrincipal .= "</select>";
         return $contenidoPrincipal;
     }
@@ -179,6 +184,8 @@ class Admin
             $contenidoPrincipal .= "<td>" . $fila['idAnuncio'] . "</td>";
             $contenidoPrincipal .= "</tr>";
         }
+        $resultado->free();
+
         $contenidoPrincipal .= "</table>";
         return $contenidoPrincipal;
     }

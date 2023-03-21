@@ -29,15 +29,13 @@ class ListaCanciones{
         if(!$result){
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }else{
-
             $rs = $result->fetch_assoc();
             if($rs){
                 $cancion = new Cancion($result['id'], $result['nombre'], 
                 $result['genero'], $result['nombreAlbum'], $result['duracion'], 
                 $result['rutaCancion'], $result['rutaImagen']);
             }
-            
-
+            $rs->free();
         }
 
         return $cancion;
@@ -46,5 +44,3 @@ class ListaCanciones{
 
 
 }
-
-?>

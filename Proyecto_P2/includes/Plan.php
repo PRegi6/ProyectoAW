@@ -19,6 +19,7 @@ class Plan
             $plan = new Plan($fila['tipoPlan'], $fila['precio'], $fila['duracionPlan']);
             array_push($planes, $plan);
         }
+        $resultado->free();
 
         return $planes;
     }

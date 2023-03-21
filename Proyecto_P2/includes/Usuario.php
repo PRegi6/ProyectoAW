@@ -95,8 +95,8 @@ class Usuario
         );
         $rs = $conn->query($query);
         if ($rs) {
-            return true;
             $rs->free();
+            return true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
@@ -119,6 +119,7 @@ class Usuario
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
+            $rs->free();
             $result = true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
