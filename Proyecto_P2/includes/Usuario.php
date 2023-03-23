@@ -185,6 +185,20 @@ class Usuario
         return true;
     }
 
+
+    private static function esArtista($usuario){
+        return $usuario->getTipoPlan() === "artista";
+    }
+
+    public function añadirCancion($cancion){
+        if(esArtista($this)){
+
+        }
+    } 
+
+
+    
+
     private $email;
     private $password;
     private $nombre;
