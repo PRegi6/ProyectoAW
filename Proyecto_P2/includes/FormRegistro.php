@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . "/config.php";
 require_once __DIR__ . '/Formulario.php';
+require_once __DIR__ . "/Plan.php";
 require_once __DIR__ . "/Usuario.php";
 
 class FormRegistro extends Formulario
@@ -14,7 +15,9 @@ class FormRegistro extends Formulario
     protected function generaCamposFormulario(&$datos)
     {
         $nombre = $datos['nombre'] ?? '';
-
+        $apellidos = $datos['apellidos'] ?? '';
+        $email = $datos['email'] ?? '';
+        $password = $datos['password'] ?? '';
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos', 'email', 'password'], $this->errores, 'span', array('class' => 'error'));
@@ -25,16 +28,16 @@ class FormRegistro extends Formulario
  
                         <h1 id=titulo_panel>Registro</h1>
                         {$htmlErroresGlobales}
-                        <input type="text" placeholder=" Nombre" id="nombre" name="nombre"><br>
+                        <input type="text" placeholder=" Nombre" id="nombre" name="nombre" value={$nombre}><br>
                         {$erroresCampos['nombre']}<br>
         
-                        <input type="text" placeholder=" Apellidos" id="apellidos" name="apellidos"><br>
+                        <input type="text" placeholder=" Apellidos" id="apellidos" name="apellidos" value={$apellidos}><br>
                         {$erroresCampos['apellidos']}<br>
         
-                        <input type="email" placeholder=" Email" id="email" name="email"><br>
+                        <input type="email" placeholder=" Email" id="email" name="email" value={$email}><br>
                         {$erroresCampos['email']}<br>
         
-                        <input type="password" placeholder=" Contraseña" id="password" name="password"><br>
+                        <input type="password" placeholder=" Contraseña" id="password" name="password" value={$password}><br>
                         {$erroresCampos['password']}<br>
         
                         <input class="BotonForm" type="submit" value="Siguiente" name="siguiente"><br><br>
@@ -77,14 +80,12 @@ class FormRegistro extends Formulario
 
         if (count($this->errores) === 0) {
             $usuario = Usuario::buscaPerfil($email);
-
+            
             if ($usuario) {
                 $this->errores[] = "El usuario ya existe";
             } else {
-                $info = [$email, $password, $nombre, $apellidos, Usuario::USER_ROLE, "", ""];
-                $info_encoded = urlencode(json_encode($info));
-                header("Location: asignarPlan.php?datos=$info_encoded");
-                exit();
+                $plns = Plan::cargarPlanes();
+                return Plan::mostrarPlanes($plns, [$email,$password,$nombre,$apellidos]);
             }
         }
     }

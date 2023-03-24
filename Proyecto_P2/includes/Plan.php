@@ -24,10 +24,11 @@ class Plan
         return $planes;
     }
 
-    public static function mostrarPlanes($planes)
+    public static function mostrarPlanes($planes, $valores)
     {
         $mostrarPlanes = <<<EOS
-                <form method="POST">
+                <form method="POST" action="asignarPlan.php">
+                <input type="hidden" name="valores" value="$valores[0], $valores[1], $valores[2], $valores[3]" />
                 <div class="planes">
                 EOS;
 
@@ -37,7 +38,7 @@ class Plan
             $mostrarPlanes .= "<h1> Tipo Plan: {$plan->getTipoPlan()}<h1><br>";
             $mostrarPlanes .= "<h1> Tipo Plan: {$plan->getPrecio()}<h1><br>";
             $mostrarPlanes .= "<h1 name= 'duracionPlan'> Tipo Plan: {$plan->getDuracion()}<h1><br>";
-            $mostrarPlanes .= "<input class='boton'type='submit' value='{$plan->getTipoPlan()}' name='{$plan->getTipoPlan()}'>";
+            $mostrarPlanes .= "<input class='boton'type='submit' value='{$plan->getTipoPlan()}' name='tipoPlan'>";
             $mostrarPlanes .= "</div>";
             $x += '1';
         }

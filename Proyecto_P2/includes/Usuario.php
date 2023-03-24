@@ -81,70 +81,7 @@ class Usuario
         return $result;
     }
 
-    public static function modificarDatosUsuario($datos)
-    {
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("UPDATE usuarios SET contraseña='%s', nombre='%s', apellidos='%s', rol='%s', tipoPlan='%s', fechaExpiracionPlan='%s' WHERE email='%s'"
-        , self::hashPassword($datos[1])
-        , $datos[2]
-        , $datos[3]
-        , $datos[4]
-        , $datos[5]
-        , $datos[6]
-        , $datos[0]
-        );
-        $rs = $conn->query($query);
-        if ($rs) {
-            $rs->free();
-            return true;
-        } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-        return false;
-    }
-
-    public static function cambiaraAdmin($datos)
-    {
-        if(self::borrarUsuario($datos[0])){
-            self::insertaAdmin($datos);
-        }
-        return false;
-    }
-
-    public static function borrarUsuario($email)
-    {
-
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("DELETE FROM usuarios WHERE email='%s'", $email);
-        $rs = $conn->query($query);
-        $result = false;
-        if ($rs) {
-            $rs->free();
-            $result = true;
-        } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-        return $result;
-    }
-
-    private static function insertaAdmin($datos)
-    {
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf(
-            "INSERT INTO admin (email, contraseña, nombre, apellidos, rol) VALUES ('%s', '%s', '%s', '%s', '%s')",
-            $datos[0],
-            self::hashPassword($datos[1]),
-            $datos[2],
-            $datos[3],
-            $datos[4]
-        );
-        if (!$conn->query($query)) {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-        return true;
-    }
-
-    private static function hashPassword($password)
+    public static function hashPassword($password)
     {
         return password_hash($password, PASSWORD_DEFAULT);
     }
@@ -190,11 +127,11 @@ class Usuario
         return $usuario->getTipoPlan() === "artista";
     }
 
-    public function añadirCancion($cancion){
-        if(esArtista($this)){
+    // public function añadirCancion($cancion){
+    //     if(esArtista($this)){
 
-        }
-    } 
+    //     }
+    // } 
 
 
     

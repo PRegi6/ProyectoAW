@@ -3,7 +3,7 @@
     require_once __DIR__."/includes/FormRegistro.php";
 
     $form = new FormRegistro();
-    $html = $form->gestiona();
+    $html = $form->gestionaRegistro();
 
     $tituloPagina = "Registro - BeatHouse";
 
