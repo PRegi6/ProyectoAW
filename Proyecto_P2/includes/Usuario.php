@@ -125,14 +125,27 @@ class Usuario
 
 
     public function subirCancion($cancion){
+
+        $result = false;
+
         if(self::esArtista()){
-            $cancion->inserta
-            Cancion::inserta($cancion);
-            return true;
+            Cancion::insertaCancion($cancion);
+            $conn = Aplicacion::getInstance()->getConexionBd();
+            $query = sprintf("INSERT INTO subencanciones(IdCancion, email) VALUES ('%s', '%s')", 
+            $conn->real_escape_string($cancion->getId())
+            ,$conn->real_escape_string($this->email)
+            );
+
+            if($conn->query($query)){
+                $result = true;
+            }else{
+                error_log("Error BD ({$conn->errno}): {$conn->error}");
+            }
+            return $result;
         }else{
             echo'Error, usuario no logueado como artista';
         }
-        return false;
+        return $result;
     }
 
 

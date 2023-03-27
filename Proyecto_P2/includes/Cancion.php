@@ -141,7 +141,7 @@ class Cancion{
     } 
 
 
-    public function inserta($cancion){
+    public static function insertaCancion($cancion){
 
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
