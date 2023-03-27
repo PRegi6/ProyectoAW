@@ -1,5 +1,6 @@
 <?php
 
+require_once __DIR__.'/Cancion.php';
 
 class Usuario
 {
@@ -123,18 +124,22 @@ class Usuario
     }
 
 
-    private static function esArtista($usuario){
-        return $usuario->getTipoPlan() === "artista";
+    public function subirCancion($cancion){
+        if(self::esArtista()){
+            $cancion->inserta
+            Cancion::inserta($cancion);
+            return true;
+        }else{
+            echo'Error, usuario no logueado como artista';
+        }
+        return false;
     }
 
-    // public function añadirCancion($cancion){
-    //     if(esArtista($this)){
 
-    //     }
-    // } 
+    private static function esArtista(){
+        return self::getTipoPlan() === "artista";
+    } 
 
-
-    
 
     private $email;
     private $password;
