@@ -141,7 +141,7 @@ class Cancion{
     } 
 
 
-    private static function inserta($cancion){
+    public function inserta($cancion){
 
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -164,7 +164,7 @@ class Cancion{
     }
 
 
-    private static function actualiza($cancion)
+    public static function actualiza($cancion)
     {
         $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
