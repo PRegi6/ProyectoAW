@@ -62,7 +62,7 @@ abstract class Formulario
         }
     }
 
-    public function gestiona2($valores)
+    public function gestionaModificarDatos($valores)
     {
         $datos = &$_POST;
         if (strcasecmp('GET', $this->method) == 0) {
@@ -84,6 +84,30 @@ abstract class Formulario
         if ($this->urlRedireccion !== null) {
             header("Location: {$this->urlRedireccion}");
             exit();
+        }
+    }
+
+    public function gestionaRegistro()
+    {
+        $datos = &$_POST;
+        if (strcasecmp('GET', $this->method) == 0) {
+            $datos = &$_GET;
+        }
+        $this->errores = [];
+
+        if (!$this->formularioEnviado($datos)) {
+            return $this->generaFormulario();
+        }
+
+        $html = $this->procesaFormulario($datos);
+        $esValido = count($this->errores) === 0;
+
+        if (! $esValido ) {
+            return $this->generaFormulario($datos);
+        }
+
+        else{
+            return $html;
         }
     }
 

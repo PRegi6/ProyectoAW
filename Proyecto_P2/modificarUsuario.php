@@ -6,7 +6,7 @@
     $datos_encoded = $_GET["info"];
     $datos = json_decode(urldecode($datos_encoded));
     $form = new FormModificarUsu();
-    $contenidoPrincipal = $form->gestiona2($datos);
+    $contenidoPrincipal = $form->gestionaModificarDatos($datos);
 
     require RAIZ_APP."/vistas/plantillas/plantilla.php";
 ?>

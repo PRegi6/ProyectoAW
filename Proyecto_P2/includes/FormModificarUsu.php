@@ -13,15 +13,16 @@ class FormModificarUsu extends Formulario {
 
     protected function generaCamposFormulario(&$datos)
     {
-
+        $email = $datos[0] ?? '';
+        $nombre = $datos[2] ?? '';
+        $apellidos =  $datos[3] ?? '';
+        $plan =  $datos[5] ?? '';
+        $fechaExpiracion =  $datos[6] ?? '';
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['email', 'password', 'nombre', 'apellidos', 'fecha'], $this->errores, 'span', array('class' => 'error'));
-        $valores = ['','','','','','',''];
-        if(!empty($datos)){
-            $valores = $datos;
-        }
-        $selectorPlanes = Admin::selectorPlanes($valores[5]);
+        $erroresCampos = self::generaErroresCampos(['password', 'nombre', 'apellidos', 'fecha'], $this->errores, 'span', array('class' => 'error'));
+
+        $selectorPlanes = Admin::selectorPlanes($plan);
         $html = <<<EOS
             <main class= "panel_inicio">
                 <fieldset class="fieldset_register">
@@ -29,20 +30,20 @@ class FormModificarUsu extends Formulario {
                         <h1 id=titulo_panel>Cambiar Datos</h1>
                         {$htmlErroresGlobales}
 
-                        <label for= 'email'>Email: </label>
-                        <input type="email" placeholder=" Email" id="email" name="email" value='{$valores[0]}'><br>
-                        {$erroresCampos['email']}<br>
+                        <label for= 'email'>Email: $email</label>
+                        <input type="hidden" name="email" value="{$email}" />
+                        <br><br>
 
                         <label for= 'password'>Contraseña: </label>
                         <input type="password" placeholder=" Contraseña" id="password" name="password"><br>
                         {$erroresCampos['password']}<br>
 
                         <label for='nombre'>Nombre: </label>
-                        <input type="text" placeholder="Nombre" id="nombre" name="nombre" value='{$valores[2]}'><br>
+                        <input type="text" placeholder="Nombre" id="nombre" name="nombre" value='{$nombre}'><br>
                         {$erroresCampos['nombre']}<br>
         
                         <label for ='apellidos'>Apellidos: </label>
-                        <input type ="text" placeholder =" Apellidos" id ="apellidos" name="apellidos" value= '{$valores[3]}'><br>
+                        <input type ="text" placeholder =" Apellidos" id ="apellidos" name="apellidos" value= '{$apellidos}'><br>
                         {$erroresCampos['apellidos']}<br>
 
                         <label for ='rol'>Rol: </label>
@@ -55,7 +56,7 @@ class FormModificarUsu extends Formulario {
                         {$selectorPlanes}<br><br>
 
                         <label for= 'fecha'>Fecha Expiración: </label>
-                        <input type ='date' placeholder ='fechaExpiracion' id ='fecha' name ='fecha' value ='{$valores[6]}'><br>
+                        <input type ='date' placeholder ='fechaExpiracion' id ='fecha' name ='fecha' value ='{$fechaExpiracion}'><br>
                         {$erroresCampos['fecha']}<br>
         
                         <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
@@ -68,12 +69,7 @@ class FormModificarUsu extends Formulario {
     protected function procesaFormulario(&$datos)
     {
         $this->errores = [];
-
-        $email = trim($datos['email'] ?? '');
-        $email = filter_var($email, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if ( ! $email || empty($email)) {
-            $this->errores['email'] = 'El email no puede estar vacio';
-        }
+        $email =$datos['email'];
 
         $password = trim($datos['password'] ?? '');
         $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -104,24 +100,12 @@ class FormModificarUsu extends Formulario {
         if (count($this->errores) === 0) {
 
             if($datos['rol'] == "admin"){
-                Usuario::cambiaraAdmin([$email, $password, $nombre, $apellidos, $rol]);
+                Admin::cambiaraAdmin([$email, $password, $nombre, $apellidos, $rol]);
             }
             else{
-                Usuario::modificarDatosUsuario([$email, $password, $nombre, $apellidos, $rol, $tipoPlan, $fechaExpiracion]);
+                Admin::modificarDatosPerfil([$email, $password, $nombre, $apellidos, $rol]);
+                Admin::modificarDatosUsuario([$email, $password, $nombre, $apellidos, $rol, $tipoPlan, $fechaExpiracion]);
             }
-            // $usuario = Usuario::buscarCorreo($email);
-
-            // if ($usuario) {
-            //     $this->errores[] = "El correo ya esta en uso ";
-            // } 
-            // else {
-            //     if($datos['rol'] == "admin"){
-            //         Usuario::cambiaraAdmin([$email, $password, $nombre, $apellidos, $rol]);
-            //     }
-            //     else{
-            //         Usuario::modificarDatosUsuario([$email, $password, $nombre, $apellidos, $rol, $tipoPlan, $fechaExpiracion]);
-            //     }
-            // }
         }
     }
 }
