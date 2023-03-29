@@ -38,6 +38,7 @@ class Admin
         return $result;
     }
 
+
     public function renameUsuario($email, $nombre)
     {
         $user = Usuario::buscaPerfil($email);

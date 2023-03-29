@@ -149,6 +149,18 @@ class Usuario
     }
 
 
+    public function borraCancion($nombreCancion){
+        $ok = false;
+        if(self::esArtista()){
+            $ok = Cancion::borraCancion($nombreCancion);
+        }else{
+            echo'Error, usuario no logueado como artista';
+        }
+
+        return $ok;
+    }
+
+
     private static function esArtista(){
         return self::getTipoPlan() === "artista";
     } 

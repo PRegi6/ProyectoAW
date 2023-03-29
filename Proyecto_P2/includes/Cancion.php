@@ -164,6 +164,23 @@ class Cancion{
     }
 
 
+    public static function borraCancion($nombreCancion){
+
+        $result = false;
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("DELETE FROM canciones WHERE nombreCancion=%d", $nombreCancion);
+        $rs = $conn->query($query);
+        if($rs){
+            $rs->free();
+            $result = true;
+        }else{
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        
+        return $result;
+    }
+
+
     public static function actualiza($cancion)
     {
         $result = false;
@@ -190,7 +207,7 @@ class Cancion{
         if($this->id !== null){
             return self::actualiza($this);
         }
-        return self::inserta($this);
+        return self::insertaCancion($this);
     }
 
                   
