@@ -82,6 +82,8 @@ INSERT INTO `canciones` (`idCancion`, `nombreCancion`, `genero`, `nombreAlbum`, 
 (1, 'cancion1', 'genero1', 'album1', '180', 'rutaCancion1', 'rutaImgC1'),
 (2, 'cancion2', 'genero1', 'album2', '200', 'rutaCancion2', 'rutaImgC2'),
 (3, 'cancion3', 'genero2', 'album1', '160', 'rutaCancion3', 'rutaImgC3');
+(4, 'Yandel 150', 'Regeton', 'Yandel 150', '130', 'music/yandel150.mp3', './img/music/yandel150v2.png'),
+(5, 'Duki  She Dont Give ', 'Trap', 'Duki', '120', 'music/Duki  She Dont Give a FO ft Khea.mp3', './img/music/SheDontGive.jpg');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
