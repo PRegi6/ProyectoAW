@@ -1,7 +1,5 @@
 <?php
 
-//use LDAP\Result;
-
 class Cancion{
 
     private $id;
@@ -12,10 +10,9 @@ class Cancion{
     private $rutaCancion;
     private $rutaImagen;
 
-
-    private function __construct($nombre, $genero, $nombreAlbum, $duracion, $rutaCancion, $rutaImagen){
+    private function __construct($id, $nombre, $genero, $nombreAlbum, $duracion, $rutaCancion, $rutaImagen){
         
-        $this->id = null;
+        $this->id = $id;
         $this->nombre = $nombre;
         $this->genero = $genero;
         $this->nombreAlbum = $nombreAlbum;
@@ -24,6 +21,29 @@ class Cancion{
         $this->rutaImagen = $rutaImagen;
     }
 
+
+    public static function listaCanciones($cadenaCancion){
+
+        $lista = [];
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = "SELECT * FROM canciones WHERE nombreCancion LIKE '%$cadenaCancion%'";
+        $result = $conn->query($query);
+
+        if(!$result->num_rows > 0){
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }else{
+            
+            foreach($result as $rs){
+                $cancion = new Cancion($rs['idCancion'], $rs['nombreCancion'], 
+                $rs['genero'], $rs['nombreAlbum'], $rs['duracion'], 
+                $rs['rutaCancion'], $rs['rutaImagen']);
+                array_push($lista, $cancion); 
+            }
+            $result->free();
+        }
+
+        return $lista;
+    }
 
     public static function buscarPorAlbum($nombreAlbum){
 
@@ -127,7 +147,6 @@ class Cancion{
         if(!$result){
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }else{
-
             $rs = $result->fetch_assoc();
             if($rs){
                 $cancion = new Cancion($rs['idCancion'], $rs['nombre'], 
@@ -217,6 +236,10 @@ class Cancion{
 
     public function getNombre(){
         return $this->nombre;
+    }
+
+    public function getGenero(){
+        return $this->genero;
     }
 
     public function getNombreAlbum(){

@@ -1,0 +1,85 @@
+/* También establecerá el ancho del contenedor al 100% para 
+asegurarse de que ocupe todo el ancho disponible en su contenedor padre. */
+.buscador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding-top: 40px;
+  }
+
+    .buscador input{
+        width: 50%;
+        height: 40px;
+        border-radius: 10px;
+    }
+
+    .buscador .boton-buscador {
+        border: none;
+        background-color: transparent;
+        background: none;
+    }
+
+    .buscador .boton-buscador i{
+        padding-left: 10px;
+    }
+
+/* CSS PARA EL BUSCADOR */
+
+.lista-canciones {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    padding-top: 20px;
+}
+
+.lista-canciones img{
+    width: 80px;
+    height: 80px;
+}
+
+.lista-canciones li {
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.lista-canciones .play {
+    display: none; /* Oculta el ícono de reproducción por defecto */
+}
+
+.lista-canciones li:hover .play {
+    display: block; /* Muestra el ícono de reproducción cuando el cursor está sobre el contenedor  */
+    position: absolute;
+    transform: translate(8%, -2%);
+    opacity: 0.7;
+    transition: opacity .2s;
+}
+    .lista-canciones .infoCancion{
+        display: flex;
+        justify-content: space-between;
+        height: 80px;
+    }
+
+    .lista-canciones .infoCancion .nombre-genero{
+        height: 100%;
+    }
+
+    .lista-canciones li:hover {
+        background-color: #485C64;
+    }
+
+    .lista-canciones li h3 {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .lista-canciones li p {
+        font-size: 14px;
+    }
+
+.duracion {
+    font-size: 12px;
+    margin-top: 5px; 
+}
