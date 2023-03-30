@@ -14,27 +14,26 @@ let total_duration = document.querySelector('.total-duration');
 let randomIcon = document.querySelector('.fa-random');
 let curr_track = document.createElement('audio');
 
+//Para cuando busques una cancion y le des al play
+let playMusic = document.querySelector('.play');
+
 let track_index = 0;
 let isPlaying = false;
 let isRandom = false;
 let updateTimer;
 
-const music_list = [
-    {
-        img: './img/music/yandel150v2.png',
-        name: 'Yandel 150',
-        artist: 'Yandel 150',
-        music: 'music/yandel150.mp3'
-    },
-    {
-        img: './img/music/SheDontGive.jpg',
-        name: 'Duki  She Dont Give a FO ft Khea',
-        artist: 'Duki Khea',
-        music: 'music/Duki  She Dont Give a FO ft Khea.mp3'
-    }
-];
+var music_list;
 
-loadTrack(track_index);
+function reproducirSeleccionado(datos){
+    music_list = [{        
+        img: datos.rutaImg,
+        name: datos.nombreC,
+        artist: datos.nombreAlbum, 
+        music: datos.rutaCan
+    }];
+    loadTrack(0);
+    playTrack();
+};
 
 function loadTrack(track_index) {
     clearInterval(updateTimer);

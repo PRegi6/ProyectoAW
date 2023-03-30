@@ -22,10 +22,18 @@
             else{
                 $contenidoPrincipal .= "<ul class='lista-canciones'>";
                 foreach($ListaCanciones as $cancion){
+                    $datos = array(
+                        'rutaImg' => $cancion->getRutaImagen(),
+                        'nombreC' => $cancion->getNombre(),
+                        'nombreAlbum' => $cancion->getNombreAlbum(),
+                        'rutaCan' => $cancion->getRutaCancion()
+                    );
+                    $datosJson = json_encode($datos);
+                    //El segundo parámetro opcional JSON_FORCE_OBJECT fuerza a json_encode() a convertir el array numérico en un objeto JSON.
                     $contenidoPrincipal .= <<<EOS
                         <li >
                             <img src="{$cancion->getRutaImagen()}" alt="{$cancion->getNombre()}">
-                            <div class="play">
+                            <div class="play" onclick='reproducirSeleccionado({$datosJson})'>
                                 <i class="fa fa-play-circle fa-5x"></i>
                             </div>
                             <div class="infoCancion">

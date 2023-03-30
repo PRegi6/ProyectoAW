@@ -46,13 +46,13 @@ asegurarse de que ocupe todo el ancho disponible en su contenedor padre. */
 }
 
 .lista-canciones .play {
+    transform: translate(-110%, 0%);
     display: none; /* Oculta el ícono de reproducción por defecto */
 }
 
 .lista-canciones li:hover .play {
-    display: block; /* Muestra el ícono de reproducción cuando el cursor está sobre el contenedor  */
-    position: absolute;
-    transform: translate(8%, -2%);
+    display: block; /*Muestra el ícono de reproducción cuando el cursor está sobre el contenedor  */
+    transform: translate(-110%, 0%);
     opacity: 0.7;
     transition: opacity .2s;
 }
