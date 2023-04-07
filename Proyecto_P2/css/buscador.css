@@ -14,12 +14,6 @@ asegurarse de que ocupe todo el ancho disponible en su contenedor padre. */
         border-radius: 10px;
     }
 
-    .buscador .boton-buscador {
-        border: none;
-        background-color: transparent;
-        background: none;
-    }
-
     .buscador .boton-buscador i{
         padding-left: 10px;
     }
@@ -78,6 +72,12 @@ asegurarse de que ocupe todo el ancho disponible en su contenedor padre. */
     .lista-canciones li p {
         font-size: 14px;
     }
+
+.boton-buscador,    
+.boton-corazon {
+    border: none;
+    background: none; 
+}
 
 .duracion {
     font-size: 12px;

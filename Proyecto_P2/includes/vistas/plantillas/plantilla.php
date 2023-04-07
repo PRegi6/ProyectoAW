@@ -29,7 +29,7 @@
             </div>
             <?php
                 if(!isset($_SESSION['login'])){
-                    require(RAIZ_APP.'/vistas/comun/reproductor.php');
+                    require_once(RAIZ_APP.'/vistas/comun/reproductor.php');
                 }
                 else{
                     if($_SESSION['rol']!= 'admin'){

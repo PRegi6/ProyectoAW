@@ -15,7 +15,7 @@ class Usuario
         $usuario = new Usuario($datosUsuario[0], self::hashPassword($datosUsuario[1]), $datosUsuario[2], $datosUsuario[3], $datosUsuario[4], $datosUsuario[5], $datosUsuario[6]);
         $usuario->insertaPerfil($usuario);
         $usuario->insertaUsuario($usuario);
-        
+        Cancion::crearPlaylistMeGusta($datosUsuario[0]);
         return $usuario;
     }
     
