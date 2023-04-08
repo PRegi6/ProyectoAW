@@ -339,17 +339,19 @@ class Cancion
         $contenidoPrincipal .= "<ul class='lista-canciones'>";
         foreach ($ListaCanciones as $cancion) {
             $datos = array(
-                'rutaImg' => $cancion->getRutaImagen(),
-                'nombreC' => $cancion->getNombre(),
-                'nombreAlbum' => $cancion->getNombreAlbum(),
-                'rutaCan' => $cancion->getRutaCancion()
+                array(
+                    'img' => $cancion->getRutaImagen(),
+                    'name' => $cancion->getNombre(),
+                    'artist' => $cancion->getNombreAlbum(),
+                    'music' => $cancion->getRutaCancion()
+                )
             );
             $minutos = gmdate("i:s", $cancion->getDuracion()); // formateamos en "MM:SS"
             $datosJson = json_encode($datos);
             $contenidoPrincipal .= <<<EOS
                 <li>
                     <img src="{$cancion->getRutaImagen()}" alt="{$cancion->getNombre()}">
-                    <div class="play" onclick='reproducirSeleccionado({$datosJson})'>
+                    <div class="play" onclick='reproducirSeleccionado($datosJson)'>
                         <i class="fa fa-play-circle fa-5x"></i>
                     </div>
                     <div class="infoCancion">
