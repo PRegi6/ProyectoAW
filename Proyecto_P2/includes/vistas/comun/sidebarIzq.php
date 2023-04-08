@@ -9,7 +9,7 @@
         else{
             if($_SESSION['rol']== 'admin'){
                 echo"<ul>
-                        <li><a href='gestionUsuarios.php'>Usuarios</a></li> 
+                        <li><a href='gestionUsuarios.php'>Usuarios</a></li> 8
                         <li><a href='gestionCanciones.php'>Canciones</a></li>
                         <li><a href='gestionTendencias.php'>Tendencias</a></li>
                         <li><a href='gestionPlan.php'>Gestión Plan</a></li>

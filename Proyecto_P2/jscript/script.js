@@ -36,52 +36,31 @@ function reproducirSeleccionado(datos){
 function cambiarIcono(idCancion, idPlaylist, duracionCancion) {
     const boton = document.getElementById(`boton-corazon${idCancion}`);
     const valor = document.getElementById(`valor${idCancion}`);
-    console.log(valor.value)
-    if (valor.value == 0) {
-        console.log("vacio a lleno");
-        console.log(idPlaylist);
 
+    // hacer la petición AJAX
+    const rutaDirectorio = window.location.pathname.split('/').slice(0, -1).join('/');
+    const url = rutaDirectorio + '/includes/Cancion.php';
+    console.log(rutaDirectorio); // "/ruta/al/directorio"
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // aquí puedes hacer algo si la petición fue exitosa
+        } else {
+            console.log("ERROR");
+            // aquí puedes manejar errores si la petición falló
+        }
+    };
+
+    if (valor.value == 0) {
         boton.innerHTML = '<i class="fa fa-heart fa-2x"></i>'; //corazon lleno
         valor.value = 1;
-
-        // hacer la petición AJAX
-        const rutaDirectorio = window.location.pathname.split('/').slice(0, -1).join('/');
-        const url = rutaDirectorio + '/includes/Cancion.php';
-        console.log(rutaDirectorio); // "/ruta/al/directorio"
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', url);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                // aquí puedes hacer algo si la petición fue exitosa
-            } else {
-                console.log("ERROR");
-                // aquí puedes manejar errores si la petición falló
-            }
-        };
         xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=agregar-me-gusta`);
     } 
     else{
-        console.log("lleno a vacio");
-        console.log(idPlaylist);
-
         boton.innerHTML = '<i class="fa fa-heart-o fa-2x"></i>'; // corazon vacio
         valor.value = 0;
-        // hacer la petición AJAX
-        const rutaDirectorio = window.location.pathname.split('/').slice(0, -1).join('/');
-        const url = rutaDirectorio + '/includes/Cancion.php';
-        console.log(rutaDirectorio); // "/ruta/al/directorio"
-        const xhr = new XMLHttpRequest();
-        xhr.open('POST', url);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                // aquí puedes hacer algo si la petición fue exitosa
-            } else {
-                console.log("ERROR");
-                // aquí puedes manejar errores si la petición falló
-            }
-        };
         xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=quitar-me-gusta`);
     }
 };
