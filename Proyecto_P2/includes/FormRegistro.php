@@ -1,8 +1,6 @@
 <?php
+namespace es\ucm\fdi\aw;
 require_once __DIR__ . "/config.php";
-require_once __DIR__ . '/Formulario.php';
-require_once __DIR__ . "/Plan.php";
-require_once __DIR__ . "/Usuario.php";
 
 class FormRegistro extends Formulario
 {

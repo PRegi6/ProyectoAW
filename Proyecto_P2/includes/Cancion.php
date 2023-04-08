@@ -1,5 +1,5 @@
 <?php
-
+namespace es\ucm\fdi\aw;
 use Cancion as GlobalCancion;
 
 require_once __DIR__ . "/config.php";

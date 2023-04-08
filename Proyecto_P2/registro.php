@@ -1,8 +1,7 @@
 <?php
     require_once __DIR__."/includes/config.php";
-    require_once __DIR__."/includes/FormRegistro.php";
 
-    $form = new FormRegistro();
+    $form = new es\ucm\fdi\aw\FormRegistro();
     $html = $form->gestionaRegistro();
 
     $tituloPagina = "Registro - BeatHouse";

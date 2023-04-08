@@ -1,7 +1,5 @@
 <?php
 require_once __DIR__ . "/includes/config.php";
-require_once __DIR__ . "/includes/Plan.php";
-require_once __DIR__ . "/includes/Usuario.php";
 
     // Función para asignar el plan al usuario
     function asignarPlan($plan, $valores, &$contenidoPrincipal) {    
@@ -9,7 +7,7 @@ require_once __DIR__ . "/includes/Usuario.php";
         $nueva_fecha = date('Y-m-d', strtotime('+30 days', strtotime($fecha_actual)));
         //Como se crea 
         //$email, $password, $nombre, $apellidos, $rol, $tipoPlan, $fechaExpiracionPlan
-        $usuario = Usuario::crea([$valores[0], $valores[1], $valores[2], $valores[3], Usuario::USER_ROLE, $plan, $nueva_fecha]);
+        $usuario = es\ucm\fdi\aw\Usuario::crea([$valores[0], $valores[1], $valores[2], $valores[3], es\ucm\fdi\aw\Usuario::USER_ROLE, $plan, $nueva_fecha]);
         $_SESSION['login'] = true;
         $_SESSION['nombre'] = $usuario->getNombre();
         $_SESSION['rol'] = $usuario->getRol();

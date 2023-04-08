@@ -1,8 +1,7 @@
 <?php 
     require_once __DIR__."/includes/config.php";
-    require_once __DIR__."/includes/FormLogin.php";
 
-    $form = new FormLogin();
+    $form = new es\ucm\fdi\aw\FormLogin();
     $html = $form->gestiona();
 
     $tituloPagina = "Login - BeatHouse";

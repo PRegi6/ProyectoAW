@@ -25,6 +25,6 @@ setLocale(LC_ALL, 'es_ES.UTF.8');
 date_default_timezone_set('Europe/Madrid');
 
 // Inicializa la aplicación
-$app = Aplicacion::getInstance();
+$app = es\ucm\fdi\aw\Aplicacion::getInstance();
 $app->init(['host'=> BD_HOST, 'bd'=> BD_NAME, 'user'=> BD_USER, 'pass'=> BD_PASS]);
 register_shutdown_function([$app, 'shutdown']);

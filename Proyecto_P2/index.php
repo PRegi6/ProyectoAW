@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/includes/config.php";
-require_once __DIR__ . "/includes/Cancion.php";
 $tituloPagina = "BeatHouse";
 
 $contenidoPrincipal = <<<EOS
@@ -15,14 +14,14 @@ $contenidoPrincipal = <<<EOS
 
 if (isset($_POST['submit'])) {
     if (!empty($_POST['buscador'])) {
-        $ListaCanciones = Cancion::listaCanciones($_POST['buscador']);
+        $ListaCanciones = es\ucm\fdi\aw\Cancion::listaCanciones($_POST['buscador']);
         if (empty($ListaCanciones)) {
             $contenidoPrincipal .= "No hay resultados";
         } else {
             if (!isset($_SESSION['login'])) {
-                $contenidoPrincipal .= Cancion::mostrarCanciones($ListaCanciones);
+                $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCanciones($ListaCanciones);
             } else {
-                $contenidoPrincipal .= Cancion::mostrarCancionesTotal($ListaCanciones);
+                $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCancionesTotal($ListaCanciones);
             }
         }
     }

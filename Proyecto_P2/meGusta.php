@@ -1,6 +1,5 @@
 <?php
 require_once __DIR__ . "/includes/config.php";
-require_once __DIR__ . "/includes/Cancion.php";
 
 function convertirTiempo($segundos) {
     $horas = floor($segundos / 3600);
@@ -23,7 +22,7 @@ function convertirTiempo($segundos) {
                 <h1> Canciones que te gustan </h1>
         EOS;
 
-    $ListaCanciones = Cancion::listaCancionesMeGusta($_SESSION['email']);
+    $ListaCanciones = es\ucm\fdi\aw\Cancion::listaCancionesMeGusta($_SESSION['email']);
     if (empty($ListaCanciones)) {
         $contenidoPrincipal .= <<<EOS
             No hay resultados
@@ -41,8 +40,8 @@ function convertirTiempo($segundos) {
             array_push($canciones, $info);
         }
         $numCanciones = count($canciones);
-        $idPlaylistMeGusta = Cancion::idPlaylistMeGusta($_SESSION['email']);
-        $duracionPlaylist = Cancion::obtenerDuracionPlaylist($idPlaylistMeGusta);
+        $idPlaylistMeGusta = es\ucm\fdi\aw\Cancion::idPlaylistMeGusta($_SESSION['email']);
+        $duracionPlaylist = es\ucm\fdi\aw\Cancion::obtenerDuracionPlaylist($idPlaylistMeGusta);
         $stringDuracion = convertirTiempo($duracionPlaylist);
         $datosJson = json_encode($canciones);
         $contenidoPrincipal .= <<<EOS
@@ -53,7 +52,7 @@ function convertirTiempo($segundos) {
             <h3>Tiempo aproximado {$stringDuracion}</h3>
             </div>
         EOS;
-        $contenidoPrincipal .= Cancion::mostrarCancionesTotal($ListaCanciones);
+        $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCancionesTotal($ListaCanciones);
     }
 
 require RAIZ_APP . "/vistas/plantillas/plantilla.php";

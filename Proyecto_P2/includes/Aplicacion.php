@@ -1,4 +1,5 @@
 <?php
+namespace es\ucm\fdi\aw;
     class Aplicacion {
         
         public static function getInstance() {
@@ -39,7 +40,7 @@
                 $user = $this->bdDatosConexion['user'];
                 $userpass = $this->bdDatosConexion['pass'];
 
-                $conexionbd = new mysqli($host, $user, $userpass, $bd);
+                $conexionbd = new \mysqli($host, $user, $userpass, $bd);
 
                 if ($conexionbd->connect_errno) {
                     echo "Error de conexión a la BD ({$conexionbd->connect_errno}):  {$conexionbd->connect_error}";
