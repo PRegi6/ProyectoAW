@@ -100,14 +100,7 @@ class FormModificarCancion extends Formulario {
         }
         
         if (count($this->errores) === 0) {
-
-            if($datos['rol'] == "admin"){
-                Admin::cambiaraAdmin([$idCancion, $nombreCancion, $genero, $nombreAlbum, $duracion, $rutaCancion, $rutaImagen]);
-            }
-            else{
-                echo "Hola";
-                Admin::modificarCancion([$idCancion, $nombreCancion, $genero, $nombreAlbum, $duracion, $rutaCancion, $rutaImagen]);
-            }
+            Admin::modificarCancion([$idCancion, $nombreCancion, $genero, $nombreAlbum, $duracion, $rutaCancion, $rutaImagen]);
         }
     }
 }

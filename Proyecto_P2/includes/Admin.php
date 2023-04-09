@@ -118,6 +118,24 @@ class Admin
         return false;
     }
 
+    public static function modificarPlanPago($datos)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("UPDATE plandepago SET precio='%s', duracionPlan='%s' WHERE tipoPlan='%s'"
+        , $datos[0]
+        , $datos[1]
+        , $datos[2]
+        , $datos[0]
+        );
+        $rs = $conn->query($query);
+        if ($rs) {
+            return true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return false;
+    }
+
     public static function cambiaraAdmin($datos)
     {
         if(self::borrarUsuario($datos[0])){
@@ -241,12 +259,15 @@ class Admin
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar Planes</h1>";
         $contenidoPrincipal .= "<table border='1'>";
-        $contenidoPrincipal .= "<tr><th>Tipo Plan</th><th>Precio</th><th>Duracion</th></tr>";
+        $contenidoPrincipal .= "<tr><th>Tipo Plan</th><th>Precio</th><th>Duracion</th><th>Modificar</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
             $contenidoPrincipal .= "<td>" . $fila['tipoPlan'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['precio'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['duracionPlan'] . "</td>";
+            $info = [$fila['tipoPlan'], $fila['precio'], $fila['duracionPlan']];
+            $info_encoded = urlencode(json_encode($info));
+            $contenidoPrincipal .= "<td><a href='modificarPlan.php?info={$info_encoded}'>Editar</td>";
             $contenidoPrincipal .= "</tr>";
         }
         $resultado->free();

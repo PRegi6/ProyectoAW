@@ -6,7 +6,7 @@ require_once __DIR__.'/Aplicacion.php';
 /* Parámetros de conexión a la BD
  */
 define('BD_HOST', 'localhost');
-define('BD_NAME', 'beatHouse');
+define('BD_NAME', 'beat_house');
 define('BD_USER', 'beathouse');
 define('BD_PASS', 'beathouse');
 
