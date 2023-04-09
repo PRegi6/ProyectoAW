@@ -97,6 +97,27 @@ class Admin
         return false;
     }
 
+    public static function modificarCancion($datos)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("UPDATE canciones SET nombreCancion='%s', genero='%s', nombreAlbum='%s', duracion='%s', rutaCancion='%s', rutaImagen='%s' WHERE idCancion='%s'"
+        , $datos[1]
+        , $datos[2]
+        , $datos[3]
+        , $datos[4]
+        , $datos[5]
+        , $datos[6]
+        , $datos[0]
+        );
+        $rs = $conn->query($query);
+        if ($rs) {
+            return true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return false;
+    }
+
     public static function cambiaraAdmin($datos)
     {
         if(self::borrarUsuario($datos[0])){
@@ -156,7 +177,7 @@ class Admin
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar usuarios</h1>";
         $contenidoPrincipal .= "<table border='1'>";
-        $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Tipo Plan</th><th>Fecha Expiracion</th><th>Opcion</th></tr>";
+        $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Tipo Plan</th><th>Fecha Expiracion</th><th>Borrar</th><th>Modificar</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
             $contenidoPrincipal .= "<td>" . $fila['email'] . "</td>";
@@ -188,7 +209,7 @@ class Admin
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar canciones</h1>";
         $contenidoPrincipal .= "<table border='1'>";
-        $contenidoPrincipal .= "<tr><th>ID Cancion</th><th>Nombre</th><th>Género</th><th>Álbum</th><th>Duración</th><th>Ruta Canción</th><th>Ruta Imagen</th><th>Acciones</th></tr>";
+        $contenidoPrincipal .= "<tr><th>ID Cancion</th><th>Nombre</th><th>Género</th><th>Álbum</th><th>Duración</th><th>Ruta Canción</th><th>Ruta Imagen</th><th>Borrar</th><th>Modificar</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
             $contenidoPrincipal .= "<td>" . $fila['idCancion'] . "</td>";
@@ -199,6 +220,9 @@ class Admin
             $contenidoPrincipal .= "<td>" . $fila['rutaCancion'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['rutaImagen'] . "</td>";
             $contenidoPrincipal .= "<td><a href='borrarCancion.php?id={$fila['idCancion']}'>Borrar</td>";
+            $info = [$fila['idCancion'], $fila['nombreCancion'], $fila['genero'], $fila['nombreAlbum'], $fila['duracion'], $fila['rutaCancion'], $fila['rutaImagen']];
+            $info_encoded = urlencode(json_encode($info));
+            $contenidoPrincipal .= "<td><a href='modificarCancion.php?info={$info_encoded}'>Editar</td>";
             $contenidoPrincipal .= "</tr>";
         }
         $resultado->free();
