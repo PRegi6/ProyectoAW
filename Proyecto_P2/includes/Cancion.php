@@ -134,10 +134,37 @@ class Cancion
     }
 
 
-    public static function buscarPorArtista($artista)
+    public static function buscarPorArtista($email)
     {
+        // Consulta SQL para obtener los datos de la tabla
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $consulta = sprintf("SELECT * FROM canciones c JOIN subencanciones s WHERE c.idCancion = s.idCancion AND s.email = '%s", $email);
+        $resultado = $conn->query($consulta);
 
-        $lista = [];
+        // Construcción dinámica de la tabla con los resultados de la consulta
+        $contenidoPrincipal = "<h1>Mis canciones</h1>";
+        $contenidoPrincipal .= "<table border='1'>";
+        $contenidoPrincipal .= "<tr><th>ID Cancion</th><th>Nombre</th><th>Género</th><th>Álbum</th><th>Duración</th><th>Ruta Canción</th><th>Ruta Imagen</th><th>Borrar</th><th>Modificar</th></tr>";
+        while ($fila = $resultado->fetch_assoc()) {
+            $contenidoPrincipal .= "<tr>";
+            $contenidoPrincipal .= "<td>" . $fila['idCancion'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['nombreCancion'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['genero'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['nombreAlbum'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['duracion'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['rutaCancion'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['rutaImagen'] . "</td>";
+            $contenidoPrincipal .= "<td><a href='borrarCancion.php?id={$fila['idCancion']}'>Borrar</td>";
+            $info = [$fila['idCancion'], $fila['nombreCancion'], $fila['genero'], $fila['nombreAlbum'], $fila['duracion'], $fila['rutaCancion'], $fila['rutaImagen']];
+            $info_encoded = urlencode(json_encode($info));
+            $contenidoPrincipal .= "<td><a href='modificarCancion.php?info={$info_encoded}'>Editar</td>";
+            $contenidoPrincipal .= "</tr>";
+        }
+        $resultado->free();
+
+        $contenidoPrincipal .= "</table>";
+        return $contenidoPrincipal;
+        /*$lista = [];
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM canciones c JOIN subencanciones s WHERE c.idCancion = s.idCancion AND s.email = '%s", $artista->getEmail());
         $result = $conn->query($query);
@@ -160,7 +187,7 @@ class Cancion
             }
 
             $result->free();
-        }
+        }*/
     }
 
 

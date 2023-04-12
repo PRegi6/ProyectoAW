@@ -148,6 +148,12 @@ class Usuario
     }
 
 
+    public static function verMisCanciones(){
+        if(self::esArtista()){
+            Cancion::buscarPorArtista(self::getEmail());
+        }
+    }
+
     public function borraCancion($nombreCancion){
         $ok = false;
         if(self::esArtista()){
