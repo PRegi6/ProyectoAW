@@ -6,7 +6,6 @@ class FormModificarPlan extends Formulario {
 
     public function __construct() {
         parent::__construct('formModificarPlan', ['urlRedireccion' => 'gestionPlan.php']);
-        $this->info = ['','','','','','',''];
     }
 
     protected function generaCamposFormulario(&$datos)

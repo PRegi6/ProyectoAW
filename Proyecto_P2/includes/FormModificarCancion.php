@@ -6,7 +6,6 @@ class FormModificarCancion extends Formulario {
 
     public function __construct() {
         parent::__construct('formModificarCancion', ['urlRedireccion' => 'gestionCanciones.php']);
-        $this->info = ['','','','','','',''];
     }
 
     protected function generaCamposFormulario(&$datos)

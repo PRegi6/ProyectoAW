@@ -1,6 +1,5 @@
 <?php
 namespace es\ucm\fdi\aw;
-use Cancion as GlobalCancion;
 
 require_once __DIR__ . "/config.php";
 
@@ -73,11 +72,11 @@ class Cancion
         return $lista;
     }
 
-    public static function listaCancionesMeGusta($email)
+    public static function listaCancionesMeGusta($idPlaylist)
     {
         $lista = [];
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = "SELECT * FROM contienen c JOIN canciones can WHERE c.idCancion = can.idCancion";
+        $query = "SELECT * FROM contienen c JOIN canciones can WHERE c.idCancion = can.idCancion AND c.idPlaylist = $idPlaylist";
         $result = $conn->query($query);
 
         if (!$result->num_rows > 0) {
@@ -132,7 +131,6 @@ class Cancion
 
         return $lista;
     }
-
 
     public static function buscarPorArtista($email)
     {
@@ -189,7 +187,6 @@ class Cancion
             $result->free();
         }*/
     }
-
 
     public static function buscarPorGenero($genero)
     {
@@ -280,7 +277,6 @@ class Cancion
 
     public static function insertaCancion($cancion)
     {
-        $result = false;
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
             "INSERT INTO canciones(nombreCancion, genero, nombreAlbum, duracion, rutaCancion, rutaImagen) VALUES ('%s', '%s', '%s', '%s','%s', '%s')",
@@ -293,12 +289,11 @@ class Cancion
         );
 
         if ($conn->query($query)) {
-            $cancion->id = $conn->insert_id;
-            $result = true;
+            return true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
-        return $result;
+        return false;
     }
 
     public static function crearPlaylistMeGusta($email)
@@ -560,16 +555,6 @@ class Cancion
         }
 
         return false;
-    }
-
-
-
-    public function guarda()
-    {
-        if ($this->id !== null) {
-            return self::actualiza($this);
-        }
-        return self::insertaCancion($this);
     }
 
 

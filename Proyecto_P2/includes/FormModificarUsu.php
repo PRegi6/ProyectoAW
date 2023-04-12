@@ -5,9 +5,7 @@ require_once __DIR__."/config.php";
 class FormModificarUsu extends Formulario {
 
     public function __construct() {
-        parent::__construct('formModificarUsu', ['urlRedireccion' => 'gestionUsuarios.php']);
-        $this->info = ['','','','','','',''];
-    }
+        parent::__construct('formModificarUsu', ['urlRedireccion' => 'gestionUsuarios.php']);    }
 
     protected function generaCamposFormulario(&$datos)
     {
@@ -18,7 +16,7 @@ class FormModificarUsu extends Formulario {
         $fechaExpiracion =  $datos[6] ?? '';
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['password', 'nombre', 'apellidos', 'fecha'], $this->errores, 'span', array('class' => 'error'));
+        $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos', 'fecha'], $this->errores, 'span', array('class' => 'error'));
 
         $selectorPlanes = Admin::selectorPlanes($plan);
         $html = <<<EOS
@@ -32,10 +30,6 @@ class FormModificarUsu extends Formulario {
                         <input type="hidden" name="email" value="{$email}" />
                         <br><br>
 
-                        <label for= 'password'>Contraseña: </label>
-                        <input type="password" placeholder=" Contraseña" id="password" name="password"><br>
-                        {$erroresCampos['password']}<br>
-
                         <label for='nombre'>Nombre: </label>
                         <input type="text" placeholder="Nombre" id="nombre" name="nombre" value='{$nombre}'><br>
                         {$erroresCampos['nombre']}<br>
@@ -43,12 +37,6 @@ class FormModificarUsu extends Formulario {
                         <label for ='apellidos'>Apellidos: </label>
                         <input type ="text" placeholder =" Apellidos" id ="apellidos" name="apellidos" value= '{$apellidos}'><br>
                         {$erroresCampos['apellidos']}<br>
-
-                        <label for ='rol'>Rol: </label>
-                        <select name= 'rol'>
-                            <option value ='usuario' selected> usuario </option>
-                            <option value ='admin'> admin </option>
-                        </select><br><br>
 
                         <label for ='tipoPlan'>Tipo Plan: </label>
                         {$selectorPlanes}<br><br>
@@ -70,10 +58,6 @@ class FormModificarUsu extends Formulario {
         $email =$datos['email'];
 
         $password = trim($datos['password'] ?? '');
-        $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if (!$password || mb_strlen($password) < 5 || empty($password)) {
-            $this->errores['password'] = 'El password tiene que tener una longitud de al menos 5 caracteres.';
-        }
 
         $nombre = trim($datos['nombre'] ?? '');
         $nombre = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -96,14 +80,8 @@ class FormModificarUsu extends Formulario {
         }
 
         if (count($this->errores) === 0) {
-
-            if($datos['rol'] == "admin"){
-                Admin::cambiaraAdmin([$email, $password, $nombre, $apellidos, $rol]);
-            }
-            else{
-                Admin::modificarDatosPerfil([$email, $password, $nombre, $apellidos, $rol]);
-                Admin::modificarDatosUsuario([$email, $password, $nombre, $apellidos, $rol, $tipoPlan, $fechaExpiracion]);
-            }
+            Admin::modificarDatosPerfil([$email, $password, $nombre, $apellidos, $rol]);
+            Admin::modificarDatosUsuario([$email, $password, $nombre, $apellidos, $rol, $tipoPlan, $fechaExpiracion]);
         }
     }
 }

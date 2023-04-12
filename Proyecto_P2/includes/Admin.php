@@ -1,5 +1,8 @@
 <?php
 namespace es\ucm\fdi\aw;
+
+require_once __DIR__ . "/config.php";
+
 class Admin
 {
 
@@ -28,14 +31,12 @@ class Admin
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("DELETE FROM canciones WHERE idCancion=%d", $id);
         $rs = $conn->query($query);
-        $result = false;
         if ($rs) {
-            $rs->free();
-            $result = true;
+            return true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
-        return $result;
+        return false;
     }
 
 
@@ -237,14 +238,22 @@ class Admin
             $contenidoPrincipal .= "<td>" . $fila['duracion'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['rutaCancion'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['rutaImagen'] . "</td>";
-            $contenidoPrincipal .= "<td><a href='borrarCancion.php?id={$fila['idCancion']}'>Borrar</td>";
             $info = [$fila['idCancion'], $fila['nombreCancion'], $fila['genero'], $fila['nombreAlbum'], $fila['duracion'], $fila['rutaCancion'], $fila['rutaImagen']];
-            $info_encoded = urlencode(json_encode($info));
-            $contenidoPrincipal .= "<td><a href='modificarCancion.php?info={$info_encoded}'>Editar</td>";
+            //necesito codificar en un json debido a que un arrya no se puede pasar directamente porque da un error 
+            $datos = json_encode($info);
+            $contenidoPrincipal .= "<td>
+                <form action='gestionCanciones.php' method='POST'>
+                    <button type='submit' name='borrarCancion' value='{$fila['idCancion']}'>Borrar</button>
+                </form>
+            </td>";
+            $contenidoPrincipal .= "<td>
+                <form action='gestionCanciones.php' method='POST'>
+                    <button type='submit' name='modificarCancion' value='{$datos}'>Editar</button>
+                </form>
+            </td>";          
             $contenidoPrincipal .= "</tr>";
         }
         $resultado->free();
-
         $contenidoPrincipal .= "</table>";
         return $contenidoPrincipal;
     }

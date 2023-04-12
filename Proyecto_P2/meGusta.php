@@ -22,7 +22,8 @@ function convertirTiempo($segundos) {
                 <h1> Canciones que te gustan </h1>
         EOS;
 
-    $ListaCanciones = es\ucm\fdi\aw\Cancion::listaCancionesMeGusta($_SESSION['email']);
+    $idPlaylistMeGusta = es\ucm\fdi\aw\Cancion::idPlaylistMeGusta($_SESSION['email']);
+    $ListaCanciones = es\ucm\fdi\aw\Cancion::listaCancionesMeGusta($idPlaylistMeGusta);
     if (empty($ListaCanciones)) {
         $contenidoPrincipal .= <<<EOS
             No hay resultados
@@ -40,7 +41,6 @@ function convertirTiempo($segundos) {
             array_push($canciones, $info);
         }
         $numCanciones = count($canciones);
-        $idPlaylistMeGusta = es\ucm\fdi\aw\Cancion::idPlaylistMeGusta($_SESSION['email']);
         $duracionPlaylist = es\ucm\fdi\aw\Cancion::obtenerDuracionPlaylist($idPlaylistMeGusta);
         $stringDuracion = convertirTiempo($duracionPlaylist);
         $datosJson = json_encode($canciones);
