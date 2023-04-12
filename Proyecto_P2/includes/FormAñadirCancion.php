@@ -7,7 +7,6 @@ class FormAñadirCancion extends Formulario{
 
     public function __construct() {
         parent::__construct('formAñadirCancion', ['urlRedireccion' => 'gestionCanciones.php']);
-        $this->info = ['','','','','','',''];
     }
 
 

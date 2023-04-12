@@ -12,6 +12,7 @@ class FormModificarUsu extends Formulario {
         $email = $datos[0] ?? '';
         $nombre = $datos[2] ?? '';
         $apellidos =  $datos[3] ?? '';
+        $rol = $datos[4] ?? '';
         $plan =  $datos[5] ?? '';
         $fechaExpiracion =  $datos[6] ?? '';
         // Se generan los mensajes de error si existen.
@@ -37,6 +38,10 @@ class FormModificarUsu extends Formulario {
                         <label for ='apellidos'>Apellidos: </label>
                         <input type ="text" placeholder =" Apellidos" id ="apellidos" name="apellidos" value= '{$apellidos}'><br>
                         {$erroresCampos['apellidos']}<br>
+
+                        <label for= 'rol'>Rol: $rol</label>
+                        <input type="hidden" name="rol" value="{$rol}" />
+                        <br><br>
 
                         <label for ='tipoPlan'>Tipo Plan: </label>
                         {$selectorPlanes}<br><br>

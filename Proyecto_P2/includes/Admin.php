@@ -16,14 +16,12 @@ class Admin
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("DELETE FROM perfil WHERE email='%s'", $email);
         $rs = $conn->query($query);
-        $result = false;
         if ($rs) {
-            $rs->free();
-            $result = true;
+            return true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
-        return $result;
+        return false;
     }
 
     public static function borrarCancion($id)
@@ -123,7 +121,6 @@ class Admin
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("UPDATE plandepago SET precio='%s', duracionPlan='%s' WHERE tipoPlan='%s'"
-        , $datos[0]
         , $datos[1]
         , $datos[2]
         , $datos[0]
@@ -206,15 +203,26 @@ class Admin
             $contenidoPrincipal .= "<td>" . $fila['rol'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['tipoPlan'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['fechaExpiracionPlan'] . "</td>";
-            $contenidoPrincipal .= "<td><a href='borrarUsuario.php?email={$fila['email']}'>Borrar</td>";
             $info = [$fila['email'], $fila['contraseña'], $fila['nombre'], $fila['apellidos'], $fila['rol'], $fila['tipoPlan'], $fila['fechaExpiracionPlan']];
-            $info_encoded = urlencode(json_encode($info));
-            $contenidoPrincipal .= "<td><a href='modificarUsuario.php?info={$info_encoded}'>Editar</td>";
+            $datos = json_encode($info);
+            $contenidoPrincipal .= "<td>
+                <form action='gestionUsuarios.php' method='POST'>
+                    <button type='submit' name='borrarUsuario' value='{$fila['email']}'>Borrar</button>
+                </form>
+            </td>";
+            $contenidoPrincipal .= "<td>
+                <form action='gestionUsuarios.php' method='POST'>
+                    <button type='submit' name='modificarUsuario' value='{$datos}'>Editar</button>
+                </form>
+            </td>";          
             $contenidoPrincipal .= "</tr>";
         }
         $resultado->free();
 
         $contenidoPrincipal .= "</table>";
+        $contenidoPrincipal .= "<form action='crearAdmin.php' method='POST'>
+                    <button type='submit' name='crearAdmin'>Crear administrador</button>
+                </form>"; 
         return $contenidoPrincipal;
     }
 
@@ -275,8 +283,13 @@ class Admin
             $contenidoPrincipal .= "<td>" . $fila['precio'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['duracionPlan'] . "</td>";
             $info = [$fila['tipoPlan'], $fila['precio'], $fila['duracionPlan']];
-            $info_encoded = urlencode(json_encode($info));
-            $contenidoPrincipal .= "<td><a href='modificarPlan.php?info={$info_encoded}'>Editar</td>";
+            $datos = json_encode($info);
+            $contenidoPrincipal .= "<td>
+                <form action='gestionPlan.php' method='POST'>
+                    <button type='submit' name='modificarPlan' value='{$datos}'>Editar</button>
+                </form>
+            </td>";          
+            $contenidoPrincipal .= "</tr>";
             $contenidoPrincipal .= "</tr>";
         }
         $resultado->free();
@@ -324,5 +337,28 @@ class Admin
 
         $contenidoPrincipal .= "</table>";
         return $contenidoPrincipal;
+    }
+
+    private static function insertaPerfilAdmin($datosUsuario)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf(
+            "INSERT INTO perfil(email, contraseña, nombre, apellidos, rol) VALUES ('%s', '%s', '%s', '%s', '%s')",
+            $conn->real_escape_string($datosUsuario[0]),
+            $conn->real_escape_string($datosUsuario[1]),
+            $conn->real_escape_string($datosUsuario[2]),
+            $conn->real_escape_string($datosUsuario[3]),
+            $conn->real_escape_string($datosUsuario[4])
+        );
+        if (!$conn->query($query)) {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return true;
+    }
+
+    public static function crearAdmin($datosUsuario)
+    {
+        self::insertaPerfilAdmin([$datosUsuario[0], Usuario::hashPassword($datosUsuario[1]), $datosUsuario[2], $datosUsuario[3], $datosUsuario[4]]);
+        self::insertaAdmin([$datosUsuario[0], Usuario::hashPassword($datosUsuario[1]), $datosUsuario[2], $datosUsuario[3], $datosUsuario[4]]);
     }
 }
