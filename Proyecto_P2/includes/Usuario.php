@@ -123,7 +123,7 @@ class Usuario
     }
 
 
-    public function subirCancion($cancion){
+    public static function subirCancion($cancion){
 
         $result = false;
 
@@ -132,7 +132,7 @@ class Usuario
             $conn = Aplicacion::getInstance()->getConexionBd();
             $query = sprintf("INSERT INTO subencanciones(IdCancion, email) VALUES ('%s', '%s')", 
             $conn->real_escape_string($cancion->getId())
-            ,$conn->real_escape_string($this->email)
+            ,$conn->real_escape_string(self::getEmail())
             );
 
             if($conn->query($query)){
