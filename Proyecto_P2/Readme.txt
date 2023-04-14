@@ -1,7 +1,7 @@
 Personas de BD
 Administradores:
 ADMIN@gmail.com	ADMINPASS
-ADMIN@gmail.com	ADMINPASS2
+ADMIN2@gmail.com	ADMINPASS2
 USUARIOS:
 franzroq@ucm.es kezo2002 Artista
 pabloregi@ucm.es	contraseña Premium
@@ -14,16 +14,6 @@ Funcionalidades:
 4- Gestión de anuncios (incluye la gestión de anuncios por roles)
 5- Gestión de playlist (incluye la crear, modificar, borrar y compartir una playlist. También incluye el swipe para canciones)
 6- Gestión de suscripción (incluye la gestión del pago por suscripción y carrito) 
-
-Login - Jorge y Marc
-Registro - Alonso
-Planes Funcionalidad de suscripcion - Victor
-Base de datos modelo - Regi y Rodri Q
-La pagina principal - Regi y Rodri Q
-Reproductor - Regi y Rodri Q
-Panel Admin Funcionalidad admin - Jorge
-Gestión de contenido (incluye la gestión de artistas y canciones) - Marc
-Playlist Funcionalidad de las playlist - Alonso y Victor
 
 Contraseña: eP4aer6oethahre (para todo)
 
