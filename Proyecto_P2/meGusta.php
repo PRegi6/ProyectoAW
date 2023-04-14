@@ -18,16 +18,18 @@ function convertirTiempo($segundos) {
     $tituloPagina = "BeatHouse";
 
     $contenidoPrincipal = <<<EOS
-            <div class="info-meMegusta">
-                <h1> Canciones que te gustan </h1>
+            <div class="info-meGusta">
+                <div class="tituloYPlay">
+                    <h1> Canciones que te gustan </h1> 
         EOS;
 
     $idPlaylistMeGusta = es\ucm\fdi\aw\Playlist::idPlaylistMeGusta($_SESSION['email']);
     $ListaCanciones = es\ucm\fdi\aw\Playlist::listaCancionesMeGusta($idPlaylistMeGusta);
     if (empty($ListaCanciones)) {
         $contenidoPrincipal .= <<<EOS
-            No hay resultados
             </div>
+            </div>
+            No hay resultados
         EOS;
     } else {
         $canciones = array();
@@ -48,8 +50,12 @@ function convertirTiempo($segundos) {
             <div class="play" onclick='reproducirSeleccionado($datosJson)'>
                 <i class="fa fa-play-circle fa-5x"></i>
             </div>
-            <h3>Total de canciones $numCanciones</h3>
-            <h3>Tiempo aproximado {$stringDuracion}</h3>
+            </div>
+
+            <div class="infoPlaylist">
+                <h3>Total de canciones $numCanciones</h3>
+                <h3>Tiempo aproximado {$stringDuracion}</h3>
+            </div>
             </div>
         EOS;
         $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCancionesTotal($ListaCanciones);

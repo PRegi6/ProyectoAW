@@ -9,7 +9,7 @@
     if (isset($_POST['borrarPlaylist'])) { //si queremos borrar una cancion
         $idPlaylist = $_POST['borrarPlaylist'] ?? '';
         es\ucm\fdi\aw\Playlist::borrarPlaylist($idPlaylist);
-        header("Location: gestionPlaylist.php");
+        header("Location: playlistUsuario.php");
     }
     else if (isset($_POST['modificarPlaylist'])) { //si queremos modificarla lo que hacemos es crear una session temporal para que guarde los datos
         $datosPlaylist = json_decode($_POST['modificarPlaylist']);

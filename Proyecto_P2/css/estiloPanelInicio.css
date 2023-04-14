@@ -19,13 +19,6 @@ body {
 
 }
 
-/*
-.panelCentral {
-    flex: auto;
-    overflow: auto;
-}
-*/
-
 .cabInicio {
     background-color: #485C64;
     min-height: 100px;
@@ -76,12 +69,8 @@ body {
     .form_registro a {
         background-color: #596C76;
     }
-/* ESTO SERIA PARA LOS TEXTOS DE ERROR, PERO NI PONIENDOLOS DENTRO DE <P> LOS RECONOCE
-    .form_registro p {
-        font-weight: bold;
-        color: red;
-    }
-*/
+
+
 #ya_registrado {
     background-color: white/*rgb(161, 161, 161)*/;
     align-self: center;

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title><?= $tituloPagina ?></title>
-    <link id="estilo" rel="stylesheet" type="text/css" href="<?=RUTA_CSS?>/estilospoty.css">
+    <link id="estilo" rel="stylesheet" type="text/css" href="<?=RUTA_CSS?>/estiloPagina.css">
     <link rel="stylesheet" href="<?=RUTA_CSS?>/estiloreproductor.css">
     <script src="<?=RUTA_JS?>/script.js" defer></script>
     <link rel="shortcut icon" type="image/x-icon" href="<?=RUTA_IMGS?>/Altavoz2.png">  
@@ -32,9 +32,7 @@
                     require_once(RAIZ_APP.'/vistas/comun/reproductor.php');
                 }
                 else{
-                    if($_SESSION['rol']!= 'admin'){
-                        require(RAIZ_APP.'/vistas/comun/reproductor.php');
-                    }
+                    require(RAIZ_APP.'/vistas/comun/reproductor.php');
                 }
             ?>
         </section> 

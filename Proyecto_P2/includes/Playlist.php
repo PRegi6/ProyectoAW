@@ -92,9 +92,6 @@ class Playlist{
         $resultado->free();
 
         $contenidoPrincipal .= "</table>";
-        // $contenidoPrincipal .= "<form action='crearAdmin.php' method='POST'>
-        //             <button type='submit' name='crearAdmin'>Crear administrador</button>
-        //         </form>"; 
         return $contenidoPrincipal;
     }
 

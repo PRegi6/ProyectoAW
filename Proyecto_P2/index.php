@@ -18,7 +18,7 @@ if (isset($_POST['submit'])) {
         if (empty($ListaCanciones)) {
             $contenidoPrincipal .= "No hay resultados";
         } else {
-            if (!isset($_SESSION['login'])) {
+            if (!isset($_SESSION['login']) || ($_SESSION['rol'] == es\ucm\fdi\aw\Usuario::ADMIN_ROLE)) {
                 $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCanciones($ListaCanciones);
             } else {
                 $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCancionesTotal($ListaCanciones);

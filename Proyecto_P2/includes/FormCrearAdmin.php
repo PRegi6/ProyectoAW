@@ -22,7 +22,7 @@ class FormCrearAdmin extends Formulario {
             <main class= "panel_inicio">
                 <fieldset class="fieldset_register">
  
-                        <h1 id=titulo_panel>Registro</h1>
+                        <h1 id=titulo_panel>Registro de administrador</h1>
                         {$htmlErroresGlobales}
                         <input type="text" placeholder=" Nombre" id="nombre" name="nombre" value={$nombre}><br>
                         {$erroresCampos['nombre']}<br>

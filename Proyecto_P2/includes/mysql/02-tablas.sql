@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-03-2023 a las 15:47:27
+-- Tiempo de generación: 14-04-2023 a las 19:52:21
 -- Versión del servidor: 10.4.27-MariaDB
 -- Versión de PHP: 8.2.0
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `beat_house`
+-- Base de datos: `beathouse`
 --
 
 -- --------------------------------------------------------
@@ -92,7 +92,7 @@ CREATE TABLE `gestionanuncios` (
 
 CREATE TABLE `perfil` (
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(100) NOT NULL,
+  `contraseña` varchar(100) DEFAULT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `rol` varchar(20) NOT NULL
@@ -142,7 +142,7 @@ CREATE TABLE `subencanciones` (
 
 CREATE TABLE `usuarios` (
   `email` varchar(50) NOT NULL,
-  `contraseña` varchar(100) NOT NULL,
+  `contraseña` varchar(100) DEFAULT NULL,
   `nombre` varchar(20) NOT NULL,
   `apellidos` varchar(50) NOT NULL,
   `rol` varchar(10) NOT NULL,
@@ -176,6 +176,7 @@ ALTER TABLE `canciones`
 -- Indices de la tabla `contienen`
 --
 ALTER TABLE `contienen`
+  ADD PRIMARY KEY (`idPlaylist`,`idCancion`),
   ADD KEY `contienen_ibfk_1` (`idCancion`),
   ADD KEY `idPlaylist` (`idPlaylist`);
 
@@ -218,6 +219,22 @@ ALTER TABLE `subencanciones`
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`email`),
   ADD KEY `tipoPlan` (`tipoPlan`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `canciones`
+--
+ALTER TABLE `canciones`
+  MODIFY `idCancion` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `playlist`
+--
+ALTER TABLE `playlist`
+  MODIFY `idPlaylist` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas

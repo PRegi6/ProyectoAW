@@ -9,6 +9,7 @@
         else{
             if($_SESSION['rol']== 'admin'){
                 echo"<ul>
+                        <li><a href='index.php'>Inicio</a></li>
                         <li><a href='gestionUsuarios.php'>Usuarios</a></li>
                         <li><a href='gestionCanciones.php'>Canciones</a></li>
                         <li><a href='gestionTendencias.php'>Tendencias</a></li>
@@ -21,8 +22,8 @@
                     <li><a href='index.php'>Inicio</a></li>
                     <li><a href='tendencias.php'>Tendencias</a></li>
                     <li><a href='meGusta.php'>Me gusta</a></li>
-                    <li><a href='gestionPlaylist.php'>Playlist</a></li>
-                    <li><a href='gestionContenido.php'>Gestion de Contenido</a></li>
+                    <li><a href='playlistUsuario.php'>Playlist</a></li>
+                    <li><a href='cancionesArtista.php'>Mis canciones</a></li>
                 </ul>";
             }
             else {
@@ -30,7 +31,7 @@
                     <li><a href='index.php'>Inicio</a></li>
                     <li><a href='tendencias.php'>Tendencias</a></li>
                     <li><a href='meGusta.php'>Me gusta</a></li>
-                    <li><a href='gestionPlaylist.php'>Playlist</a></li>
+                    <li><a href='playlistUsuario.php'>Playlist</a></li>
                 </ul>";
             }
         }

@@ -99,7 +99,7 @@ class Admin
     public static function modificarCancion($datos)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("UPDATE canciones SET nombreCancion='%s', genero='%s', nombreAlbum='%s', duracion='%s', rutaCancion='%s', rutaImagen='%s' WHERE idCancion='%s'"
+        $query = sprintf("UPDATE canciones SET nombreCancion='%s', genero='%s', nombreAlbum='%s', duracion='%s', rutaCancion='%s', rutaImagen='%s' WHERE idCancion=%d"
         , $datos[1]
         , $datos[2]
         , $datos[3]

@@ -5,7 +5,7 @@ require_once __DIR__."/config.php";
 class FormCrearPlaylist extends Formulario {
 
     public function __construct() {
-        parent::__construct('formCrearPlaylist', ['urlRedireccion' => 'gestionPlaylist.php']);
+        parent::__construct('formCrearPlaylist', ['urlRedireccion' => 'playlistUsuario.php']);
     }
 
     protected function generaCamposFormulario(&$datos)

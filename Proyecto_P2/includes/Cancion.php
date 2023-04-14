@@ -228,16 +228,17 @@ class Cancion
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
             "INSERT INTO canciones(nombreCancion, genero, nombreAlbum, duracion, rutaCancion, rutaImagen) VALUES ('%s', '%s', '%s', '%s','%s', '%s')",
-            $conn->real_escape_string($cancion->nombre),
-            $conn->real_escape_string($cancion->genero),
-            $conn->real_escape_string($cancion->nombreAlbum),
-            $conn->real_escape_string($cancion->duracion),
-            $conn->real_escape_string($cancion->rutaCancion),
-            $conn->real_escape_string($cancion->rutaImagen)
+            $conn->real_escape_string($cancion[0]),
+            $conn->real_escape_string($cancion[1]),
+            $conn->real_escape_string($cancion[2]),
+            $conn->real_escape_string($cancion[3]),
+            $conn->real_escape_string($cancion[4]),
+            $conn->real_escape_string($cancion[5])
         );
 
         if ($conn->query($query)) {
-            return true;
+            $idCancion = mysqli_insert_id($conn);
+            return $idCancion;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
@@ -361,6 +362,50 @@ class Cancion
                 EOS;
         }
         $contenidoPrincipal .= "</ul>";
+        return $contenidoPrincipal;
+    }
+
+    public static function mostrarCancionesArtista($email)
+    {
+        // Consulta SQL para obtener los datos de la tabla
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $consulta = sprintf("SELECT * FROM canciones c JOIN subencanciones s WHERE c.idCancion = s.idCancion AND s.email = '%s'", $email);
+        $resultado = $conn->query($consulta);
+
+        $contenidoPrincipal = "<h1>Mis canciones</h1>";
+        if (mysqli_num_rows($resultado) > 0) {
+            // Construcción dinámica de la tabla con los resultados de la consulta
+            $contenidoPrincipal .= "<table border='1'>";
+            $contenidoPrincipal .= "<tr><th>Nombre</th><th>Género</th><th>Álbum</th><th>Borrar</th><th>Modificar</th></tr>";
+            while ($fila = $resultado->fetch_assoc()) {
+                $contenidoPrincipal .= "<tr>";
+                $contenidoPrincipal .= "<td>" . $fila['nombreCancion'] . "</td>";
+                $contenidoPrincipal .= "<td>" . $fila['genero'] . "</td>";
+                $contenidoPrincipal .= "<td>" . $fila['nombreAlbum'] . "</td>";
+                $info = [$fila['idCancion'], $fila['nombreCancion'], $fila['genero'], $fila['nombreAlbum'], $fila['duracion'], $fila['rutaCancion'], $fila['rutaImagen']];
+                //necesito codificar en un json debido a que un arrya no se puede pasar directamente porque da un error 
+                $datos = json_encode($info);
+                $contenidoPrincipal .= "<td>
+                    <form action='cancionesArtista.php' method='POST'>
+                        <button type='submit' name='borrarCancion' value='{$datos}'>Borrar</button>
+                    </form>
+                </td>";
+                $contenidoPrincipal .= "<td>
+                    <form action='cancionesArtista.php' method='POST'>
+                        <button type='submit' name='modificarDatosCancion' value='{$datos}'>Editar</button>
+                    </form>
+                </td>";          
+                $contenidoPrincipal .= "</tr>";
+            }
+            $resultado->free();
+            $contenidoPrincipal .= "</table>";
+        }
+        else{
+            $contenidoPrincipal .= "No has subido ninguna cancion.";
+        }
+        $contenidoPrincipal .= "<form action='anadirCancion.php' method='POST'>
+                    <button type='submit' name='anadirCancion'>Añadir Cancion</button>
+                </form>";
         return $contenidoPrincipal;
     }
 
