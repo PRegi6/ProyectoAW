@@ -5,7 +5,7 @@ require_once __DIR__.'/Aplicacion.php';
 
 /* Parámetros de conexión a la BD
  */
-define('BD_HOST', 'localhost');
+define('BD_HOST', 'vm09.db.swarm.test');
 define('BD_NAME', 'beatHouse');
 define('BD_USER', 'beathouse');
 define('BD_PASS', 'beathouse');
