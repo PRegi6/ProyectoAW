@@ -29,7 +29,7 @@ class Cancion
     private $rutaCancion;
     private $rutaImagen;
 
-    private function __construct($id, $nombre, $genero, $nombreAlbum, $duracion, $rutaCancion, $rutaImagen)
+    public function __construct($id, $nombre, $genero, $nombreAlbum, $duracion, $rutaCancion, $rutaImagen)
     {
 
         $this->id = $id;
@@ -72,34 +72,7 @@ class Cancion
         return $lista;
     }
 
-    public static function listaCancionesMeGusta($idPlaylist)
-    {
-        $lista = [];
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = "SELECT * FROM contienen c JOIN canciones can WHERE c.idCancion = can.idCancion AND c.idPlaylist = $idPlaylist";
-        $result = $conn->query($query);
-
-        if (!$result->num_rows > 0) {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        } else {
-
-            foreach ($result as $rs) {
-                $cancion = new Cancion(
-                    $rs['idCancion'],
-                    $rs['nombreCancion'],
-                    $rs['genero'],
-                    $rs['nombreAlbum'],
-                    $rs['duracion'],
-                    $rs['rutaCancion'],
-                    $rs['rutaImagen']
-                );
-                array_push($lista, $cancion);
-            }
-            $result->free();
-        }
-
-        return $lista;
-    }
+    
 
     public static function buscarPorAlbum($nombreAlbum)
     {
@@ -162,30 +135,6 @@ class Cancion
 
         $contenidoPrincipal .= "</table>";
         return $contenidoPrincipal;
-        /*$lista = [];
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf("SELECT * FROM canciones c JOIN subencanciones s WHERE c.idCancion = s.idCancion AND s.email = '%s", $artista->getEmail());
-        $result = $conn->query($query);
-
-        if (!$result->num_rows > 0) {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        } else {
-
-            foreach ($result as $rs) {
-                $cancion = new Cancion(
-                    $rs['idCancion'],
-                    $rs['nombre'],
-                    $rs['genero'],
-                    $rs['nombreAlbum'],
-                    $rs['duracion'],
-                    $rs['rutaCancion'],
-                    $rs['rutaImagen']
-                );
-                $lista[] = $cancion;
-            }
-
-            $result->free();
-        }*/
     }
 
     public static function buscarPorGenero($genero)
@@ -274,7 +223,6 @@ class Cancion
         return $cancion;
     }
 
-
     public static function insertaCancion($cancion)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -286,24 +234,6 @@ class Cancion
             $conn->real_escape_string($cancion->duracion),
             $conn->real_escape_string($cancion->rutaCancion),
             $conn->real_escape_string($cancion->rutaImagen)
-        );
-
-        if ($conn->query($query)) {
-            return true;
-        } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-        return false;
-    }
-
-    public static function crearPlaylistMeGusta($email)
-    {
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf(
-            "INSERT INTO playlist(nombrePlaylist, email, duracionPlaylist) VALUES ('%s', '%s', '%s')",
-            $conn->real_escape_string("ME GUSTA"),
-            $conn->real_escape_string($email),
-            $conn->real_escape_string("0")
         );
 
         if ($conn->query($query)) {
@@ -395,7 +325,7 @@ class Cancion
     {
         $contenidoPrincipal = "";
         $contenidoPrincipal .= "<ul class='lista-canciones'>";
-        $idPlaylistMeGusta = Cancion::idPlaylistMeGusta($_SESSION['email']);
+        $idPlaylistMeGusta = Playlist::idPlaylistMeGusta($_SESSION['email']);
         foreach ($ListaCanciones as $cancion) {
             $datos = array(
                 array(
@@ -464,24 +394,6 @@ class Cancion
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
         return false;
-    }
-
-    public static function idPlaylistMeGusta($email){
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf(
-            "SELECT * FROM playlist WHERE email='%s' AND nombrePlaylist='ME GUSTA'",
-            $conn->real_escape_string($email)
-        );
-
-        $rs = $conn->query($query);
-        if ($rs) {
-            $playlist = $rs->fetch_assoc();
-            return $playlist['idPlaylist'];
-        } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-
-        return "";
     }
 
     public static function anadirDuracion($idPlaylist, $duracion){

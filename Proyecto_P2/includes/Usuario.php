@@ -14,7 +14,7 @@ class Usuario
         $usuario = new Usuario($datosUsuario[0], self::hashPassword($datosUsuario[1]), $datosUsuario[2], $datosUsuario[3], $datosUsuario[4], $datosUsuario[5], $datosUsuario[6]);
         $usuario->insertaPerfil($usuario);
         $usuario->insertaUsuario($usuario);
-        Cancion::crearPlaylistMeGusta($datosUsuario[0]);
+        Playlist::crearPlaylistMeGusta($datosUsuario[0]);
         return $usuario;
     }
     
@@ -123,52 +123,89 @@ class Usuario
     }
 
 
-    public static function subirCancion($cancion){
+    // public static function subirCancion($cancion){
 
-        $result = false;
+    //     $result = false;
 
-        if(self::esArtista()){
-            Cancion::insertaCancion($cancion);
-            $conn = Aplicacion::getInstance()->getConexionBd();
-            $query = sprintf("INSERT INTO subencanciones(IdCancion, email) VALUES ('%s', '%s')", 
-            $conn->real_escape_string($cancion->getId())
-            ,$conn->real_escape_string(self::getEmail())
-            );
+    //     if(self::esArtista()){
+    //         Cancion::insertaCancion($cancion);
+    //         $conn = Aplicacion::getInstance()->getConexionBd();
+    //         $query = sprintf("INSERT INTO subencanciones(IdCancion, email) VALUES ('%s', '%s')", 
+    //         $conn->real_escape_string($cancion->getId())
+    //         ,$conn->real_escape_string(self::getEmail())
+    //         );
 
-            if($conn->query($query)){
-                $result = true;
-            }else{
-                error_log("Error BD ({$conn->errno}): {$conn->error}");
-            }
-            return $result;
-        }else{
-            echo'Error, usuario no logueado como artista';
+    //         if($conn->query($query)){
+    //             $result = true;
+    //         }else{
+    //             error_log("Error BD ({$conn->errno}): {$conn->error}");
+    //         }
+    //         return $result;
+    //     }else{
+    //         echo'Error, usuario no logueado como artista';
+    //     }
+    //     return $result;
+    // }
+
+
+    // public static function verMisCanciones(){
+    //     if(self::esArtista()){
+    //         Cancion::buscarPorArtista(self::getEmail());
+    //     }
+    // }
+
+    // public function borraCancion($nombreCancion){
+    //     $ok = false;
+    //     if(self::esArtista()){
+    //         $ok = Cancion::borraCancion($nombreCancion);
+    //     }else{
+    //         echo'Error, usuario no logueado como artista';
+    //     }
+
+    //     return $ok;
+    // }
+
+
+    // private static function esArtista(){
+    //     return self::getTipoPlan() === "artista";
+    // }
+
+    public static function verPlaylists($email) {
+        // Consulta SQL para obtener los datos de la tabla
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $consulta = "SELECT * FROM playlist WHERE email='$email' AND nombrePlaylist != 'ME GUSTA'";
+        $resultado = $conn->query($consulta);
+
+        // Construcción dinámica de la tabla con los resultados de la consulta
+        $contenidoPrincipal = "<h1>Mis playlists</h1>";
+        $contenidoPrincipal .= "<table border='1'>";
+        $contenidoPrincipal .= "<tr><th>Nombre</th><th>Duración</th><th>Borrar</th><th>Modificar</th></tr>";
+        while ($fila = $resultado->fetch_assoc()) {
+            $contenidoPrincipal .= "<tr>";
+            $contenidoPrincipal .= "<td>" . $fila['nombrePlaylist'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['duracionPlaylist'] . "</td>";
+            $info = [$fila['idPlaylist'], $fila['nombrePlaylist'], $fila['email'], $fila['duracionPlaylist']];
+            $datos = json_encode($info);
+            $contenidoPrincipal .= "<td>
+                <form action='gestionPlaylist.php' method='POST'>
+                    <button type='submit' name='borrarPlaylist' value='{$fila['idPlaylist']}'>Borrar</button>
+                </form>
+            </td>";
+            $contenidoPrincipal .= "<td>
+                <form action='gestionPlaylist.php' method='POST'>
+                    <button type='submit' name='modificarPlaylist' value='{$datos}'>Editar</button>
+                </form>
+            </td>";          
+            $contenidoPrincipal .= "</tr>";
         }
-        return $result;
+        $resultado->free();
+
+        $contenidoPrincipal .= "</table>";
+        $contenidoPrincipal .= "<form action='crearPlaylist.php' method='POST'>
+                    <button type='submit' name='crearPlaylist'>Crear playlist</button>
+                </form>"; 
+        return $contenidoPrincipal;
     }
-
-
-    public static function verMisCanciones(){
-        if(self::esArtista()){
-            Cancion::buscarPorArtista(self::getEmail());
-        }
-    }
-
-    public function borraCancion($nombreCancion){
-        $ok = false;
-        if(self::esArtista()){
-            $ok = Cancion::borraCancion($nombreCancion);
-        }else{
-            echo'Error, usuario no logueado como artista';
-        }
-
-        return $ok;
-    }
-
-
-    private static function esArtista(){
-        return self::getTipoPlan() === "artista";
-    } 
 
 
     private $email;

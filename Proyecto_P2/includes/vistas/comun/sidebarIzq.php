@@ -21,7 +21,7 @@
                     <li><a href='index.php'>Inicio</a></li>
                     <li><a href='tendencias.php'>Tendencias</a></li>
                     <li><a href='meGusta.php'>Me gusta</a></li>
-                    <li><a href='playlist.php'>Playlist</a></li>
+                    <li><a href='gestionPlaylist.php'>Playlist</a></li>
                     <li><a href='gestionContenido.php'>Gestion de Contenido</a></li>
                 </ul>";
             }
@@ -30,7 +30,7 @@
                     <li><a href='index.php'>Inicio</a></li>
                     <li><a href='tendencias.php'>Tendencias</a></li>
                     <li><a href='meGusta.php'>Me gusta</a></li>
-                    <li><a href='playlist.php'>Playlist</a></li>
+                    <li><a href='gestionPlaylist.php'>Playlist</a></li>
                 </ul>";
             }
         }

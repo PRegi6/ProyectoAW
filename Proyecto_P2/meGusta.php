@@ -22,8 +22,8 @@ function convertirTiempo($segundos) {
                 <h1> Canciones que te gustan </h1>
         EOS;
 
-    $idPlaylistMeGusta = es\ucm\fdi\aw\Cancion::idPlaylistMeGusta($_SESSION['email']);
-    $ListaCanciones = es\ucm\fdi\aw\Cancion::listaCancionesMeGusta($idPlaylistMeGusta);
+    $idPlaylistMeGusta = es\ucm\fdi\aw\Playlist::idPlaylistMeGusta($_SESSION['email']);
+    $ListaCanciones = es\ucm\fdi\aw\Playlist::listaCancionesMeGusta($idPlaylistMeGusta);
     if (empty($ListaCanciones)) {
         $contenidoPrincipal .= <<<EOS
             No hay resultados
