@@ -2,7 +2,7 @@
     require_once __DIR__."/includes/config.php";
     
     $tituloPagina = "Contenido";
-    $contenidoPrincipal = es\ucm\fdi\aw\Usuario::verMisCanciones().<<<EOS
+    $contenidoPrincipal = es\ucm\fdi\aw\Cancion::buscarPorArtista($_SESSION['email']).<<<EOS
     <ul>
         <li><a href="AñadirCancion.php">Añadir cancion</a></li>
         <li><a href="borrarCancion.php">Borrar cancion</a></li>
