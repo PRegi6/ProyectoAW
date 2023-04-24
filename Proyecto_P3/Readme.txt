@@ -1,3 +1,10 @@
+COSAS POR HACER DE AW:
+Un usuario puede ver su perfil y poder cambiar su plan de pago
+Reproductor ocultarlo cuando no se escuche una cambion
+Hacer crear playlist de forma bonita
+Añadir canciones
+y las dos funcionalidades finales
+
 Personas de BD
 Administradores:
 ADMIN@gmail.com	ADMINPASS
