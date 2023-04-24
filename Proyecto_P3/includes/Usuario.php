@@ -21,6 +21,7 @@ class Usuario
     public static function login($email, $password)
     {
         $usuario = self::buscaPerfil($email);
+        echo $usuario->getEmail();
         if ($usuario && $usuario->compruebaPassword($password)) {
             return $usuario;
         }
@@ -174,6 +175,21 @@ class Usuario
                     <button type='submit' name='crearPlaylist'>Crear playlist</button>
                 </form>"; 
         return $contenidoPrincipal;
+    }
+
+    public static function getDatos($email){
+        // Consulta SQL para obtener los datos de la tabla
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $consulta = sprintf("SELECT * FROM usuarios WHERE email='%s'", $email);
+        $resultado = $conn->query($consulta);
+
+        if ($fila = $resultado->fetch_assoc()) {
+            $info = [$fila['email'], $fila['contraseña'], $fila['nombre'], $fila['apellidos'], $fila['rol'], $fila['tipoPlan'], $fila['fechaExpiracionPlan']];
+            $datos = json_encode($info);   
+        }
+        $resultado->free();
+
+        return $datos;
     }
 
 
