@@ -1,6 +1,6 @@
 COSAS POR HACER DE AW:
 Un usuario puede ver su perfil y poder cambiar su plan de pago
-Reproductor ocultarlo cuando no se escuche una cambion
+Reproductor ocultarlo cuando no se escuche una cambion --hecho
 Hacer crear playlist de forma bonita
 Añadir canciones
 y las dos funcionalidades finales
