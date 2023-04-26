@@ -73,7 +73,7 @@ INSERT INTO `gestionanuncios` (`email`, `idAnuncio`) VALUES
 INSERT INTO `perfil` (`email`, `contraseña`, `nombre`, `apellidos`, `rol`) VALUES
 ('ADMIN2@gmail.com', '$2y$10$CVBKGkqrIjBSaNpNQuRms.u6WX3o1eWKtYzPpRVnTy9lQyIaLJyF2', 'Rodrigo', 'Diaz de Vivar', 'admin'),
 ('ADMIN@gmail.com', '$2y$10$GK0AkUYD2upID9WolIivV.z0jOqFGUXDD/O2iG2xTOmfcj9DaWp6i', 'Ricardo', 'Rodriguez', 'admin'),
-('david@ucm.es', '$2y$10$byTudy5CaR4JY8ft/tsvRuldXE11UCDx4N3p5.Wgb6.Xt4UiIS3iC', 'juan', 'Polvoron', 'usuario'),
+('david@ucm.es', '$2y$10$yC6jBaZlcA93L0lDTfMYBu1tViAPc1knNSKp4Y4MkNqjwYyR.D54S', 'juan', 'Polvoron', 'usuario'),
 ('franzroq@ucm.es', '$2y$10$wKJQ4W5JpsMkf47dHXag8.1kd7VFywHEUE/SJwMH8aojeqQq4KsGa', 'Rodrigo', 'Quispe', 'usuario'),
 ('pabloregi@ucm.es', '$2y$10$.i/OPE7p1MFw3xfDGceH5ejNvEktl0/UsMBQW/vTVXodnlBOnxfh.', 'Pablo', 'Regidor', 'usuario');
 
@@ -107,7 +107,7 @@ INSERT INTO `subencanciones` (`IdCancion`, `email`) VALUES
 --
 
 INSERT INTO `usuarios` (`email`, `contraseña`, `nombre`, `apellidos`, `rol`, `tipoPlan`, `fechaExpiracionPlan`) VALUES
-('david@ucm.es', '$2y$10$MHrWVi4zYj37teMb7BieoeuJ1ferXCGmhgPquHrWMrhQrJ.icm1V.', 'juan', 'Polvoron', 'usuario', 'basico', '2023-04-26'),
+('david@ucm.es', '$$2y$10$yC6jBaZlcA93L0lDTfMYBu1tViAPc1knNSKp4Y4MkNqjwYyR.D54S', 'juan', 'Polvoron', 'usuario', 'basico', '2023-04-26'),
 ('franzroq@ucm.es', '$2y$10$wKJQ4W5JpsMkf47dHXag8.1kd7VFywHEUE/SJwMH8aojeqQq4KsGa', 'Rodrigo', 'Quispe', 'usuario', 'artista', '2023-04-16'),
 ('pabloregi@ucm.es', '$2y$10$.i/OPE7p1MFw3xfDGceH5ejNvEktl0/UsMBQW/vTVXodnlBOnxfh.', 'Pablo', 'Regidor', 'usuario', 'premium', '2023-04-16');
 COMMIT;
