@@ -60,7 +60,7 @@ class Admin
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("UPDATE perfil SET contraseña='%s', nombre='%s', apellidos='%s', rol='%s' WHERE email='%s'"
-        , Usuario::hashPassword($datos[1])
+        , $datos[1]
         , $datos[2]
         , $datos[3]
         , $datos[4]
@@ -79,7 +79,7 @@ class Admin
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("UPDATE usuarios SET contraseña='%s', nombre='%s', apellidos='%s', rol='%s', tipoPlan='%s', fechaExpiracionPlan='%s' WHERE email='%s'"
-        , Usuario::hashPassword($datos[1])
+        , $datos[1]
         , $datos[2]
         , $datos[3]
         , $datos[4]

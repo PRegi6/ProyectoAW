@@ -10,6 +10,7 @@ class FormModificarUsu extends Formulario {
     protected function generaCamposFormulario(&$datos)
     {
         $email = $datos[0] ?? '';
+        $password = $datos[1] ?? '';
         $nombre = $datos[2] ?? '';
         $apellidos =  $datos[3] ?? '';
         $rol = $datos[4] ?? '';
@@ -30,6 +31,8 @@ class FormModificarUsu extends Formulario {
                         <label for= 'email'>Email: $email</label>
                         <input type="hidden" name="email" value="{$email}" />
                         <br><br>
+
+                        <input type="hidden" name="password" value="{$password}" />
 
                         <label for='nombre'>Nombre: </label>
                         <input type="text" placeholder="Nombre" id="nombre" name="nombre" value='{$nombre}'><br>
@@ -80,8 +83,8 @@ class FormModificarUsu extends Formulario {
 
         $fechaExpiracion = trim($datos['fecha'] ?? '');
         $fecha_actual = date('Y-m-d'); // Obtiene la fecha actual en formato "YYYY-MM-DD"
-        if (($fechaExpiracion <= $fecha_actual)) {
-            $this->errores['fecha'] = 'El fecha tiene que ser superior a la de hoy';
+        if (($fechaExpiracion < $fecha_actual)) {
+            $this->errores['fecha'] = 'El fecha tiene que ser mayor o igual a la de hoy';
         }
 
         if (count($this->errores) === 0) {

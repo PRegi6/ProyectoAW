@@ -21,7 +21,6 @@ class Usuario
     public static function login($email, $password)
     {
         $usuario = self::buscaPerfil($email);
-        echo $usuario->getEmail();
         if ($usuario && $usuario->compruebaPassword($password)) {
             return $usuario;
         }

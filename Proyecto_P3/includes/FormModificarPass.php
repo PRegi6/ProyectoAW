@@ -11,7 +11,6 @@ class FormModificarPass extends Formulario {
     protected function generaCamposFormulario(&$datos)
     {
         $email = $datos[0] ?? '';
-        $contraseña = $datos[1] ?? '';
         $nombre = $datos[2] ?? '';
         $apellidos =  $datos[3] ?? '';
         $rol = $datos[4] ?? '';
@@ -62,6 +61,7 @@ class FormModificarPass extends Formulario {
         $fechaExpiracion = trim($datos['fecha'] ?? '');
         
         $oldPass = $datos['oldPass'];
+        $oldPass = filter_var($oldPass, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         $usuario = Usuario::login($email, $oldPass);
         if (!$usuario) {
             $this->errores['oldPass'] = 'La contraseña no coincide.';
@@ -69,11 +69,12 @@ class FormModificarPass extends Formulario {
 
         $newPass = trim($datos['newPass'] ?? '');
         $newPass = filter_var($newPass, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
-        if (!$newPass || empty($newPass)) {
+        if (!$newPass || empty($newPass) || $newPass == $oldPass) {
             $this->errores['newPass'] = 'La contraseña no es válida.';
         }
 
         if (count($this->errores) === 0) {
+            $newPass = Usuario::hashPassword($newPass);
             Admin::modificarDatosPerfil([$email, $newPass, $nombre, $apellidos, $rol]);
             Admin::modificarDatosUsuario([$email, $newPass, $nombre, $apellidos, $rol, $tipoPlan, $fechaExpiracion]);
         }
