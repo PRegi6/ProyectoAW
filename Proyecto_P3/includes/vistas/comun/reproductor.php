@@ -1,4 +1,4 @@
-<div class="reproductor">
+<div class="reproductor" id="reproductor">
     <div class="infoCancion">
         <div class="now-playing">PLAYING x OF y</div>
         <div class="track-art"></div>
@@ -36,7 +36,7 @@
 
     <div class="volumen">
         <i class="fa fa-volume-down"></i>
-        <input type="range" min="0" max="100" value="99" class="volume_slider" onchange="setVolume()">
+        <input type="range" min="0" max="100" value="50" class="volume_slider" onchange="setVolume()">
         <i class="fa fa-volume-up"></i>
     </div>
 

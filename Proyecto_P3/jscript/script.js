@@ -19,6 +19,7 @@ let isPlaying = false;
 let isRandom = false;
 let updateTimer;
 
+var boton = document.getElementById("reproductor"); //ESTE ES EL REPRODUCTOR 
 var music_list = Array();
 
 //FUNCIONES PARA ESCUCHAR CANCION TRAS PULSAR AL PLAY CUANDO APARECEN LAS CANCIONES 
@@ -27,6 +28,9 @@ function reproducirSeleccionado(datos){
     for (let cancion of datos) {
         music_list.push(cancion);
     }
+
+    //MOSTRAMOS EL REPRODUCTOR
+    boton.style.display = "flex";
     loadTrack(0);
     playTrack();
 };
@@ -65,12 +69,53 @@ function cambiarIcono(idCancion, idPlaylist, duracionCancion) {
     }
 };
 
+//Se utiliza el evento "unload" para almacenar datos en el objeto localStorage antes de que la página se cierre. 
+
+window.addEventListener('unload', function() {
+    localStorage.setItem('music_list', JSON.stringify(music_list));
+    localStorage.setItem('track_index', track_index);
+    localStorage.setItem('isPlaying', isPlaying);
+    localStorage.setItem('volume', volume_slider.value);
+    console.log(volume_slider.value);
+    localStorage.setItem('seekTime', curr_track.currentTime);
+});
+  
+//La segunda sección utiliza el evento "load" para cargar los datos almacenados en el objeto localStorage cuando la página se carga.
+window.addEventListener('load', function() {
+if(localStorage.getItem('music_list') !== null) {
+    music_list = JSON.parse(localStorage.getItem('music_list'));
+    track_index = parseInt(localStorage.getItem('track_index'));
+    isPlaying = localStorage.getItem('isPlaying') === 'true';
+    volume_slider.value = localStorage.getItem('volume');
+    curr_track.currentTime = parseFloat(localStorage.getItem('seekTime'));
+
+    if(music_list.length === 0){ //si esta vacio no lo mostramos
+    boton.style.display = "none";
+    }
+    else{
+        boton.style.display = "flex";
+    }
+
+    loadTrack(track_index);
+    if (isPlaying) {
+        playTrack();
+    } else {
+        pauseTrack();
+    }
+}
+});
+
+//Los datos almacenados en localStorage permanecen en el navegador incluso después de cerrar la ventana o salir del navegador.
+//Puedes acceder a los datos de localStorage a través de la consola del navegador web en la pestaña "Application" o "Almacenamiento" 
+//(dependiendo del navegador) en la sección "LocalStorage".
+  
 
 //----------------------------------------------------------------------------------------------------------------------
 function loadTrack(track_index) {
     clearInterval(updateTimer);
     reset();
 
+    curr_track.volume = volume_slider.value / 700;
     curr_track.src = music_list[track_index].music;
     curr_track.load();
     track_art.style.backgroundImage = "url(" + music_list[track_index].img + ")";
@@ -143,7 +188,7 @@ function seekTo() {
     curr_track.currentTime = seekto;
 }
 function setVolume() {
-    curr_track.volume = volume_slider.value / 100;
+    curr_track.volume = volume_slider.value / 700;
 }
 function setUpdate() {
     let seekPosition = 0;
@@ -165,12 +210,3 @@ function setUpdate() {
         total_duration.textContent = durationMinutes + ":" + durationSeconds;
     }
 }
-
-function mostrarMenu() {
-    document.querySelector('.dropdown-menu').style.display = 'block';
-  }
-  
-  function ocultarMenu() {
-    document.querySelector('.dropdown-menu').style.display = 'none';
-  }
-  
