@@ -165,3 +165,12 @@ function setUpdate() {
         total_duration.textContent = durationMinutes + ":" + durationSeconds;
     }
 }
+
+function mostrarMenu() {
+    document.querySelector('.dropdown-menu').style.display = 'block';
+  }
+  
+  function ocultarMenu() {
+    document.querySelector('.dropdown-menu').style.display = 'none';
+  }
+  

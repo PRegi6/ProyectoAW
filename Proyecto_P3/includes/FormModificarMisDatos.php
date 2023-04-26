@@ -11,6 +11,7 @@ class FormModificarMisDatos extends Formulario {
     protected function generaCamposFormulario(&$datos)
     {
         $email = $datos[0] ?? '';
+        $password = $datos[1] ?? '';
         $nombre = $datos[2] ?? '';
         $apellidos =  $datos[3] ?? '';
         $rol = $datos[4] ?? '';
@@ -27,9 +28,11 @@ class FormModificarMisDatos extends Formulario {
                         <h1 id=titulo_panel>Cambiar mis datos</h1>
                         {$htmlErroresGlobales}
 
-                        <label for= 'email'>Email: $email</label>
+                        <label for= 'email'>Email: {$email}</label>
                         <input type="hidden" name="email" value="{$email}" />
                         <br><br>
+
+                        <input type="hidden" name="password" value="{$password}" />
 
                         <label for='nombre'>Nombre: </label>
                         <input type="text" placeholder="Nombre" id="nombre" name="nombre" value='{$nombre}'><br>
@@ -41,21 +44,10 @@ class FormModificarMisDatos extends Formulario {
 
                         <input type="hidden" name="rol" value="{$rol}" />
 
-                        <label for ='tipoPlan'>Tipo Plan: $plan</label>
                         <input type ='hidden' placeholder ='TipoPlan' id ='tipoPlan' name ='tipoPlan' value ='{$plan}'>
 
-                        <form action='cambiarPerfil.php' method='POST'>
-                            <button type='submit' name='cambiarPlan'>Cambiar plan</button>
-                        </form>
-                        <br><br>
-
-                        <label for= 'fecha'>Fecha Expiración: $fechaExpiracion</label>
+                        <label for= 'fecha'>Fecha Expiración: {$fechaExpiracion}</label>
                         <input type ='hidden' placeholder ='fechaExpiracion' id ='fecha' name ='fecha' value ='{$fechaExpiracion}'><br>
-                        <br>
-
-                        <form action='cambiarPassUsuario.php' method='POST'>
-                            <button type='submit' name='cambiarPass'>Cambiar contraseña</button>
-                        </form>
                         <br>
         
                         <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
@@ -70,7 +62,8 @@ class FormModificarMisDatos extends Formulario {
         $this->errores = [];
         $email = $datos['email'];
 
-        $password = $datos['password'];
+        $password = trim($datos['password'] ?? '');
+        $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         $nombre = trim($datos['nombre'] ?? '');
         $nombre = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);

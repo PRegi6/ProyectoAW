@@ -1,7 +1,7 @@
 <?php
 function mostrarSaludo() {
 	if (isset($_SESSION['login']) && ($_SESSION['login']===true)) {
-		return "Bienvenido, <a href='cambiarPerfil.php'>{$_SESSION['nombre']}  <a href='logout.php'>(salir)</a>";
+        return "Bienvenido, " . es\ucm\fdi\aw\Usuario::opcionesUsuario();
 		
 	} else {
 		return "<ul>
