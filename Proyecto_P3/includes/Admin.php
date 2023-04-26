@@ -219,10 +219,16 @@ class Admin
         }
         $resultado->free();
 
-        $contenidoPrincipal .= "</table>";
+        $contenidoPrincipal .= "</table> <br>";
+
+        $contenidoPrincipal .= "<form action='crearUsuario.php' method='POST'>
+            <button type='submit' name='crearUsuario'>Crear usuario</button>
+        </form> <br>"; 
+
         $contenidoPrincipal .= "<form action='crearAdmin.php' method='POST'>
-                    <button type='submit' name='crearAdmin'>Crear administrador</button>
-                </form>"; 
+            <button type='submit' name='crearAdmin'>Crear administrador</button>
+        </form>"; 
+
         return $contenidoPrincipal;
     }
 

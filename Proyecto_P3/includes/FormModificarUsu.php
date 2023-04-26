@@ -49,9 +49,9 @@ class FormModificarUsu extends Formulario {
                         <label for ='tipoPlan'>Tipo Plan: </label>
                         {$selectorPlanes}<br><br>
 
-                        <label for= 'fecha'>Fecha Expiración: </label>
-                        <input type ='date' placeholder ='fechaExpiracion' id ='fecha' name ='fecha' value ='{$fechaExpiracion}'><br>
-                        {$erroresCampos['fecha']}<br>
+                        <label for= 'fecha'>Fecha Expiración: {$fechaExpiracion}</label>
+                        <input type ='hidden' placeholder ='fechaExpiracion' id ='fecha' name ='fecha' value ='{$fechaExpiracion}'><br>
+                        <br>
         
                         <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
                 </fieldset> 
@@ -63,9 +63,11 @@ class FormModificarUsu extends Formulario {
     protected function procesaFormulario(&$datos)
     {
         $this->errores = [];
+        
         $email =$datos['email'];
 
         $password = trim($datos['password'] ?? '');
+        $password = filter_var($password, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         $nombre = trim($datos['nombre'] ?? '');
         $nombre = filter_var($nombre, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
@@ -78,14 +80,12 @@ class FormModificarUsu extends Formulario {
         if ( ! $apellidos || empty($apellidos)) {
             $this->errores['apellidos'] = 'El apellido no puede ser vacio.';
         }
+
         $rol = trim($datos['rol'] ?? '');
+
         $tipoPlan = trim($datos['tipoPlan'] ?? '');
 
         $fechaExpiracion = trim($datos['fecha'] ?? '');
-        $fecha_actual = date('Y-m-d'); // Obtiene la fecha actual en formato "YYYY-MM-DD"
-        if (($fechaExpiracion < $fecha_actual)) {
-            $this->errores['fecha'] = 'El fecha tiene que ser mayor o igual a la de hoy';
-        }
 
         if (count($this->errores) === 0) {
             Admin::modificarDatosPerfil([$email, $password, $nombre, $apellidos, $rol]);

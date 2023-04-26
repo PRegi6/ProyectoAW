@@ -42,10 +42,14 @@ class FormModificarMisDatos extends Formulario {
                         <input type ="text" placeholder =" Apellidos" id ="apellidos" name="apellidos" value= '{$apellidos}'><br>
                         {$erroresCampos['apellidos']}<br>
 
+                        <label for= 'rol'>Rol: {$rol}</label>
                         <input type="hidden" name="rol" value="{$rol}" />
-
+                        <br><br>
+                        
+                        <label for ='tipoPlan'>Tipo Plan: {$plan}</label>
                         <input type ='hidden' placeholder ='TipoPlan' id ='tipoPlan' name ='tipoPlan' value ='{$plan}'>
-
+                        <br><br>
+                        
                         <label for= 'fecha'>Fecha Expiración: {$fechaExpiracion}</label>
                         <input type ='hidden' placeholder ='fechaExpiracion' id ='fecha' name ='fecha' value ='{$fechaExpiracion}'><br>
                         <br>
@@ -60,6 +64,7 @@ class FormModificarMisDatos extends Formulario {
     protected function procesaFormulario(&$datos)
     {
         $this->errores = [];
+
         $email = $datos['email'];
 
         $password = trim($datos['password'] ?? '');
@@ -76,7 +81,9 @@ class FormModificarMisDatos extends Formulario {
         if ( ! $apellidos || empty($apellidos)) {
             $this->errores['apellidos'] = 'El apellido no puede ser vacio.';
         }
+
         $rol = trim($datos['rol'] ?? '');
+
         $tipoPlan = trim($datos['tipoPlan'] ?? '');
 
         $fechaExpiracion = trim($datos['fecha'] ?? '');
