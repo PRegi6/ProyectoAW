@@ -3,6 +3,7 @@
     display: flex;
     justify-content: center; /*justifica de forma de horizontal en este caso lo centra*/
     align-items: start; /*justifica de forma de vertical en este caso lo centra*/
+    display: none;
 }
 
     .infoCancion{

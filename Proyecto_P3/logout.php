@@ -13,7 +13,10 @@
 
     $tituloPagina = 'Logout';
     $contenidoPrincipal = <<<EOS
-            <h1>Hasta pronto!</h1>
+        <h1>Hasta pronto!</h1> 
+        <script>
+            localStorage.clear();
+        </script>
         EOS;
 
     require __DIR__ . '/includes/vistas/plantillas/plantilla.php';
