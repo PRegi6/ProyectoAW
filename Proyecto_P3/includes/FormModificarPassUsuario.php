@@ -2,10 +2,10 @@
 namespace es\ucm\fdi\aw;
 require_once __DIR__."/config.php";
 
-class FormModificarPass extends Formulario {
+class FormModificarPassUsuario extends Formulario {
 
     public function __construct() {
-        parent::__construct('formModificarPass', ['urlRedireccion' => 'cambiarPerfil.php']);    
+        parent::__construct('formModificarPassUsuario', ['urlRedireccion' => 'cambiarPerfil.php']);    
     }
 
     protected function generaCamposFormulario(&$datos)
