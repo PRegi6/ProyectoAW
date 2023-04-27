@@ -96,6 +96,25 @@ class Admin
         return false;
     }
 
+    public static function modificarDatosAdmin($datos)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("UPDATE admin SET contraseña='%s', nombre='%s', apellidos='%s', rol='%s' WHERE email='%s'"
+        , $datos[1]
+        , $datos[2]
+        , $datos[3]
+        , $datos[4]
+        , $datos[0]
+        );
+        $rs = $conn->query($query);
+        if ($rs) {
+            return true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return false;
+    }
+
     public static function modificarCancion($datos)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -366,5 +385,20 @@ class Admin
     {
         self::insertaPerfilAdmin([$datosUsuario[0], Usuario::hashPassword($datosUsuario[1]), $datosUsuario[2], $datosUsuario[3], $datosUsuario[4]]);
         self::insertaAdmin([$datosUsuario[0], Usuario::hashPassword($datosUsuario[1]), $datosUsuario[2], $datosUsuario[3], $datosUsuario[4]]);
+    }
+
+    public static function getDatos($email) {
+         // Consulta SQL para obtener los datos de la tabla
+         $conn = Aplicacion::getInstance()->getConexionBd();
+         $consulta = sprintf("SELECT * FROM admin WHERE email='%s'", $email);
+         $resultado = $conn->query($consulta);
+ 
+         if ($fila = $resultado->fetch_assoc()) {
+             $info = [$fila['email'], $fila['contraseña'], $fila['nombre'], $fila['apellidos'], $fila['rol']];
+             $datos = json_encode($info);   
+         }
+         $resultado->free();
+ 
+         return $datos;
     }
 }

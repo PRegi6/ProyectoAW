@@ -2,10 +2,10 @@
 namespace es\ucm\fdi\aw;
 require_once __DIR__."/config.php";
 
-class FormModificarMisDatos extends Formulario {
+class FormModificarDatosUsuario extends Formulario {
 
     public function __construct() {
-        parent::__construct('formModificarMisDatos', ['urlRedireccion' => 'cambiarPerfil.php']);    
+        parent::__construct('formModificarDatosUsuario', ['urlRedireccion' => 'cambiarPerfil.php']);    
     }
 
     protected function generaCamposFormulario(&$datos)
@@ -19,7 +19,7 @@ class FormModificarMisDatos extends Formulario {
         $fechaExpiracion =  $datos[6] ?? '';
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
-        $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos', 'newPass', 'oldPass'], $this->errores, 'span', array('class' => 'error'));
+        $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos'], $this->errores, 'span', array('class' => 'error'));
 
         $html = <<<EOS
             <main class= "panel_inicio">
