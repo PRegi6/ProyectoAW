@@ -9,6 +9,8 @@
     if (isset($_POST['borrarUsuario'])) { //si queremos borrar una cancion
         $email = $_POST['borrarUsuario'] ?? '';
         es\ucm\fdi\aw\Admin::borrarUsuario($email);
+        es\ucm\fdi\aw\Admin::borrarPerfil($email);
+        es\ucm\fdi\aw\Playlist::borrarPlaylistMeGusta($email);
         header("Location: gestionUsuarios.php");
     }
 

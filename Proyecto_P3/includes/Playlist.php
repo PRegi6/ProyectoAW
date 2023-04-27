@@ -180,4 +180,17 @@ class Playlist{
         return $this->idPlaylist;
     }
 
+    public static function borrarPlaylistMeGusta($email) {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("DELETE FROM playlist WHERE email='%s'", $email);
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
+
 }

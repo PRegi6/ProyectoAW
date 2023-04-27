@@ -169,7 +169,36 @@ class Admin
         $rs = $conn->query($query);
         $result = false;
         if ($rs) {
-            $rs->free();
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
+
+    public static function borrarPerfil($email)
+    {
+
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("DELETE FROM perfil WHERE email='%s'", $email);
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
+
+    public static function borrarAdmin($email)
+    {
+
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("DELETE FROM admin WHERE email='%s'", $email);
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
             $result = true;
         } else {
             error_log("Error BD ({$conn->errno}): {$conn->error}");
@@ -243,6 +272,49 @@ class Admin
         $contenidoPrincipal .= "<form action='crearUsuario.php' method='POST'>
             <button type='submit' name='crearUsuario'>Crear usuario</button>
         </form> <br>"; 
+
+        $contenidoPrincipal .= "<form action='gestionAdmin.php' method='POST'>
+            <button type='submit' name='gestionAdmin'>Gestionar administrador</button>
+        </form>"; 
+
+        return $contenidoPrincipal;
+    }
+
+    public static function mostrarAdmins()
+    {
+        // Consulta SQL para obtener los datos de la tabla
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $consulta = sprintf("SELECT * FROM admin WHERE email <> '%s'", $_SESSION['email']);
+        $resultado = $conn->query($consulta);
+
+        // Construcción dinámica de la tabla con los resultados de la consulta
+        $contenidoPrincipal = "<h1>Administrar usuarios</h1>";
+        $contenidoPrincipal .= "<table border='1'>";
+        $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Borrar</th><th>Modificar</th></tr>";
+        while ($fila = $resultado->fetch_assoc()) {
+            $contenidoPrincipal .= "<tr>";
+            $contenidoPrincipal .= "<td>" . $fila['email'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['contraseña'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['nombre'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['apellidos'] . "</td>";
+            $contenidoPrincipal .= "<td>" . $fila['rol'] . "</td>";
+            $info = [$fila['email'], $fila['contraseña'], $fila['nombre'], $fila['apellidos'], $fila['rol']];
+            $datos = json_encode($info);
+            $contenidoPrincipal .= "<td>
+                <form action='gestionAdmin.php' method='POST'>
+                    <button type='submit' name='borrarAdmin' value='{$fila['email']}'>Borrar</button>
+                </form>
+            </td>";
+            $contenidoPrincipal .= "<td>
+                <form action='gestionAdmin.php' method='POST'>
+                    <button type='submit' name='modificarAdmin' value='{$datos}'>Editar</button>
+                </form>
+            </td>";          
+            $contenidoPrincipal .= "</tr>";
+        }
+        $resultado->free();
+
+        $contenidoPrincipal .= "</table> <br>";
 
         $contenidoPrincipal .= "<form action='crearAdmin.php' method='POST'>
             <button type='submit' name='crearAdmin'>Crear administrador</button>
@@ -388,17 +460,17 @@ class Admin
     }
 
     public static function getDatos($email) {
-         // Consulta SQL para obtener los datos de la tabla
-         $conn = Aplicacion::getInstance()->getConexionBd();
-         $consulta = sprintf("SELECT * FROM admin WHERE email='%s'", $email);
-         $resultado = $conn->query($consulta);
+        // Consulta SQL para obtener los datos de la tabla
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $consulta = sprintf("SELECT * FROM admin WHERE email='%s'", $email);
+        $resultado = $conn->query($consulta);
  
-         if ($fila = $resultado->fetch_assoc()) {
-             $info = [$fila['email'], $fila['contraseña'], $fila['nombre'], $fila['apellidos'], $fila['rol']];
-             $datos = json_encode($info);   
-         }
-         $resultado->free();
+        if ($fila = $resultado->fetch_assoc()) {
+            $info = [$fila['email'], $fila['contraseña'], $fila['nombre'], $fila['apellidos'], $fila['rol']];
+            $datos = json_encode($info);   
+        }
+        $resultado->free();
  
-         return $datos;
+        return $datos;
     }
 }

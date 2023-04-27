@@ -14,16 +14,12 @@ function mostrarSaludo() {
 
 
 <header class="header">
-        <div class="logo-titulo"> <!--logo-titulo-usuario es una clase que hace referencia al logo, al titulo y al nav de usuario-->
+        <div class="logo-titulo">
             <img src="<?=RUTA_IMGS?>/Altavoz2.png" alt="logo" class="logo">
             <h1>BEAT HOUSE</h1>
         </div>
         
-        <div class="usuario"> <!--logo-titulo-usuario es una clase que hace referencia al logo, al titulo y al nav de usuario-->
-            <!--<ul>
-                <li><a href="registro.php">Registro</a></li>
-                <li><a href="login.php">Iniciar Sesión</a></li>
-            </ul>-->
+        <div class="usuario">
             <?= mostrarSaludo(); ?>
         </div>
 </header>
