@@ -21,7 +21,7 @@ class FormAnadirCancion extends Formulario {
             <main class= "panel_inicio">
                 <fieldset class="fieldset_register">
  
-                        <h1 id=titulo_panel>Cambiar Datos Canción</h1>
+                        <h1 id=titulo_panel>Subir Canción</h1>
                         {$htmlErroresGlobales}
                         <br>
 

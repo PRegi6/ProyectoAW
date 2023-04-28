@@ -80,7 +80,7 @@ class FormPagoPlan extends Formulario
         $numTarjeta = trim($datos['numTarjeta'] ?? '');
         $numTarjeta = filter_var($numTarjeta, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if (! $numTarjeta || empty($numTarjeta) || !preg_match('/^\d{16}$/', $numTarjeta)) {
-            $this->errores['numTarjeta'] = 'El número de tarjeta no es válido.';
+            $this->errores['numTarjeta'] = 'El número de tarjeta tiene que tener 16 dígitos.';
         }
 
         $cvv = trim($datos['cvv'] ?? '');
@@ -112,7 +112,7 @@ class FormPagoPlan extends Formulario
         }
         if (!$fechaValida) {
             // La fecha no es válida, mostrar un mensaje de error
-            $this->errores['fechaCaducidad'] = "La fecha de caducidad no es válida.";
+            $this->errores['fechaCaducidad'] = "La fecha de caducidad tiene que ser posterior a este mes y año.";
         }
     
 

@@ -288,7 +288,7 @@ class Admin
         $resultado = $conn->query($consulta);
 
         // Construcción dinámica de la tabla con los resultados de la consulta
-        $contenidoPrincipal = "<h1>Administrar usuarios</h1>";
+        $contenidoPrincipal = "<h1>Administrar administradores</h1>";
         $contenidoPrincipal .= "<table border='1'>";
         $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Borrar</th><th>Modificar</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
@@ -435,16 +435,15 @@ class Admin
     {
         // Consulta SQL para obtener los datos de la tabla
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $consulta = "SELECT * FROM gestionanuncios WHERE email='$email'";
+        $consulta = "SELECT idAnuncio FROM gestionanuncios WHERE email='$email'";
         $resultado = $conn->query($consulta);
 
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar Planes</h1>";
         $contenidoPrincipal .= "<table border='1'>";
-        $contenidoPrincipal .= "<tr><th>Email</th><th>Id Anuncio</th></tr>";
+        $contenidoPrincipal .= "<tr><th>Id Anuncio</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
-            $contenidoPrincipal .= "<td>" . $fila['email'] . "</td>";
             $contenidoPrincipal .= "<td>" . $fila['idAnuncio'] . "</td>";
             $contenidoPrincipal .= "</tr>";
         }

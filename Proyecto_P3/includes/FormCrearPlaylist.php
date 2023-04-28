@@ -27,7 +27,7 @@ class FormCrearPlaylist extends Formulario {
                         <input type="text" placeholder="NombrePlaylist" id="nombreCancion" name="nombrePlaylist" value="{$nombrePlaylist}"><br>
                         {$erroresCampos['nombrePlaylist']}<br>
 
-                        <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
+                        <input class="BotonForm" type ="submit" value ="Crear playlist" name ="Aplicar"><br><br>
                 </fieldset> 
             </main>
         EOS;
