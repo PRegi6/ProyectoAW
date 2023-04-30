@@ -15,6 +15,7 @@
                         <li><a href='gestionTendencias.php'>Tendencias</a></li>
                         <li><a href='gestionPlan.php'>Gestión Plan</a></li>
                         <li><a href='gestionAnuncios.php'>Gestión de anuncios</a></li>
+                        <li><a href='swipeMatch.php'>SwipeMatch™</a></li>
                     </ul>";
             }
             else if ($_SESSION['tipoPlan'] == 'artista'){
@@ -24,6 +25,7 @@
                     <li><a href='meGusta.php'>Me gusta</a></li>
                     <li><a href='playlistUsuario.php'>Playlist</a></li>
                     <li><a href='cancionesArtista.php'>Mis canciones</a></li>
+                    <li><a href='swipeMatch.php'>SwipeMatch™</a></li>
                 </ul>";
             }
             else {
@@ -32,6 +34,7 @@
                     <li><a href='tendencias.php'>Tendencias</a></li>
                     <li><a href='meGusta.php'>Me gusta</a></li>
                     <li><a href='playlistUsuario.php'>Playlist</a></li>
+                    <li><a href='swipeMatch.php'>SwipeMatch™</a></li>
                 </ul>";
             }
         }
