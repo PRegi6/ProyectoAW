@@ -51,7 +51,12 @@
             }
             
             .anverso {
-                background-image: url(https://source.unsplash.com/random/);
+            }
+
+            #caratula {
+                height: 100%;
+                width: 100%;
+                border-radius: 2rem;
             }
             
             .reverso {
@@ -118,7 +123,7 @@
             <div class="tarjeta"> 
 
                 <div class="anverso">
-                    <h1>este es el frontal de la tarjeta</h1>
+                    <img id="caratula" src="https://source.unsplash.com/random/?city,night"/>
                 </div>
 
                 <div class="reverso">
@@ -141,3 +146,13 @@
 
     require RAIZ_APP . "/vistas/plantillas/plantilla.php";
 ?>
+
+/*
+    cosas que faltan por hacer
+    - cargar una cancion al entrar
+    - hacer que se pueda ver la parte de atras de la tarjeta, que de momento solo se ve un instante al quitar el raton
+    - que el boton de dislike haga una solicitud ajax para cargar una nueva cancion
+    - que el boton de like guarde la cancion en la lista de me gusta (o en la que sea) y que cargue una nueva cancion
+
+    - posibilidad: que suene la cancion (como a la mitad?) para escucharla de prueba para ver si se guarda o no
+*/
