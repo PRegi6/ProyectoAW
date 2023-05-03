@@ -10,7 +10,7 @@ use es\ucm\fdi\aw\Usuario;
         $contenidoPrincipal = <<<EOS
 
             <div class="noPermitido">
-                <p><a href="registro.php">Regístrese</a> o <a href="login.php">inicie sesión</a> para poder visualizar este contenido</p>
+                <a href="registro.php">Regístrese</a> o <a href="login.php">inicie sesión</a> para poder visualizar este contenido
             </div>
 
         EOS;
@@ -55,3 +55,13 @@ use es\ucm\fdi\aw\Usuario;
 
     require RAIZ_APP . "/vistas/plantillas/plantilla.php";
 ?>
+
+<!--
+    cosas que faltan por hacer
+    - cargar una cancion al entrar
+    - hacer que se pueda ver la parte de atras de la tarjeta, que de momento solo se ve un instante al quitar el raton
+    - que el boton de dislike haga una solicitud ajax para cargar una nueva cancion
+    - que el boton de like guarde la cancion en la lista de me gusta (o en la que sea) y que cargue una nueva cancion
+
+    - posibilidad: que suene la cancion (como a la mitad?) para escucharla de prueba para ver si se guarda o no
+-->
