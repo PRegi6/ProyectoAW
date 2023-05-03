@@ -193,4 +193,32 @@ class Playlist{
         return $result;
     }
 
+    public static function getPlaylistTendencias() {
+        $lista = [];
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = "SELECT * FROM contienen c JOIN canciones can WHERE c.idCancion = can.idCancion AND c.idPlaylist = 0";
+        $result = $conn->query($query);
+
+        if (!$result->num_rows > 0) {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        } else {
+
+            foreach ($result as $rs) {
+                $cancion = new Cancion(
+                    $rs['idCancion'],
+                    $rs['nombreCancion'],
+                    $rs['genero'],
+                    $rs['nombreAlbum'],
+                    $rs['duracion'],
+                    $rs['rutaCancion'],
+                    $rs['rutaImagen']
+                );
+                array_push($lista, $cancion);
+            }
+            $result->free();
+        }
+
+        return $lista;
+    }
+
 }

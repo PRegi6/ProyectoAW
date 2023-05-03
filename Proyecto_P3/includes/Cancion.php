@@ -308,6 +308,49 @@ class Cancion
         return $contenidoPrincipal;
     }
 
+    public static function gestionTendencias($ListaCanciones)
+    {
+        $contenidoPrincipal = "";
+        $contenidoPrincipal .= "<ul class='lista-canciones'>";
+        $idPlaylistTendencias = 0;
+        foreach ($ListaCanciones as $cancion) {
+            $datos = array(
+                array(
+                'img' => $cancion->getRutaImagen(),
+                'name' => $cancion->getNombre(),
+                'artist' => $cancion->getNombreAlbum(),
+                'music' => $cancion->getRutaCancion()
+                )
+            );
+            $minutos = gmdate("i:s", $cancion->getDuracion()); // formateamos en "MM:SS"
+            $datosJson = json_encode($datos);
+            $tendencia = $cancion->tendencia($idPlaylistTendencias);
+            $iconoTendencia = $tendencia ? "<i class='fa fa-check-square-o' aria-hidden='true'></i>" : "<i class='fa fa-square-o' aria-hidden='true'></i>";
+            $contenidoPrincipal .= <<<EOS
+                <li>
+                    <img src="{$cancion->getRutaImagen()}" alt="{$cancion->getNombre()}">
+                    <div class="play" onclick='reproducirSeleccionado($datosJson)'>
+                        <i class="fa fa-play-circle fa-5x"></i>
+                    </div>
+                    <div class="infoCancion">
+                        <div class="nombre-genero">
+                            <h3>{$cancion->getNombre()}</h3>
+                            <p>{$cancion->getNombreAlbum()}</p>
+                        </div>
+                        <p>{$cancion->getGenero()}</p>
+                        <button class="boton-tendencia" id="boton-tendencia{$cancion->getId()}" onclick='cambiarIconoTendencia({$cancion->getId()}, {$idPlaylistTendencias}, {$cancion->getDuracion()})'>
+                            {$iconoTendencia}
+                        </button>
+                        <input type="hidden" id="valor{$cancion->getId()}" value="{$tendencia}" />
+                        <p class="duracion">{$minutos}</p>
+                    </div>
+                </li>
+                EOS;
+        }
+        $contenidoPrincipal .= "</ul>";
+        return $contenidoPrincipal;
+    }
+
     public static function mostrarCancionesTotal($ListaCanciones)
     {
         $contenidoPrincipal = "";
@@ -483,6 +526,24 @@ class Cancion
 
     // FUNCION PARA SABER SI UNA CANCION ME GUSTA
     public function meGusta($idPlaylist)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM contienen WHERE idPlaylist=%d AND idCancion=%d"
+            , $idPlaylist
+            , $this->id
+        );
+        $rs = $conn->query($query);
+        if ($rs) {
+            if($rs->fetch_assoc())
+                return true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+
+        return false;
+    }
+
+    public function tendencia($idPlaylist)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf("SELECT * FROM contienen WHERE idPlaylist=%d AND idCancion=%d"
