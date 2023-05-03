@@ -6,7 +6,7 @@
         $datos_encoded = es\ucm\fdi\aw\Admin::getDatos($_SESSION['email']);
         $datos = json_decode($datos_encoded);
     
-        $form = new es\ucm\fdi\aw\FormModificarPassUsuario();
+        $form = new es\ucm\fdi\aw\FormModificarPassAdmin();
 
         $contenidoPrincipal = $form->gestionaModificarDatos($datos);
     }
@@ -14,7 +14,7 @@
         $datos_encoded = es\ucm\fdi\aw\Usuario::getDatos($_SESSION['email']);
         $datos = json_decode($datos_encoded);
     
-        $form = new es\ucm\fdi\aw\FormModificarPassAdmin();
+        $form = new es\ucm\fdi\aw\FormModificarPassUsuario();
 
         $contenidoPrincipal = $form->gestionaModificarDatos($datos);
     }

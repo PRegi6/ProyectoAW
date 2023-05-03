@@ -52,7 +52,7 @@ class FormCambiarPlan extends Formulario
                         <input type="number" placeholder="Cvv" id="cvv" name="cvv"><br>
                         {$erroresCampos['cvv']}<br>
 
-                        <label for='fechaCaducidad'>Fecha de caducidad (MM/AA): </label>
+                        <label for='fechaCaducidad'>Fecha de caducidad (MM/AAAA): </label>
                         <input type="text" placeholder="FechaCaducidad" id="fechaCaducidad" name="fechaCaducidad"><br>
                         {$erroresCampos['fechaCaducidad']}<br>
                         

@@ -89,6 +89,7 @@ class FormModificarDatosUsuario extends Formulario {
         $fechaExpiracion = trim($datos['fecha'] ?? '');
 
         if (count($this->errores) === 0) {
+            $_SESSION['nombre'] = $nombre;
             Admin::modificarDatosPerfil([$email, $password, $nombre, $apellidos, $rol]);
             Admin::modificarDatosUsuario([$email, $password, $nombre, $apellidos, $rol, $tipoPlan, $fechaExpiracion]);
         }
