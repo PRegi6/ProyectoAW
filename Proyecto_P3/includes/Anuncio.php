@@ -35,6 +35,20 @@ class Anuncio{
         return $listaAnuncios;
     }
 
+    public static function eliminarAnuncio($idPlaylist)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("DELETE FROM anuncios WHERE idAnuncio= %d", $idPlaylist);
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
+
     public function getID(){
         return $this->idAnuncio;
     }

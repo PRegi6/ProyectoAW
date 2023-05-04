@@ -16,6 +16,10 @@ class FormContacto extends Formulario
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
         $erroresCampos = self::generaErroresCampos(['nombre', 'apellidos', 'email', 'password'], $this->errores, 'span', array('class' => 'error'));
         $html = <<<EOS
+            <fieldset>
+            <legend>
+            <h1>Formulario de Contacto</h1>
+            </legend>
             {$htmlErroresGlobales}
             <label for="nombre">Nombre: </label>
             <input type="text" id="nombre" name="nombre"><br><br>
@@ -40,6 +44,7 @@ class FormContacto extends Formulario
             <textarea id="consulta" name="consulta"></textarea><br><br>
 
             <input type="submit" value="Enviar">
+            </fieldset>
             EOS;
 
         return $html;

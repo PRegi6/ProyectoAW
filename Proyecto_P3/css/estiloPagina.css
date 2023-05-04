@@ -309,25 +309,30 @@ footer {
 /* ------------------------- */
 .popup.active {	transform: scale(1); opacity: 1; }
 
-/*CSS PARA LAS IMAGENS DEL ADMIN DE LOS ANUNCIOS*/
+/*CSS para los anuncios*/
 .anuncios{
     display: flex;
     flex-wrap: wrap;
 }
 
-.anuncios .anuncio{
+.anuncios .imagen{
     width: 150px;
     height: 150px;
-    margin: 15px;
+}
+
+.anuncios .anuncio{
+    padding: 15px;
 }
 
 .anuncios .anadirAnuncio{
-    width: 150px;
-    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin: 15px;
+}
+
+.fa.fa-plus{
+    font-size: 50px;
 }
 
 .anuncios .eliminaAnuncio{
