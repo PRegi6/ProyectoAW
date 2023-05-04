@@ -240,7 +240,7 @@ class Admin
 
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar usuarios</h1>";
-        $contenidoPrincipal .= "<table border='1'>";
+        $contenidoPrincipal .= "<table id='tablaUsuarios' border='1'>";
         $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Tipo Plan</th><th>Fecha Expiracion</th><th>Borrar</th><th>Modificar</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
@@ -289,7 +289,7 @@ class Admin
 
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar administradores</h1>";
-        $contenidoPrincipal .= "<table border='1'>";
+        $contenidoPrincipal .= "<table id='tablaAdmins' border='1'>";
         $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Borrar</th><th>Modificar</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
@@ -332,7 +332,7 @@ class Admin
 
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar canciones</h1>";
-        $contenidoPrincipal .= "<table border='1'>";
+        $contenidoPrincipal .= "<table id='tablaCanciones' border='1'>";
         $contenidoPrincipal .= "<tr><th>ID Cancion</th><th>Nombre</th><th>Género</th><th>Álbum</th><th>Duración</th><th>Ruta Canción</th><th>Ruta Imagen</th><th>Borrar</th><th>Modificar</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
@@ -400,7 +400,7 @@ class Admin
 
         // Construcción dinámica de la tabla con los resultados de la consulta
         $contenidoPrincipal = "<h1>Administrar Planes</h1>";
-        $contenidoPrincipal .= "<table border='1'>";
+        $contenidoPrincipal .= "<table id='tablaPlanes' border='1'>";
         $contenidoPrincipal .= "<tr><th>Tipo Plan</th><th>Precio</th><th>Duracion</th><th>Modificar</th></tr>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";

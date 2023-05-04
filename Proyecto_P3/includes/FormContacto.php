@@ -5,7 +5,7 @@ class FormContacto extends Formulario
 
     public function __construct()
     {
-        parent::__construct('formContacto', ['action' => 'mailto:alonsr01@ucm.es', 'enctype' => 'mailto:alonsr01@ucm.es', 'urlRedireccion' => 'index.php']);
+        parent::__construct('formContacto', ['action' => 'mailto:alonsr01@ucm.es', 'enctype' => 'text/plain', 'urlRedireccion' => 'index.php']);
     }
 
     protected function generaCamposFormulario(&$datos)
@@ -20,6 +20,7 @@ class FormContacto extends Formulario
             <legend>
             <h1>Formulario de Contacto</h1>
             </legend>
+
             {$htmlErroresGlobales}
             <label for="nombre">Nombre: </label>
             <input type="text" id="nombre" name="nombre"><br><br>

@@ -2,8 +2,13 @@
 use es\ucm\fdi\aw\Anuncio;
 
     $listaAnuncios = Anuncio::obtenerAnuncios();
-    $indice_aleatorio = array_rand($listaAnuncios);
-    $rutaSeleccionado = $listaAnuncios[$indice_aleatorio]->getRutaImagen();
+    if(count($listaAnuncios) == 0){
+        $rutaSeleccionado = "#";
+    }
+    else{
+        $indice_aleatorio = array_rand($listaAnuncios);
+        $rutaSeleccionado = $listaAnuncios[$indice_aleatorio]->getRutaImagen();
+    }
 
     if(!isset($_SESSION['login'] )|| ($_SESSION['rol'] != 'admin' && $_SESSION['tipoPlan'] == 'basico')){
         echo 

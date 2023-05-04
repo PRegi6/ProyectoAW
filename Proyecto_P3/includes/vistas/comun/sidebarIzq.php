@@ -58,7 +58,8 @@
 const crearPlaylistLink = document.getElementById('crearPlaylist');
 const playlistDiv = document.querySelector('.playlist');
 
-crearPlaylistLink.addEventListener('click', function() {
+if (crearPlaylistLink != null) {
+    crearPlaylistLink.addEventListener('click', function() {
     var  email = "<?php echo $email?>";
     var nombre = "Nueva Playlist";
     const nuevaPlaylist = document.createElement('li');
@@ -83,5 +84,7 @@ crearPlaylistLink.addEventListener('click', function() {
     xhr.send(`email=${email}&nombre=${nombre}&accion=crearPlaylist`);
     location.reload();
 });
+}
+
 </script>
 

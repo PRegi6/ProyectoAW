@@ -192,17 +192,34 @@ class Usuario
     }
 
     public static function opcionesUsuario() {
-        $opciones = <<<EOS
-        <div class="dropdown">
-        <button class="dropbtn">{$_SESSION['nombre']} ▼</button>
-            <div class="dropdown-content">
-                <a href="cambiarPerfil.php">Mis datos</a>
-                <a href="cambiarPlan.php">Cambiar plan</a>
-                <a href="cambiarPassUsuario.php">Cambiar contraseña</a>
-                <a href='logout.php'>Cerrar sesión</a>
+        $esAdmin = $_SESSION['rol'] == Usuario::ADMIN_ROLE;
+
+        if ($esAdmin) {
+            $opciones = <<<EOS
+            <div class="dropdown">
+                <button class="dropbtn">{$_SESSION['nombre']} ▼</button>
+                <div class="dropdown-content">
+                    <a href="cambiarPerfil.php">Mis datos</a>
+                    <a href="cambiarPassUsuario.php">Cambiar contraseña</a>
+                    <a href='logout.php'>Cerrar sesión</a>
+                </div>
             </div>
-        </div>
         EOS;
+        }
+        else {
+            $opciones = <<<EOS
+            <div class="dropdown">
+                <button class="dropbtn">{$_SESSION['nombre']} ▼</button>
+                <div class="dropdown-content">
+                    <a href="cambiarPerfil.php">Mis datos</a>
+                    <a href="cambiarPlan.php">Cambiar plan</a>
+                    <a href="cambiarPassUsuario.php">Cambiar contraseña</a>
+                    <a href='logout.php'>Cerrar sesión</a>
+                </div>
+            </div>
+        EOS;
+        }
+        
         return $opciones;
     }
 

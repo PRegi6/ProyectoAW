@@ -338,7 +338,7 @@ class Cancion
                             <p>{$cancion->getNombreAlbum()}</p>
                         </div>
                         <p>{$cancion->getGenero()}</p>
-                        <button class="boton-tendencia" id="boton-tendencia{$cancion->getId()}" onclick='cambiarIconoTendencia({$cancion->getId()}, {$idPlaylistTendencias}, {$cancion->getDuracion()})'>
+                        <button class="boton-tendencia" title="Tendencia" id="boton-tendencia{$cancion->getId()}" onclick='cambiarIconoTendencia({$cancion->getId()}, {$idPlaylistTendencias}, {$cancion->getDuracion()})'>
                             {$iconoTendencia}
                         </button>
                         <input type="hidden" id="valor{$cancion->getId()}" value="{$tendencia}" />
@@ -369,6 +369,7 @@ class Cancion
             $datosJson = json_encode($datos);
             $meGusta = $cancion->meGusta($idPlaylistMeGusta);
             $iconoCorazon = $meGusta ? "<i class='fa fa-heart fa-2x'></i>" : "<i class='fa fa-heart-o fa-2x'></i>";
+            $tituloBoton = $meGusta ? "Quitar de Me gusta" : "Añadir a Me gusta";
             $contenidoPrincipal .= <<<EOS
                 <li>
                     <img src="{$cancion->getRutaImagen()}" alt="{$cancion->getNombre()}">
@@ -381,7 +382,7 @@ class Cancion
                             <p>{$cancion->getNombreAlbum()}</p>
                         </div>
                         <p>{$cancion->getGenero()}</p>
-                        <button class="boton-corazon" id="boton-corazon{$cancion->getId()}" onclick='cambiarIcono({$cancion->getId()}, {$idPlaylistMeGusta}, {$cancion->getDuracion()})'>
+                        <button class="boton-corazon" title="$tituloBoton" id="boton-corazon{$cancion->getId()}" onclick='cambiarIcono({$cancion->getId()}, {$idPlaylistMeGusta}, {$cancion->getDuracion()})'>
                             {$iconoCorazon}
                         </button>
                         <input type="hidden" id="valor{$cancion->getId()}" value="{$meGusta}" />

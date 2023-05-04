@@ -64,11 +64,13 @@ function cambiarIcono(idCancion, idPlaylist, duracionCancion) {
 
     if (valor.value == 0) {
         boton.innerHTML = '<i class="fa fa-heart fa-2x"></i>'; //corazon lleno
+        boton.title = 'Quitar de Me gusta';
         valor.value = 1;
         xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=agregar-me-gusta`);
     } 
     else{
         boton.innerHTML = '<i class="fa fa-heart-o fa-2x"></i>'; // corazon vacio
+        boton.title = 'Añadir a Me gusta';
         valor.value = 0;
         xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=quitar-me-gusta`);
     }
@@ -150,20 +152,22 @@ if(localStorage.getItem('music_list') !== null) {
 
 //----------------------------------------------------------------------------------------------------------------------
 function loadTrack(track_index) {
-    clearInterval(updateTimer);
-    reset();
+    if (music_list.length > 0) {
+        clearInterval(updateTimer);
+        reset();
 
-    curr_track.volume = volume_slider.value / 700;
-    curr_track.src = music_list[track_index].music;
-    curr_track.load();
-    track_art.style.backgroundImage = "url(" + music_list[track_index].img + ")";
-    track_name.textContent = music_list[track_index].name;
-    track_artist.textContent = music_list[track_index].artist;
-    now_playing.textContent = "Playing music " + (track_index + 1) + " of " + music_list.length;
+        curr_track.volume = volume_slider.value / 700;
+        curr_track.src = music_list[track_index].music;
+        curr_track.load();
+        track_art.style.backgroundImage = "url(" + music_list[track_index].img + ")";
+        track_name.textContent = music_list[track_index].name;
+        track_artist.textContent = music_list[track_index].artist;
+        now_playing.textContent = "Playing music " + (track_index + 1) + " of " + music_list.length;
 
-    updateTimer = setInterval(setUpdate, 1000);
+        updateTimer = setInterval(setUpdate, 1000);
 
-    curr_track.addEventListener('ended', nextTrack);
+        curr_track.addEventListener('ended', nextTrack);
+    }
 }
 
 function reset() {

@@ -29,14 +29,14 @@
 
         <div class="timer">
             <div class="current-time">00:00</div>
-            <input type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+            <input type="range" title="Timer" placeholder="Timer" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
             <div class="total-duration">00:00</div>
         </div>
     </div>
 
     <div class="volumen">
         <i class="fa fa-volume-down"></i>
-        <input type="range" min="0" max="100" value="50" class="volume_slider" onchange="setVolume()">
+        <input type="range" title="Volumen" placeholder="Volumen" min="0" max="100" value="50" class="volume_slider" onchange="setVolume()">
         <i class="fa fa-volume-up"></i>
     </div>
 

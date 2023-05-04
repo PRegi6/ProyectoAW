@@ -49,6 +49,52 @@ class Anuncio{
         return $result;
     }
 
+    public static function anadirAnuncio($rutaAnuncio, $email)
+    {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf(
+            "INSERT INTO anuncios(rutaAnuncio) VALUES ('%s')",
+            $conn->real_escape_string($rutaAnuncio),
+        );
+
+        if ($conn->query($query)) {
+            $ultimoIdInsertado = $conn->insert_id;
+            $query2 = sprintf(
+                "INSERT INTO gestionanuncios(email, idAnuncio) VALUES ('%s', %d)",
+                $conn->real_escape_string($email),
+                $conn->real_escape_string($ultimoIdInsertado),
+            );
+            if ($conn->query($query2)) {
+                return true;
+            }
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return false;
+    }
+
+    public static function mostrarAnuncios(){
+        $listaAnuncios = Anuncio::obtenerAnuncios(); 
+        $contenidoPrincipal = "";
+        $contenidoPrincipal = "<div class='anuncios'>";
+        foreach($listaAnuncios as $anuncio){
+            $contenidoPrincipal .= "<div class='anuncio'>";
+            $contenidoPrincipal .= "<img src='{$anuncio->getRutaImagen()}' class='imagen'>";
+            $contenidoPrincipal .= "<form method='POST' action='gestionAnuncios.php'>";
+            $contenidoPrincipal .= "<input type='hidden' name='idAnuncio' value='{$anuncio->getId()}'>";
+            $contenidoPrincipal .= "<button class='eliminarAnuncio' type='submit' name='borrar'>Eliminar Anuncio</button>";
+            $contenidoPrincipal .= "</form>";
+            $contenidoPrincipal .= "</div>";
+        }
+        $contenidoPrincipal .= "<div class='anadirAnuncio'>";
+        $contenidoPrincipal .= "<form method='POST' action='gestionAnuncios.php'>";
+        $contenidoPrincipal .= "<button class='anadirAnuncio' type='submit' name='anadirCancion'><i class='fa fa-plus'></i></button>";
+        $contenidoPrincipal .= "</form>";
+        $contenidoPrincipal .= "</div>";
+        $contenidoPrincipal .= "</div>";
+        return $contenidoPrincipal;
+    }
+
     public function getID(){
         return $this->idAnuncio;
     }
