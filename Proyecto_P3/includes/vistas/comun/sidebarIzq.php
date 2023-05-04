@@ -2,8 +2,8 @@
     <?php
     use es\ucm\fdi\aw\Playlist;
 
-
         if(!isset($_SESSION['login'])){
+            $email = "";
             echo"<ul>
                     <li><a href='index.php'>Inicio</a></li>
                     <li><a href='tendencias.php'>Tendencias</a></li>
