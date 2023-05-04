@@ -1,0 +1,335 @@
+.header img{
+    width: 100px;
+    height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.header h1 {
+    font-family: sans-serif;
+}
+
+.header {
+    background-color: #465A61;
+    display: flex;
+    justify-content: space-between; /*Deja espacio entre los componentes*/
+}
+
+    .logo-titulo {
+        display: flex; /*Ayuda a distribuir los items de una interfaz a la vez*/
+        justify-content: space-between; /*Deja espacio entre los componentes*/
+        align-items: center;
+    }
+
+    .usuario{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-right: 20px;
+        color: whitesmoke;
+    }
+    .usuario ul {
+        margin: 0;
+        padding: 0;
+        list-style: none; /*Le quita el punto de la lista*/
+    }
+    
+    .usuario a {
+            text-decoration: none; /*le quito el subrayado*/
+            color: aliceblue;
+        }
+        
+        .usuario ul li {
+            display: inline-block; /*todos los elementos de la lista se pongan en linea*/
+        }
+
+            .usuario ul li a {
+                display: block; 
+                padding: 20px;
+                border-radius: 5px;
+            }
+                .usuario ul li a:hover{
+                    background: #596C76;
+                }
+
+                
+                
+body {
+    background-color: #596C76;
+    margin: 0; /*Quita el margen del body*/
+    display: flex;
+    flex-direction: column;
+}
+    .main{
+        width: 100%;
+        height: calc(100vh - 190px); /*100vh tamaño de mi pantalla menos header y nav*/
+        display: flex; /* las cajas no se apilan */
+        justify-content: center; /*justifica de forma de horizontal en este caso lo centra*/
+        align-items: center; /*justifica de forma de vertical en este caso lo centra*/
+    }
+
+.panelIzquierdo{
+    width: 15%;
+    height: 100%;
+    background-color: #273236;
+}
+    .panelIzquierdo ul {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        list-style: none; /*Le quita el punto de la lista*/
+    }
+
+    .panelIzquierdo .playlist{ /*Para que salga un scroll*/
+        height: 40%;
+        overflow-y: auto;
+        align-items: center;
+    }
+
+    .panelIzquierdo a {
+            text-decoration: none; /*le quito el subrayado*/
+            color: aliceblue;
+        }
+        .panelIzquierdo ul li {
+            display: block; /*todos los elementos de la lista se pongan en linea*/
+        }
+            .panelIzquierdo ul li a {
+                display: block; 
+                padding: 20px;
+            }
+                .panelIzquierdo ul li a:hover{
+                    background: #596C76;
+                }
+            #lineaSeparacion{
+                margin: 6px;
+                margin-left: 12px;
+                margin-right: 12px;
+                border-top: 2px solid white;
+            }
+            .panelIzquierdo .playlist .playlist-icono{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+            .panelIzquierdo .playlist .nombre{
+                width: 100%;
+            }
+            .panelIzquierdo .playlist .opciones{
+                display: flex;
+                align-items: center;
+                justify-content: space-around;
+                padding: 10px;
+            }
+
+            .panelIzquierdo .playlist .opciones .BotonForm{
+                background: none;
+                border: none;
+            }
+
+            .fa.fa-times {
+                font-size: 25px;
+                color: white;
+                padding: 5px;
+            }
+            .fa.fa-pencil {
+                font-size: 20px;
+                color: white;
+                padding: 5px;
+            }
+
+.panelCentral{
+    width: 100%;
+    height: 100%;
+}
+    .contenidoPrincipal{
+        width: 100%;
+        height: calc(100vh - 340px);
+        display: block;
+        overflow-y: auto;
+    }
+
+    .contenidoPrincipal img{
+        width: 100px;
+        height: 100px;
+    }
+
+    .reproductor{
+        width: 100%;
+        height: 150px;
+
+    }
+
+footer {
+    background-color: #465A61;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+    .botonContacto{
+        font-family: sans-serif;
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .logoTw {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logoInsta {
+        width: 70px;
+        height: 55px;
+    }
+
+/* Esto es para la sección "Me gusta */
+.info-meGusta {
+    display: flex;
+    justify-content: space-between;
+}
+
+    .tituloYPlay {
+        display: flex;
+        justify-content: space-around;
+        width: 25%;
+    }
+    .tituloYPlay h1{
+        font-size: 35px;
+    }
+    .tituloYPlay .play{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .infoPlaylist {
+        margin-right: 80px;
+    }
+    .infoPlaylist h3{
+        font-size: 20px;
+    }
+     
+ /* Estilos para el botón y el menú desplegable */
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: #465A61;
+    color: whitesmoke;
+    padding: 12px 16px;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: whitesmoke;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    border: 1px solid white;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #596C76;
+  }
+  
+  /* Mostrar el menú desplegable al pasar el mouse sobre el botón */
+  .dropdown:hover .dropdown-content {
+    background-color: #273236;
+    display: block;
+  }
+    
+/*popup*/
+.overlay {
+	background: rgba(0,0,0,.3);
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	align-items: center;
+	justify-content: center;
+	display: flex;
+	visibility: hidden;
+}
+
+.overlay.active {
+	visibility: visible;
+}
+
+.popup {
+	background: #273236;
+	box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.7);
+	border-radius: 3px;
+	padding: 20px;
+	text-align: center;
+	width: 800px;
+	
+	transition: .3s ease all;
+	transform: scale(0.7);
+	opacity: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 600px;
+}
+
+.popup .bCerrar {
+	font-size: 18px;
+	line-height: 18px;
+	display: block;
+	text-align: right;
+	transition: .3s ease all;
+	color: #BBBBBB;
+
+    margin-left: auto;
+}
+
+.popup .bCerrar:hover {
+	color: #be1616;
+}
+
+.popup a {
+    text-decoration: none; /*le quito el subrayado*/
+    color: aliceblue;
+}
+
+/* ------------------------- */
+/* ANIMACIONES */
+/* ------------------------- */
+.popup.active {	transform: scale(1); opacity: 1; }
+
+/*CSS PARA LAS IMAGENS DEL ADMIN DE LOS ANUNCIOS*/
+.anuncios{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.anuncios .anuncio{
+    width: 150px;
+    height: 150px;
+    margin: 15px;
+}
+
+.anuncios .anadirAnuncio{
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 15px;
+}
+
+.anuncios .eliminaAnuncio{
+    margin: 15px;
+}

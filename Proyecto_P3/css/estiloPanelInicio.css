@@ -1,0 +1,99 @@
+body {
+    background-color: #485C64;
+    
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.panel_inicio {
+    background-color: #485C64;
+
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    padding-left: 30%;
+    padding-right: 30%;
+
+}
+
+.cabInicio {
+    background-color: #485C64;
+    min-height: 100px;
+}
+
+.volver {
+
+    background-color: #485C64;  
+
+    height: 16px;
+    width: 16px;
+    aspect-ratio: 1/1;
+    flex-grow: 1;
+    padding-top: 2%;
+    padding-left: 2%;
+
+    padding-right: 1%;
+    padding-bottom: 1%;
+}
+
+.fieldset_register {
+    background-color: #606C74;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form_registro {
+    background-color: #596C76;
+}
+
+    .form_registro label, input {
+        height: 30px;
+        width: 200px;
+        background-color: white/*rgb(161, 161, 161)*/;
+        align-self: center;
+        border: 2px solid black;
+        border-radius: 5px;
+
+    }
+
+    .form_registro ::placeholder {
+        font-weight: bold;
+        color: black;
+    }
+
+    .form_registro a {
+        background-color: #596C76;
+    }
+
+
+#ya_registrado {
+    background-color: white/*rgb(161, 161, 161)*/;
+    align-self: center;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+#titulo_panel {   
+    font-family: 'Lucida Sans';
+    font-size: 220%;
+    padding-bottom: 1%;
+}
+
+.BotonForm {
+    height: 40px;
+    width: 100px;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-weight: bold;
+    color: black;
+    cursor: pointer;
+}
+
+    .BotonForm:hover {
+        background-color: #596C76;
+    }
