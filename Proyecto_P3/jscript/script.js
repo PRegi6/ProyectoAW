@@ -40,7 +40,7 @@ function reproducirSeleccionado(datos){
     playTrack();
 };
 
-//Funcion para que cuando le de a me gusta se añada a la playlist me gusta que tien reservada la id playlist  0
+//Funcion para que cuando le de a me gusta se añada a la playlist me gusta que tiene el usuario
 
 function cambiarIcono(idCancion, idPlaylist, duracionCancion) {
     const boton = document.getElementById(`boton-corazon${idCancion}`);
@@ -71,6 +71,39 @@ function cambiarIcono(idCancion, idPlaylist, duracionCancion) {
         boton.innerHTML = '<i class="fa fa-heart-o fa-2x"></i>'; // corazon vacio
         valor.value = 0;
         xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=quitar-me-gusta`);
+    }
+};
+
+//Funcion para que cuando le de a me gusta se añada a la playlist tendencias que tiene reservada la id playlist  0
+function cambiarIconoTendencia(idCancion, idPlaylist, duracionCancion) {
+    const boton = document.getElementById(`boton-tendencia${idCancion}`);
+    const valor = document.getElementById(`valor${idCancion}`);
+
+    // hacer la petición AJAX
+    const rutaDirectorio = window.location.pathname.split('/').slice(0, -1).join('/');
+    const url = rutaDirectorio + '/gestionTendencias.php';
+    console.log(rutaDirectorio); // "/ruta/al/directorio"
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // aquí puedes hacer algo si la petición fue exitosa
+        } else {
+            console.log("ERROR");
+            // aquí puedes manejar errores si la petición falló
+        }
+    };
+
+    if (valor.value == 0) {
+        boton.innerHTML = "<i class='fa fa-check-square-o' aria-hidden='true'></i>"; //corazon lleno
+        valor.value = 1;
+        xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=agregar-tendencia`);
+    } 
+    else{
+        boton.innerHTML = "<i class='fa fa-square-o' aria-hidden='true'></i>"; // corazon vacio
+        valor.value = 0;
+        xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=quitar-tendencia`);
     }
 };
 

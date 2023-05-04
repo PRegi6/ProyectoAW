@@ -371,3 +371,10 @@ footer {
     background-color: #273236;
     display: block;
   }
+
+  /*Boton de agregar/quitar cancion de tendencias*/
+.boton-tendencia {
+    border: none;
+    background: none;
+    font-size: larger;
+}
