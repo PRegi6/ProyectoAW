@@ -52,7 +52,7 @@ class FormModificarCancionArtista extends Formulario {
                         <input type="file" id="imagen" name="imagen" accept="image/*"><br>
                         {$erroresCampos['imagen']}<br>
 
-                        <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="aceptarModificacion"><br><br>
+                        <input class='btn' type ="submit" value ="Aplicar Cambios" name ="aceptarModificacion"><br><br>
                 </fieldset> 
             </main>
             

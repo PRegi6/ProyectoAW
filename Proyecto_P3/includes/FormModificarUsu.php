@@ -53,7 +53,7 @@ class FormModificarUsu extends Formulario {
                         <input type ='hidden' placeholder ='fechaExpiracion' id ='fecha' name ='fecha' value ='{$fechaExpiracion}'><br>
                         <br>
         
-                        <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
+                        <input class="btn" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
                 </fieldset> 
             </main>
         EOS;

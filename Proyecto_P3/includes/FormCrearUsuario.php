@@ -43,7 +43,7 @@ class FormCrearUsuario extends Formulario
                         <label for ='tipoPlan'>Tipo Plan: </label>
                         {$selectorPlanes}<br><br>
         
-                        <input class="BotonForm" type="submit" value="Crear" name="crear"><br><br>
+                        <input class="btn" type="submit" value="Crear" name="crear"><br><br>
                 </fieldset> 
             </main>
         EOS;

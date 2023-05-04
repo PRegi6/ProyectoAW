@@ -255,7 +255,9 @@ class Admin
             $datos = json_encode($info);
             $contenidoPrincipal .= "<td>
                 <form action='gestionUsuarios.php' method='POST'>
-                    <button type='submit' class='btn' name='borrarUsuario' value='{$fila['email']}'>Borrar</button>
+                    <button type='submit' class='btn' name='borrarUsuario' value='{$fila['email']}'>
+                        Borrar
+                    </button>
                 </form>
             </td>";
             $contenidoPrincipal .= "<td>
@@ -270,11 +272,11 @@ class Admin
         $contenidoPrincipal .= "</table> <br>";
 
         $contenidoPrincipal .= "<form action='crearUsuario.php' method='POST'>
-            <button type='submit' name='crearUsuario'>Crear usuario</button>
+            <button type='submit' class='btn' name='crearUsuario'>Crear usuario</button>
         </form> <br>"; 
 
         $contenidoPrincipal .= "<form action='gestionAdmin.php' method='POST'>
-            <button type='submit' name='gestionAdmin'>Gestionar administrador</button>
+            <button type='submit' class='btn' name='gestionAdmin'>Gestionar administrador</button>
         </form>"; 
 
         return $contenidoPrincipal;
@@ -302,12 +304,12 @@ class Admin
             $datos = json_encode($info);
             $contenidoPrincipal .= "<td>
                 <form action='gestionAdmin.php' method='POST'>
-                    <button type='submit' name='borrarAdmin' value='{$fila['email']}'>Borrar</button>
+                    <button type='submit' class='btn' name='borrarAdmin' value='{$fila['email']}'>Borrar</button>
                 </form>
             </td>";
             $contenidoPrincipal .= "<td>
                 <form action='gestionAdmin.php' method='POST'>
-                    <button type='submit' name='modificarAdmin' value='{$datos}'>Editar</button>
+                    <button type='submit' class='btn' name='modificarAdmin' value='{$datos}'>Editar</button>
                 </form>
             </td>";          
             $contenidoPrincipal .= "</tr>";
@@ -317,7 +319,7 @@ class Admin
         $contenidoPrincipal .= "</table><br>";
 
         $contenidoPrincipal .= "<form action='crearAdmin.php' method='POST'>
-            <button type='submit' name='crearAdmin'>Crear administrador</button>
+            <button type='submit' class='btn' name='crearAdmin'>Crear administrador</button>
         </form> </div>"; 
 
         return $contenidoPrincipal;
@@ -348,12 +350,12 @@ class Admin
             $datos = json_encode($info);
             $contenidoPrincipal .= "<td>
                 <form action='gestionCanciones.php' method='POST'>
-                    <button type='submit' name='borrarCancion' value='{$fila['idCancion']}'>Borrar</button>
+                    <button type='submit' class='btn' name='borrarCancion' value='{$fila['idCancion']}'>Borrar</button>
                 </form>
             </td>";
             $contenidoPrincipal .= "<td>
                 <form action='gestionCanciones.php' method='POST'>
-                    <button type='submit' name='modificarCancion' value='{$datos}'>Editar</button>
+                    <button type='submit' class='btn' name='modificarCancion' value='{$datos}'>Editar</button>
                 </form>
             </td>";          
             $contenidoPrincipal .= "</tr>";
@@ -411,7 +413,7 @@ class Admin
             $datos = json_encode($info);
             $contenidoPrincipal .= "<td>
                 <form action='gestionPlan.php' method='POST'>
-                    <button type='submit' name='modificarPlan' value='{$datos}'>Editar</button>
+                    <button type='submit' class='btn' name='modificarPlan' value='{$datos}'>Editar</button>
                 </form>
             </td>";          
             $contenidoPrincipal .= "</tr>";

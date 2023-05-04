@@ -51,7 +51,7 @@ class FormPagoPlan extends Formulario
                         {$erroresCampos['cvv']}<br>
 
                         <label for='fechaCaducidad'>Fecha de caducidad (MM/AAAA): </label>
-                        <input type="text" placeholder="MM/AA" id="fechaCaducidad" name="fechaCaducidad"><br>
+                        <input type="text" placeholder="MM/AAAA" id="fechaCaducidad" name="fechaCaducidad"><br>
                         {$erroresCampos['fechaCaducidad']}<br>
                         
 

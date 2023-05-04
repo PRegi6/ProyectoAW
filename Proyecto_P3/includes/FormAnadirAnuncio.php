@@ -30,7 +30,7 @@ class FormAnadirAnuncio extends Formulario {
                         {$erroresCampos['imagen']}<br>
 
                         {$erroresCampos['insertar']}<br>
-                        <input class="BotonForm" type ="submit" value ="Añadir Anuncio" name ="Aplicar"><br><br>
+                        <input class="btn" type ="submit" value ="Añadir Anuncio" name ="Aplicar"><br><br>
                 </fieldset> 
             </main>
 

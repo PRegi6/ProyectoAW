@@ -35,7 +35,7 @@ class FormModificarPlaylist extends Formulario {
 
                         <input type="hidden" name="duracionPlaylist" value="{$duracionPlaylist}">
 
-                        <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
+                        <input class="btn" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
                 </fieldset> 
             </main>
         EOS;

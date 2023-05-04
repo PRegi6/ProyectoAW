@@ -57,7 +57,7 @@ class FormModificarCancion extends Formulario {
                         <input type ="hidden" placeholder ="rutaImagen" id ="rutaImagen" name="rutaImagen" value= '{$rutaImagen}'>
                         <br><br>
 
-                        <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
+                        <input class="btn" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
                 </fieldset> 
             </main>
         EOS;

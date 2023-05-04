@@ -334,9 +334,6 @@ footer {
     font-size: 50px;
 }
 
-.anuncios .eliminaAnuncio{
-    margin: 15px;
-}
 
  /* Estilos para el botón y el menú desplegable */
  .dropdown {
@@ -436,26 +433,21 @@ footer {
 .btn {
     cursor: pointer;
     background: transparent;
-    border: 1px solid #273236;
+    border: 2px solid #273236;
     outline: none;
     transition: 1s ease-in-out;
+    color: white;
 }
 
 
 .btn:hover {
     transition: 1s ease-in-out;
     background: #596C76;
+    border-color: white;
 }
 
-.divAdmins {
-    margin-left: 5%;
-}
-
-
-.divCanciones {
-    margin-left: 5%;
-}
-
-.divPlanes {
+.divAdmins,
+.divCanciones,
+.divPlanes{
     margin-left: 5%;
 }

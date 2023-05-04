@@ -35,7 +35,7 @@ class FormModificarPlan extends Formulario {
                         <input type ="number" placeholder =" Duracion" id ="duracion" name="duracion" value= '{$duracion}'><br>
                         {$erroresCampos['duracion']}<br>
         
-                        <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
+                        <input class="btn" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
                 </fieldset> 
             </main>
         EOS;

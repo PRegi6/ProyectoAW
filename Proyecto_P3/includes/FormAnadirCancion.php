@@ -53,7 +53,7 @@ class FormAnadirCancion extends Formulario {
                         {$erroresCampos['imagen']}<br>
 
                         {$erroresCampos['insertar']}<br>
-                        <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
+                        <input class="btn" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
                 </fieldset> 
             </main>
 

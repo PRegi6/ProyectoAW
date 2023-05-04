@@ -42,7 +42,7 @@ class FormModificarPassUsuario extends Formulario {
                         <input type="password" placeholder="NewPass" id="newPass" name="newPass"><br>
                         {$erroresCampos['newPass']}<br>
         
-                        <input class="BotonForm" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
+                        <input class="btn" type ="submit" value ="Aplicar Cambios" name ="Aplicar"><br><br>
                 </fieldset> 
             </main>
         EOS;

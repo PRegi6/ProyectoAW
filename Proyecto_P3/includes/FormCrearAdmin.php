@@ -36,7 +36,7 @@ class FormCrearAdmin extends Formulario {
                         <input type="password" placeholder=" Contraseña" id="password" name="password" value={$password}><br>
                         {$erroresCampos['password']}<br>
         
-                        <input class="BotonForm" type="submit" value="Crear" name="Continuar"><br><br>
+                        <input class="btn" type="submit" value="Crear" name="Continuar"><br><br>
                 </fieldset> 
             </main>
         EOS;

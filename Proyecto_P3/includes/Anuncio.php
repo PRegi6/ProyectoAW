@@ -82,13 +82,13 @@ class Anuncio{
             $contenidoPrincipal .= "<img src='{$anuncio->getRutaImagen()}' class='imagen'>";
             $contenidoPrincipal .= "<form method='POST' action='gestionAnuncios.php'>";
             $contenidoPrincipal .= "<input type='hidden' name='idAnuncio' value='{$anuncio->getId()}'>";
-            $contenidoPrincipal .= "<button class='eliminarAnuncio' type='submit' name='borrar'>Eliminar Anuncio</button>";
+            $contenidoPrincipal .= "<button class='btn' type='submit' name='borrar'>Eliminar Anuncio</button>";
             $contenidoPrincipal .= "</form>";
             $contenidoPrincipal .= "</div>";
         }
         $contenidoPrincipal .= "<div class='anadirAnuncio'>";
         $contenidoPrincipal .= "<form method='POST' action='gestionAnuncios.php'>";
-        $contenidoPrincipal .= "<button class='anadirAnuncio' type='submit' name='anadirCancion'><i class='fa fa-plus'></i></button>";
+        $contenidoPrincipal .= "<button class='btn' type='submit' name='anadirCancion'><i class='fa fa-plus'></i></button>";
         $contenidoPrincipal .= "</form>";
         $contenidoPrincipal .= "</div>";
         $contenidoPrincipal .= "</div>";

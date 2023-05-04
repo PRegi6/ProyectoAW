@@ -402,10 +402,10 @@ class Cancion
         $consulta = sprintf("SELECT * FROM canciones c JOIN subencanciones s WHERE c.idCancion = s.idCancion AND s.email = '%s'", $email);
         $resultado = $conn->query($consulta);
 
-        $contenidoPrincipal = "<h1>Mis canciones</h1>";
+        $contenidoPrincipal = "<div class='divAdmins'><h1>Mis canciones</h1>";
         if (mysqli_num_rows($resultado) > 0) {
             // Construcción dinámica de la tabla con los resultados de la consulta
-            $contenidoPrincipal .= "<table border='1'>";
+            $contenidoPrincipal .= "<table class='tablaAdmin' border='1'>";
             $contenidoPrincipal .= "<tr><th>Nombre</th><th>Género</th><th>Álbum</th><th>Borrar</th><th>Modificar</th></tr>";
             while ($fila = $resultado->fetch_assoc()) {
                 $contenidoPrincipal .= "<tr>";
@@ -417,12 +417,12 @@ class Cancion
                 $datos = json_encode($info);
                 $contenidoPrincipal .= "<td>
                     <form action='cancionesArtista.php' method='POST'>
-                        <button type='submit' name='borrarCancion' value='{$datos}'>Borrar</button>
+                        <button type='submit' class='btn' name='borrarCancion' value='{$datos}'>Borrar</button>
                     </form>
                 </td>";
                 $contenidoPrincipal .= "<td>
                     <form action='cancionesArtista.php' method='POST'>
-                        <button type='submit' name='modificarDatosCancion' value='{$datos}'>Editar</button>
+                        <button type='submit' class='btn' name='modificarDatosCancion' value='{$datos}'>Editar</button>
                     </form>
                 </td>";          
                 $contenidoPrincipal .= "</tr>";
@@ -434,8 +434,8 @@ class Cancion
             $contenidoPrincipal .= "No has subido ninguna cancion.";
         }
         $contenidoPrincipal .= "<form action='anadirCancion.php' method='POST'>
-                    <button type='submit' name='anadirCancion'>Añadir Cancion</button>
-                </form>";
+                    <button type='submit' class='btn' name='anadirCancion'>Añadir Cancion</button>
+                </form></div>";
         return $contenidoPrincipal;
     }
 
