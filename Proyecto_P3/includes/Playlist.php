@@ -246,22 +246,6 @@ class Playlist{
         return $lista;
     }
 
-    public function añadirCancion($idCancion){
-        $conn = Aplicacion::getInstance()->getConexionBd();
-        $query = sprintf(
-            "INSERT INTO contienen(idPlaylist, idCancion) VALUES ('%s', '%s')",
-            $conn->real_escape_string(self::getIdPlaylist()),
-            $conn->real_escape_string($idCancion),
-        );
-
-        if ($conn->query($query)) {
-            return true;
-        } else {
-            error_log("Error BD ({$conn->errno}): {$conn->error}");
-        }
-        $this->numCanciones++;
-    }
-
     public static function obtenerInfoPlaylist($id){
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
@@ -291,5 +275,46 @@ class Playlist{
     }
     public function getDuracion() {
         return $this->duracion;
+    }
+
+    public static function borrarPlaylistMeGusta($email) {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("DELETE FROM playlist WHERE email='%s'", $email);
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
+
+    public static function getPlaylistTendencias() {
+        $lista = [];
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = "SELECT * FROM contienen c JOIN canciones can WHERE c.idCancion = can.idCancion AND c.idPlaylist = 0";
+        $result = $conn->query($query);
+
+        if (!$result->num_rows > 0) {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        } else {
+
+            foreach ($result as $rs) {
+                $cancion = new Cancion(
+                    $rs['idCancion'],
+                    $rs['nombreCancion'],
+                    $rs['genero'],
+                    $rs['nombreAlbum'],
+                    $rs['duracion'],
+                    $rs['rutaCancion'],
+                    $rs['rutaImagen']
+                );
+                array_push($lista, $cancion);
+            }
+            $result->free();
+        }
+
+        return $lista;
     }
 }

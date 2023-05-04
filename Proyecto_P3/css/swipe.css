@@ -1,0 +1,110 @@
+/*body {
+	background: linear-gradient(45deg, #061de3, #e30606);
+}
+
+div {
+	justify-content: center;
+	
+}
+*/
+
+.swipeMatch {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 1.5rem;
+}
+
+.noPermitido {
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
+}
+
+.containerTarjeta {
+	height: 22rem;
+	width: 18rem;
+	position: relative;
+
+}
+
+.containerTarjeta:hover > .tarjeta {
+	cursor: pointer;
+	overflow: hidden;
+	transform: rotateY(180deg);
+	
+}   
+
+	.containerTarjeta:hover > .anverso {
+		
+	} 
+
+	.containerTarjeta:hover > .reverso {
+		
+	} 
+
+.tarjeta {
+	height: 100%;
+	width: 100%;
+	position: relative;
+	transition: transform 1500ms;
+	transform-style: preserve-3d;
+}
+
+#caratula {
+	height: 100%;
+	width: 100%;
+	border-radius: 2rem;
+}
+
+.anverso {
+	
+}
+
+.anverso,.reverso {
+	height: 22rem;
+	width: 18rem;
+	border-radius: 2rem;
+	position: absolute;
+	
+}
+
+.reverso {
+	background-color: #3a3a3a;
+	font-family: monospace;
+	transform: rotateY(180deg);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 2rem;
+	
+}
+
+.descartar,.gustar {
+	height: 5rem;
+	width: 14rem;
+	border-radius: 2rem;
+	position: relative;
+}
+
+#icon_like {
+	height: 48px;
+	width: 48px;
+}
+
+#icon_dislike {
+	height: 40px;
+	width: 40px;
+}
+
+#like, #dislike {
+	height: 100%;
+	width: 100%;
+	border-radius: 2rem;
+	opacity:0.3;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}

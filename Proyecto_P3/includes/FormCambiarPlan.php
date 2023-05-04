@@ -52,7 +52,7 @@ class FormCambiarPlan extends Formulario
                         <input type="number" placeholder="Cvv" id="cvv" name="cvv"><br>
                         {$erroresCampos['cvv']}<br>
 
-                        <label for='fechaCaducidad'>Fecha de caducidad (MM/AA): </label>
+                        <label for='fechaCaducidad'>Fecha de caducidad (MM/AAAA): </label>
                         <input type="text" placeholder="FechaCaducidad" id="fechaCaducidad" name="fechaCaducidad"><br>
                         {$erroresCampos['fechaCaducidad']}<br>
                         
@@ -101,8 +101,8 @@ class FormCambiarPlan extends Formulario
         $fechaCaducidad = filter_var($fechaCaducidad, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
 
         $fechaValida = false;
-        // Comprobar que la fecha tiene el formato MM/AA
-        if (preg_match('/^\d{2}\/\d{2}$/', $fechaCaducidad)) {
+        // Comprobar que la fecha tiene el formato MM/AAAA
+        if (preg_match('/^\d{2}\/\d{4}$/', $fechaCaducidad)) {
             // Dividir la fecha en mes y año
             list($mes, $ano) = explode('/', $fechaCaducidad);
 
@@ -112,7 +112,7 @@ class FormCambiarPlan extends Formulario
                 $ano = (int) $ano;
 
                 // Comprobar que el año es mayor o igual al año actual
-                if ($mes >= date('M') && $ano >= date('Y')) {
+                if ($ano >= intval(date('Y'))) {
                     // La fecha es válida
                     $fechaValida = true;
                 }
@@ -120,7 +120,7 @@ class FormCambiarPlan extends Formulario
         }
         if (!$fechaValida) {
             // La fecha no es válida, mostrar un mensaje de error
-            $this->errores['fechaCaducidad'] = "La fecha de caducidad no es válida.";
+            $this->errores['fechaCaducidad'] = "La fecha de caducidad tiene que ser posterior a este mes y año.";
         }
     
 

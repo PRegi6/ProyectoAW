@@ -194,7 +194,7 @@ class Usuario
     public static function opcionesUsuario() {
         $opciones = <<<EOS
         <div class="dropdown">
-            <button class="dropbtn">{$_SESSION['nombre']}</button>
+        <button class="dropbtn">{$_SESSION['nombre']} ▼</button>
             <div class="dropdown-content">
                 <a href="cambiarPerfil.php">Mis datos</a>
                 <a href="cambiarPlan.php">Cambiar plan</a>

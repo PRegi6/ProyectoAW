@@ -363,6 +363,34 @@ class Admin
         return $contenidoPrincipal;
     }
 
+    public static function cancionesAplicacion() {
+        $lista = [];
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = "SELECT * FROM canciones";
+        $result = $conn->query($query);
+
+        if (!$result->num_rows > 0) {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        } else {
+
+            foreach ($result as $rs) {
+                $cancion = new Cancion(
+                    $rs['idCancion'],
+                    $rs['nombreCancion'],
+                    $rs['genero'],
+                    $rs['nombreAlbum'],
+                    $rs['duracion'],
+                    $rs['rutaCancion'],
+                    $rs['rutaImagen']
+                );
+                array_push($lista, $cancion);
+            }
+            $result->free();
+        }
+
+        return $lista;
+    }
+
     public static function mostrarPlanes()
     {
         // Consulta SQL para obtener los datos de la tabla
@@ -399,7 +427,7 @@ class Admin
     {
         // Consulta SQL para obtener los datos de la tabla
         $conn = Aplicacion::getInstance()->getConexionBd();
-        $consulxta = "SELECT * FROM plandepago";
+        $consulta = "SELECT * FROM plandepago";
         $resultado = $conn->query($consulta);
         
         $contenidoPrincipal = "<select name= 'tipoPlan'>";

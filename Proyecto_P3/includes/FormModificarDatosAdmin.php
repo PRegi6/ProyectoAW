@@ -75,6 +75,7 @@ class FormModificarDatosAdmin extends Formulario {
         $rol = trim($datos['rol'] ?? '');
 
         if (count($this->errores) === 0) {
+            $_SESSION['nombre'] = $nombre; //Por si el nombre se modifica que se modifique también en la cabecera
             Admin::modificarDatosPerfil([$email, $password, $nombre, $apellidos, $rol]);
             Admin::modificarDatosAdmin([$email, $password, $nombre, $apellidos, $rol]);
         }
