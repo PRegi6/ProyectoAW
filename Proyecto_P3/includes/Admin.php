@@ -239,9 +239,9 @@ class Admin
         $resultado = $conn->query($consulta);
 
         // Construcción dinámica de la tabla con los resultados de la consulta
-        $contenidoPrincipal = "<h1>Administrar usuarios</h1>";
-        $contenidoPrincipal .= "<table id='tablaUsuarios' border='1'>";
-        $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Tipo Plan</th><th>Fecha Expiracion</th><th>Borrar</th><th>Modificar</th></tr>";
+        $contenidoPrincipal = "<div class='divUsuarios'><h1>Administrar usuarios</h1>";
+        $contenidoPrincipal .= "<table class='tablaAdmin' border='1'>";
+        $contenidoPrincipal .= "<thead><tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Tipo Plan</th><th>Fecha Expiracion</th><th>Borrar</th><th>Modificar</th></tr><thead>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
             $contenidoPrincipal .= "<td>" . $fila['email'] . "</td>";
@@ -255,15 +255,15 @@ class Admin
             $datos = json_encode($info);
             $contenidoPrincipal .= "<td>
                 <form action='gestionUsuarios.php' method='POST'>
-                    <button type='submit' name='borrarUsuario' value='{$fila['email']}'>Borrar</button>
+                    <button type='submit' class='btn' name='borrarUsuario' value='{$fila['email']}'>Borrar</button>
                 </form>
             </td>";
             $contenidoPrincipal .= "<td>
                 <form action='gestionUsuarios.php' method='POST'>
-                    <button type='submit' name='modificarUsuario' value='{$datos}'>Editar</button>
+                    <button type='submit' class='btn' name='modificarUsuario' value='{$datos}'>Editar</button>
                 </form>
             </td>";          
-            $contenidoPrincipal .= "</tr>";
+            $contenidoPrincipal .= "</tr></div>";
         }
         $resultado->free();
 
@@ -288,9 +288,9 @@ class Admin
         $resultado = $conn->query($consulta);
 
         // Construcción dinámica de la tabla con los resultados de la consulta
-        $contenidoPrincipal = "<h1>Administrar administradores</h1>";
-        $contenidoPrincipal .= "<table id='tablaAdmins' border='1'>";
-        $contenidoPrincipal .= "<tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Borrar</th><th>Modificar</th></tr>";
+        $contenidoPrincipal = "<div class='divAdmins'><h1>Administrar administradores</h1>";
+        $contenidoPrincipal .= "<table class='tablaAdmin' border='1'>";
+        $contenidoPrincipal .= "<thead><tr><th>Email</th><th>Contraseña</th><th>Nombre</th><th>Apellidos</th><th>Rol</th><th>Borrar</th><th>Modificar</th></tr></thead>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
             $contenidoPrincipal .= "<td>" . $fila['email'] . "</td>";
@@ -314,11 +314,11 @@ class Admin
         }
         $resultado->free();
 
-        $contenidoPrincipal .= "</table> <br>";
+        $contenidoPrincipal .= "</table><br>";
 
         $contenidoPrincipal .= "<form action='crearAdmin.php' method='POST'>
             <button type='submit' name='crearAdmin'>Crear administrador</button>
-        </form>"; 
+        </form> </div>"; 
 
         return $contenidoPrincipal;
     }
@@ -331,9 +331,9 @@ class Admin
         $resultado = $conn->query($consulta);
 
         // Construcción dinámica de la tabla con los resultados de la consulta
-        $contenidoPrincipal = "<h1>Administrar canciones</h1>";
-        $contenidoPrincipal .= "<table id='tablaCanciones' border='1'>";
-        $contenidoPrincipal .= "<tr><th>ID Cancion</th><th>Nombre</th><th>Género</th><th>Álbum</th><th>Duración</th><th>Ruta Canción</th><th>Ruta Imagen</th><th>Borrar</th><th>Modificar</th></tr>";
+        $contenidoPrincipal = "<div class='divCanciones'><h1>Administrar canciones</h1>";
+        $contenidoPrincipal .= "<table class='tablaAdmin' border='1'>";
+        $contenidoPrincipal .= "<thead><tr><th>ID Cancion</th><th>Nombre</th><th>Género</th><th>Álbum</th><th>Duración</th><th>Ruta Canción</th><th>Ruta Imagen</th><th>Borrar</th><th>Modificar</th></tr></thead>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
             $contenidoPrincipal .= "<td>" . $fila['idCancion'] . "</td>";
@@ -359,7 +359,7 @@ class Admin
             $contenidoPrincipal .= "</tr>";
         }
         $resultado->free();
-        $contenidoPrincipal .= "</table>";
+        $contenidoPrincipal .= "</table></div>";
         return $contenidoPrincipal;
     }
 
@@ -399,9 +399,9 @@ class Admin
         $resultado = $conn->query($consulta);
 
         // Construcción dinámica de la tabla con los resultados de la consulta
-        $contenidoPrincipal = "<h1>Administrar Planes</h1>";
-        $contenidoPrincipal .= "<table id='tablaPlanes' border='1'>";
-        $contenidoPrincipal .= "<tr><th>Tipo Plan</th><th>Precio</th><th>Duracion</th><th>Modificar</th></tr>";
+        $contenidoPrincipal = "<div class='divPlanes'><h1>Administrar Planes</h1>";
+        $contenidoPrincipal .= "<table class='tablaAdmin' border='1'>";
+        $contenidoPrincipal .= "<thead><tr><th>Tipo Plan</th><th>Precio</th><th>Duracion</th><th>Modificar</th></tr></thead>";
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<tr>";
             $contenidoPrincipal .= "<td>" . $fila['tipoPlan'] . "</td>";
@@ -419,7 +419,7 @@ class Admin
         }
         $resultado->free();
         
-        $contenidoPrincipal .= "</table>";
+        $contenidoPrincipal .= "</table></div>";
         return $contenidoPrincipal;
     }
 
