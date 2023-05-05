@@ -45,15 +45,15 @@ use es\ucm\fdi\aw\Usuario;
         <div class="swipeMatch">
 
             <div class="descartar">
-                <button id="dislike">
-                    <img id="icon_dislike" src="https://cdn-icons-png.flaticon.com/512/996/996724.png"/>
+                <button id="dislike" title='Pasar cancion'>
+                    <img id="icon_dislike" src="https://cdn-icons-png.flaticon.com/512/996/996724.png" title='Pasar cancion'/>
                 </button>
             </div>
             
             <div class="containerTarjeta">
                 <div class="tarjeta"> 
                     <div class="anverso">
-                        <img id="caratula" src="#"/>
+                        <img id="caratula" src="#" title='Imagen cancion'/>
                     </div>
 
                     <div class="reverso">
@@ -65,8 +65,8 @@ use es\ucm\fdi\aw\Usuario;
             </div>
 
             <div class="gustar">
-                <button id="like">
-                    <img id="icon_like" src="https://cdn-icons-png.flaticon.com/512/1175/1175578.png"/>
+                <button id="like" title='Añadir a playlist'>
+                    <img id="icon_like" src="https://cdn-icons-png.flaticon.com/512/1175/1175578.png" title='Añadir a playlist'/>
                 </button>
             </div>
 

@@ -374,7 +374,7 @@ class Cancion
             <input type='hidden' name='idPlaylist' value='{$idPlaylist}'>
             <input type='hidden' name='idCancion' value='{$cancion->getId()}'>
             <input type='hidden' name='duracionCancion' value='{$cancion->getDuracion()}'>
-            <button class='iconoTrash' type='submit' name='borrar'><i class='fa fa-trash'></i></button>
+            <button class='iconoTrash' type='submit' name='borrar' title='Quitar cancion'><i class='fa fa-trash'></i></button>
             </form>";
             $iconoTrash = $formato == "sinIconoTrash" ? "" : $iconoBasura;
             $contenidoPrincipal .= <<<EOS

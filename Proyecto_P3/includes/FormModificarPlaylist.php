@@ -29,7 +29,7 @@ class FormModificarPlaylist extends Formulario {
                         <input type="hidden" name="idPlaylist" value="{$idPlaylist}">
 
                         <label for= 'nombrePlaylist'>Nuevo Nombre: </label>
-                        <input type="text" id="nombreCancion" name="nombrePlaylist" value="{$nombrePlaylist}"><br>
+                        <input type="text" id="nombreCancion" name="nombrePlaylist" placeHolder='NombrePlaylist' value="{$nombrePlaylist}"><br>
                         {$erroresCampos['nombrePlaylist']}<br>
 
                         <input type="hidden" name="duracionPlaylist" value="{$duracionPlaylist}">

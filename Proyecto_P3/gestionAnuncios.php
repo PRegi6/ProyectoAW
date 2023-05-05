@@ -10,7 +10,7 @@
         es\ucm\fdi\aw\Anuncio::eliminarAnuncio($idAnuncio);
         $contenidoPrincipal = es\ucm\fdi\aw\Anuncio::mostrarAnuncios();
     }
-    else if(isset($_POST['anadirCancion'])){
+    else if(isset($_POST['anadirAnuncio'])){
         $contenidoPrincipal = $form->gestiona();
     }
     else if(isset($_POST['Aplicar'])){

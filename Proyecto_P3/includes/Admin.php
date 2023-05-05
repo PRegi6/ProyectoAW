@@ -432,7 +432,7 @@ class Admin
         $consulta = "SELECT * FROM plandepago";
         $resultado = $conn->query($consulta);
         
-        $contenidoPrincipal = "<select name= 'tipoPlan'>";
+        $contenidoPrincipal = "<select name= 'tipoPlan' title='Planes de pago'>";
         while ($fila = $resultado->fetch_assoc()) {
             $selecionado = ($fila['tipoPlan'] == $tipoPlan) ? " selected" : "";
             $contenidoPrincipal .= "<option value=" . $fila['tipoPlan'] . $selecionado . " > " . $fila['tipoPlan'] . "</option>";
@@ -450,7 +450,7 @@ class Admin
         $consulta = "SELECT * FROM plandepago";
         $resultado = $conn->query($consulta);
         
-        $contenidoPrincipal = "<select name= 'tipoPlan'>";
+        $contenidoPrincipal = "<select name= 'tipoPlan' title='Info planes de pago'>";
         while ($fila = $resultado->fetch_assoc()) {
             $selecionado = ($fila['tipoPlan'] == $tipoPlan) ? " selected" : "";
             $contenidoPrincipal .= "<option value=" . $fila['tipoPlan'] . $selecionado . " > " . ' Tipo de plan: ' . $fila['tipoPlan'] . ' Precio: ' . $fila['precio'] . ' Duración: ' . $fila['duracionPlan'] . "</option>";

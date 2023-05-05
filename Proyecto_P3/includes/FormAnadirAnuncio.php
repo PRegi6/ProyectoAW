@@ -26,7 +26,7 @@ class FormAnadirAnuncio extends Formulario {
                         <img src='#' alt="Imagen" id='imagenCancion'>
                         <br>
 
-                        <input type="file" id="imagen" name="imagen" accept="image/*"><br>
+                        <input type="file" id="imagen" name="imagen" accept="image/*" placeholder='Imagen'><br>
                         {$erroresCampos['imagen']}<br>
 
                         {$erroresCampos['insertar']}<br>
