@@ -53,8 +53,8 @@ INSERT INTO `canciones` (`idCancion`, `nombreCancion`, `genero`, `nombreAlbum`, 
 (7, 'One day', 'Urbano Latino', 'Future Nostalgia', '249', 'music/JBalvin,DuaLipa,BadBunny,Tainy -ONEDAY.mp3', './img/music/OneDay.jpg'),
 (8, 'Yandel 150', 'Reggaeton', 'Yandel 150', '218', 'music/yandel150.mp3', './img/music/yandel150v2.jpg'),
 (9, 'Coco Chanel', 'Urbano Latino', '3MEN2 KBRN', '210', 'music/Eladio Carrión ft. Bad Bunny - Coco Chanel.mp3', './img/music/cocoChanel.jpg'),
-(10, 'Bottas', 'Urbano Latino', 'SR. SANTOS', '206.544', 'music/Arcangel, Duki, Bizarrap - Bottas.mp3', './img/music/bottas.jpg'),
-(11, 'Tu Principe', 'Reggaeton', 'Barrio fino', '205.752', 'music/Daddy Yankee, Zion & Lennox - Tu Príncipe.mp3', './img/music/tuPrincipe.jpg');
+(10, 'Bottas', 'Urbano Latino', 'SR. SANTOS', '206', 'music/Arcangel, Duki, Bizarrap - Bottas.mp3', './img/music/bottas.jpg'),
+(11, 'Tu Principe', 'Reggaeton', 'Barrio fino', '205', 'music/Daddy Yankee, Zion & Lennox - Tu Príncipe.mp3', './img/music/tuPrincipe.jpg');
 
 --
 -- Volcado de datos para la tabla `contienen`
