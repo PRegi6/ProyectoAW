@@ -1,13 +1,3 @@
-/*body {
-	background: linear-gradient(45deg, #061de3, #e30606);
-}
-
-div {
-	justify-content: center;
-	
-}
-*/
-
 .swipeMatch {
 	display: flex;
 	flex-direction: row;
@@ -16,39 +6,21 @@ div {
 	margin-top: 1.5rem;
 }
 
-.noPermitido {
-	justify-content: center;
-	align-items: center;
-	font-size: 2rem;
-}
-
 .containerTarjeta {
 	height: 22rem;
 	width: 18rem;
 	position: relative;
-
 }
 
-.containerTarjeta:hover > .tarjeta {
-	cursor: pointer;
-	overflow: hidden;
-	transform: rotateY(180deg);
-	
+.containerTarjeta:hover .tarjeta {
+	transform: rotateY(180deg) ;
+	transition: transform 1s;
 }   
 
-	.containerTarjeta:hover > .anverso {
-		
-	} 
-
-	.containerTarjeta:hover > .reverso {
-		
-	} 
-
 .tarjeta {
-	height: 100%;
 	width: 100%;
-	position: relative;
-	transition: transform 1500ms;
+	height: 100%;
+	transition: transform 1s;
 	transform-style: preserve-3d;
 }
 
@@ -58,28 +30,19 @@ div {
 	border-radius: 2rem;
 }
 
-.anverso {
-	
-}
-
 .anverso,.reverso {
-	height: 22rem;
-	width: 18rem;
-	border-radius: 2rem;
 	position: absolute;
-	
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	border-radius: 2rem;
+	backface-visibility: hidden;
 }
 
 .reverso {
-	background-color: #3a3a3a;
-	font-family: monospace;
+	background: #575757;
+	color: white;
 	transform: rotateY(180deg);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	gap: 2rem;
-	
 }
 
 .descartar,.gustar {

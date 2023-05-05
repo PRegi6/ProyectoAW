@@ -1,9 +1,7 @@
 <?php
     
     require_once __DIR__ . "/includes/config.php";
-    // $form = new es\ucm\fdi\aw\FormCrearPlaylist();
 
-    // $contenidoPrincipal = $form->gestiona();
     //REVISAR EL FORM PARA PODER CAMBIAR EL NOMBRE DE LA PLAYLIST
     $accion = $_POST['accion'] ?? '';
     $idPlaylist = $_POST['idPlaylist'] ?? '';

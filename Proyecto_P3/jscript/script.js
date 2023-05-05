@@ -40,6 +40,28 @@ function reproducirSeleccionado(datos){
     playTrack();
 };
 
+function anadirCancionPlaylist(idCancion, idPlaylist, duracionCancion){
+    // hacer la petición AJAX
+    console.log(idCancion);
+    console.log(idPlaylist);
+    console.log(duracionCancion);
+    const rutaDirectorio = window.location.pathname.split('/').slice(0, -1).join('/');
+    const url = rutaDirectorio + '/swipeMatch.php';
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', url);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            // aquí puedes hacer algo si la petición fue exitosa
+        } else {
+            console.log("ERROR");
+            // aquí puedes manejar errores si la petición falló
+        }
+    };
+
+    xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=agregar-cancion`);
+}
+
 //Funcion para que cuando le de a me gusta se añada a la playlist me gusta que tiene el usuario
 
 function cambiarIcono(idCancion, idPlaylist, duracionCancion) {
@@ -116,7 +138,6 @@ window.addEventListener('unload', function() {
     localStorage.setItem('track_index', track_index);
     localStorage.setItem('isPlaying', isPlaying);
     localStorage.setItem('volume', volume_slider.value);
-    console.log(volume_slider.value);
     localStorage.setItem('seekTime', curr_track.currentTime);
 });
   
@@ -129,21 +150,22 @@ if(localStorage.getItem('music_list') !== null) {
     volume_slider.value = localStorage.getItem('volume');
     curr_track.currentTime = parseFloat(localStorage.getItem('seekTime'));
 
-    if(music_list.length === 0){ //si esta vacio no lo mostramos
-    boton.style.display = "none";
+    if(music_list == null || music_list.length === 0 ){ //si esta vacio no lo mostramos
+        boton.style.display = "none";
     }
     else{
         boton.style.display = "flex";
+        loadTrack(track_index);
+        if (isPlaying) {
+            playTrack();
+        } else {
+            pauseTrack();
+        }
     }
 
-    loadTrack(track_index);
-    if (isPlaying) {
-        playTrack();
-    } else {
-        pauseTrack();
-    }
 }
 });
+
 
 //Los datos almacenados en localStorage permanecen en el navegador incluso después de cerrar la ventana o salir del navegador.
 //Puedes acceder a los datos de localStorage a través de la consola del navegador web en la pestaña "Application" o "Almacenamiento" 
@@ -261,6 +283,7 @@ function spamPopup(){
     overlay.classList.add('active');
     popup.classList.add('active');
 }
+
 if (btnCerrarPopup !== null) {
     // El elemento con el ID "overlay" ha sido definido en el documento HTML
     btnCerrarPopup.addEventListener('click', function (e) {
@@ -268,6 +291,5 @@ if (btnCerrarPopup !== null) {
         overlay.classList.remove('active');
         popup.classList.remove('active');
     });
-}
-
+};
 

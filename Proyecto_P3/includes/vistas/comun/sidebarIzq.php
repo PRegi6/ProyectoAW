@@ -63,7 +63,7 @@ if (crearPlaylistLink != null) {
     var  email = "<?php echo $email?>";
     var nombre = "Nueva Playlist";
     const nuevaPlaylist = document.createElement('li');
-    nuevaPlaylist.innerHTML = '<a href="mostrarPlaylist">' + nombre + '</a>';
+    nuevaPlaylist.innerHTML = '<a href="mostrarPlaylist"></a>';
     playlistDiv.appendChild(nuevaPlaylist);
 
     // hacer la petición AJAX

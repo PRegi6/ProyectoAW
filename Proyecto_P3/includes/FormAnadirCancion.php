@@ -92,7 +92,8 @@ class FormAnadirCancion extends Formulario {
                 // Cargar el archivo de audio en el elemento audioPlayer
                 audioPlayer.addEventListener('loadedmetadata', function() {
                     // Establecer la duración del archivo de audio en el campo oculto duracion
-                    duracion.value = audioPlayer.duration;
+                    duracion.value = Math.floor(audioPlayer.duration);
+
                 });
                 audioPlayer.src = urlCancion;
             });

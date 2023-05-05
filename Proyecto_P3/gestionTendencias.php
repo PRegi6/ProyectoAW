@@ -12,10 +12,10 @@
 
     // Ejecutamos la función PHP correspondiente según la acción enviada
     if ($accion == "agregar-tendencia") {
-        es\ucm\fdi\aw\Cancion::agregarMeGusta($idCancion, $idPlaylist);
+        es\ucm\fdi\aw\Cancion::agregarCancionPlaylist($idCancion, $idPlaylist);
         es\ucm\fdi\aw\Cancion::anadirDuracion($idPlaylist, $duracionCancion);
     } else if ($accion == "quitar-tendencia") {
-        es\ucm\fdi\aw\Cancion::quitarMeGusta($idCancion, $idPlaylist);
+        es\ucm\fdi\aw\Cancion::quitarCancionPlaylist($idCancion, $idPlaylist);
         es\ucm\fdi\aw\Cancion::quitarDuracion($idPlaylist, $duracionCancion);
     }
 

@@ -7,11 +7,13 @@
     if (empty($listaCanciones)) {
         $contenidoPrincipal .= "No hay tendencias";
     } else {
+        $idPlaylist= "";
+        $formato = "sinIconoTrash";
         $contenidoPrincipal = '<h1>Tendencias mundiales</h1>';
         if (!isset($_SESSION['login'])) {
             $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCanciones($listaCanciones);
         } else {
-            $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCancionesTotal($listaCanciones);
+            $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCancionesTotal($idPlaylist, $listaCanciones, $formato);
         }
     }
 

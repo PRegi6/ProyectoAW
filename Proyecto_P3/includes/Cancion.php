@@ -351,7 +351,7 @@ class Cancion
         return $contenidoPrincipal;
     }
 
-    public static function mostrarCancionesTotal($ListaCanciones)
+    public static function mostrarCancionesTotal($idPlaylist, $ListaCanciones, $formato)
     {
         $contenidoPrincipal = "";
         $contenidoPrincipal .= "<ul class='lista-canciones'>";
@@ -370,6 +370,13 @@ class Cancion
             $meGusta = $cancion->meGusta($idPlaylistMeGusta);
             $iconoCorazon = $meGusta ? "<i class='fa fa-heart fa-2x'></i>" : "<i class='fa fa-heart-o fa-2x'></i>";
             $tituloBoton = $meGusta ? "Quitar de Me gusta" : "Añadir a Me gusta";
+            $iconoBasura = "<form method='POST' action='mostrarPlaylist.php'>
+            <input type='hidden' name='idPlaylist' value='{$idPlaylist}'>
+            <input type='hidden' name='idCancion' value='{$cancion->getId()}'>
+            <input type='hidden' name='duracionCancion' value='{$cancion->getDuracion()}'>
+            <button class='iconoTrash' type='submit' name='borrar'><i class='fa fa-trash'></i></button>
+            </form>";
+            $iconoTrash = $formato == "sinIconoTrash" ? "" : $iconoBasura;
             $contenidoPrincipal .= <<<EOS
                 <li>
                     <img src="{$cancion->getRutaImagen()}" alt="{$cancion->getNombre()}">
@@ -387,6 +394,7 @@ class Cancion
                         </button>
                         <input type="hidden" id="valor{$cancion->getId()}" value="{$meGusta}" />
                         <p class="duracion">{$minutos}</p>
+                        {$iconoTrash}
                     </div>
                 </li>
                 EOS;
@@ -439,7 +447,7 @@ class Cancion
         return $contenidoPrincipal;
     }
 
-    public static function  agregarMeGusta($idCancion, $idPlaylist)
+    public static function  agregarCancionPlaylist($idCancion, $idPlaylist)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
@@ -455,7 +463,7 @@ class Cancion
         return false;
     }
 
-    public static function  quitarMeGusta($idCancion, $idPlaylist)
+    public static function  quitarCancionPlaylist($idCancion, $idPlaylist)
     {
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(
@@ -523,6 +531,32 @@ class Cancion
         }
 
         return "";
+    }
+
+    public static function obtenerCanciones(){
+        $lista =[];
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = "SELECT * FROM canciones";
+        $result = $conn->query($query);
+
+        if (!$result) {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        } else {
+            $rs = $result->fetch_assoc();
+            foreach ($result as $rs) {
+                $cancion = new Cancion(
+                    $rs['idCancion'],
+                    $rs['nombreCancion'],
+                    $rs['genero'],
+                    $rs['nombreAlbum'],
+                    $rs['duracion'],
+                    $rs['rutaCancion'],
+                    $rs['rutaImagen']
+                );
+                array_push($lista, $cancion);
+            }
+        }
+        return $lista;
     }
 
     // FUNCION PARA SABER SI UNA CANCION ME GUSTA

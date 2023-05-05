@@ -72,6 +72,15 @@ asegurarse de que ocupe todo el ancho disponible en su contenedor padre. */
     .lista-canciones li p {
         font-size: 18px;
     }
+    .iconoTrash{
+        background: none;
+        border: none;  
+    }
+    .fa.fa-trash {
+        font-size: 30px;
+        color: black;
+        padding-right: 20px;
+    }
 
 .boton-buscador,    
 .boton-corazon {

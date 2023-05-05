@@ -58,8 +58,11 @@ class Playlist{
 
         while ($fila = $resultado->fetch_assoc()) {
             $contenidoPrincipal .= "<div class='playlist-icono'>";
-            $contenidoPrincipal .= "<div class='nombre'>";            
-            $contenidoPrincipal .= "<li><a href='mostrarPlaylist.php?id={$fila['idPlaylist']}'>{$fila['nombrePlaylist']}</a></li>";
+            $contenidoPrincipal .= "<div class='nombre'>";   
+            $contenidoPrincipal .= "<form id='formPlaylist-{$fila['idPlaylist']}' method='POST' action='mostrarPlaylist.php'>";  
+            $contenidoPrincipal .= "<input type='hidden' name='idPlaylist' value='{$fila['idPlaylist']}'>";
+            $contenidoPrincipal .= "<li onclick='document.getElementById(\"formPlaylist-{$fila['idPlaylist']}\").submit();'><a>{$fila['nombrePlaylist']}</a></li>";
+            $contenidoPrincipal .= "</form>";            
             $contenidoPrincipal .= "</div>";
             $contenidoPrincipal .= "<div class='opciones'>";
             $contenidoPrincipal .= "<form method='POST' action='crearPlaylist.php'>";
@@ -108,7 +111,7 @@ class Playlist{
         return $result;
     }
 
-    public static function mostrarPlaylist($idPlaylist, $ListaCanciones){
+    public static function mostrarPlaylist($idPlaylist, $ListaCanciones, $formato){
         $playlist = Playlist::obtenerInfoPlaylist($idPlaylist);
         $contenidoPrincipal = <<<EOS
             <div class="info-meGusta">
@@ -119,6 +122,11 @@ class Playlist{
         if (empty($ListaCanciones)) {
             $contenidoPrincipal .= <<<EOS
             </div>
+                <div class='btn-noCanciones'>
+                    <form action='swipeMatch.php' method='POST'>
+                        <button type="submit" class="btn-swipe" name="anadirCancion" value='{$playlist->getIdPlaylist()}'>Añadir Canciones</button>
+                    </form>
+                </div>
             </div>
             <h1>No hay resultados</h1>
                 
@@ -147,10 +155,13 @@ class Playlist{
                 <div class="infoPlaylist">
                     <h3>Total de canciones $numCanciones</h3>
                     <h3>Tiempo aproximado {$stringDuracion}</h3>
+                    <form action='swipeMatch.php' method='POST'>
+                        <button type="submit" class="btn-swipe" name="anadirCancion" value='{$playlist->getIdPlaylist()}'>Añadir Canciones</button>
+                    </form>
                 </div>
                 </div>
             EOS;
-            $contenidoPrincipal .= Cancion::mostrarCancionesTotal($ListaCanciones);
+            $contenidoPrincipal .= Cancion::mostrarCancionesTotal($idPlaylist, $ListaCanciones, $formato);
         }
         return $contenidoPrincipal;
     }
@@ -290,6 +301,19 @@ class Playlist{
         return $result;
     }
 
+    public static function borrarCancionPlaylist($idPlaylist, $idCancion) {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("DELETE FROM contienen WHERE idPlaylist= %d AND idCancion= %d", $idPlaylist, $idCancion);
+        $rs = $conn->query($query);
+        $result = false;
+        if ($rs) {
+            $result = true;
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
+        return $result;
+    }
+
     public static function getPlaylistTendencias() {
         $lista = [];
         $conn = Aplicacion::getInstance()->getConexionBd();
@@ -315,6 +339,31 @@ class Playlist{
             $result->free();
         }
 
+        return $lista;
+    }
+
+    public static function cancionesNotInPlaylist($idPlaylist) {
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM canciones WHERE idCancion NOT IN (SELECT idCancion FROM contienen WHERE idPlaylist = %d)", $idPlaylist);
+        $result = $conn->query($query);
+        $lista = [];
+        if ($result) {
+            foreach ($result as $rs) {
+                $cancion = new Cancion(
+                    $rs['idCancion'],
+                    $rs['nombreCancion'],
+                    $rs['genero'],
+                    $rs['nombreAlbum'],
+                    $rs['duracion'],
+                    $rs['rutaCancion'],
+                    $rs['rutaImagen']
+                );
+                array_push($lista, $cancion);
+            }
+            $result->free();
+        } else {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        }
         return $lista;
     }
 }

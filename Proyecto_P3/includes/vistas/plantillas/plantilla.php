@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?= $tituloPagina ?></title>
     <link id="estilo" rel="stylesheet" type="text/css" href="<?=RUTA_CSS?>/estiloPagina.css">
+    <link id="estilo" rel="stylesheet" type="text/css" href="<?=RUTA_CSS?>/swipe.css">
     <link rel="stylesheet" href="<?=RUTA_CSS?>/estiloreproductor.css">
     <script src="<?=RUTA_JS?>/script.js" defer></script>
     <link rel="shortcut icon" type="image/x-icon" href="<?=RUTA_IMGS?>/Altavoz2.png">  

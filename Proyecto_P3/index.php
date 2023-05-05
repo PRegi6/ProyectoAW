@@ -18,10 +18,12 @@ if (isset($_POST['submit'])) {
         if (empty($ListaCanciones)) {
             $contenidoPrincipal .= "No hay resultados";
         } else {
+            $idPlaylist = "";
+            $formato = "sinIconoTrash";
             if (!isset($_SESSION['login']) || ($_SESSION['rol'] == es\ucm\fdi\aw\Usuario::ADMIN_ROLE)) {
                 $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCanciones($ListaCanciones);
             } else {
-                $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCancionesTotal($ListaCanciones);
+                $contenidoPrincipal .= es\ucm\fdi\aw\Cancion::mostrarCancionesTotal($idPlaylist, $ListaCanciones, $formato);
             }
         }
     }
