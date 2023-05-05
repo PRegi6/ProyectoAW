@@ -95,7 +95,9 @@ function cambiarIcono(idCancion, idPlaylist, duracionCancion) {
         boton.title = 'Añadir a Me gusta';
         valor.value = 0;
         xhr.send(`idCancion=${idCancion}&idPlaylist=${idPlaylist}&duracionCancion=${duracionCancion}&accion=quitar-me-gusta`);
+        location.reload();
     }
+
 };
 
 //Funcion para que cuando le de a me gusta se añada a la playlist tendencias que tiene reservada la id playlist  0

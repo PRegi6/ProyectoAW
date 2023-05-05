@@ -8,7 +8,9 @@
 
     if (isset($_POST['borrarCancion'])) { //si queremos borrar una cancion
         $idCancion = $_POST['borrarCancion'] ?? '';
+        es\ucm\fdi\aw\Cancion::cambiarDuracion($idCancion);
         es\ucm\fdi\aw\Admin::borrarCancion($idCancion);
+
         header("Location: gestionCanciones.php");
     }
 

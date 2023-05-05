@@ -515,6 +515,29 @@ class Cancion
         return false;
     }
 
+    public static function cambiarDuracion($idCancion){
+        $lista = [];
+        $conn = Aplicacion::getInstance()->getConexionBd();
+        $query = sprintf("SELECT * FROM contienen c JOIN canciones ca ON c.idCancion = ca.idCancion WHERE c.idCancion=%d", 
+            $conn->real_escape_string($idCancion));
+        $result = $conn->query($query);
+
+        if (!$result) {
+            error_log("Error BD ({$conn->errno}): {$conn->error}");
+        } else {
+            $rs = $result->fetch_assoc();
+            foreach ($result as $rs) {
+                $idPlaylist = $rs['idPlaylist'];
+                $duracion = $rs['duracion'];
+                Cancion::quitarCancionPlaylist($idCancion, $idPlaylist);
+                Cancion::quitarDuracion($idPlaylist, $duracion);
+            }
+            return $lista;
+        }
+        return true;
+    }
+
+
     public static function obtenerDuracionPlaylist($id){
         $conn = Aplicacion::getInstance()->getConexionBd();
         $query = sprintf(

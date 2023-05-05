@@ -265,7 +265,7 @@ class Admin
                     <button type='submit' class='btn' name='modificarUsuario' value='{$datos}'>Editar</button>
                 </form>
             </td>";          
-            $contenidoPrincipal .= "</tr></div>";
+            $contenidoPrincipal .= "</tr>";
         }
         $resultado->free();
 
@@ -277,7 +277,7 @@ class Admin
 
         $contenidoPrincipal .= "<form action='gestionAdmin.php' method='POST'>
             <button type='submit' class='btn' name='gestionAdmin'>Gestionar administrador</button>
-        </form>"; 
+        </form><br><br></div>"; 
 
         return $contenidoPrincipal;
     }

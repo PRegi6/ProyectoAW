@@ -128,6 +128,10 @@ class FormCambiarPlan extends Formulario
             $fecha_actual = date('Y-m-d');
             $nueva_fecha = date('Y-m-d', strtotime('+30 days', strtotime($fecha_actual)));
 
+            if ($plan != $planNuevo) {
+                $_SESSION['tipoPlan'] = $planNuevo;
+            }
+
             Admin::modificarDatosUsuario([$email, $password, $nombre, $apellidos, $rol, $planNuevo, $nueva_fecha]);
         }
     }
