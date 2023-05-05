@@ -52,7 +52,7 @@ INSERT INTO `canciones` (`idCancion`, `nombreCancion`, `genero`, `nombreAlbum`, 
 (6, 'Discoteka', 'Reggaeton', 'EL DRAGON', '176', 'music/LolaIndigo,MariaBecerra-DISCOTEKA.mp3', './img/music/discotecaLolaIndigo.jpg'),
 (7, 'One day', 'Urbano Latino', 'Future Nostalgia', '249', 'music/JBalvin,DuaLipa,BadBunny,Tainy -ONEDAY.mp3', './img/music/OneDay.jpg'),
 (8, 'Yandel 150', 'Reggaeton', 'Yandel 150', '218', 'music/yandel150.mp3', './img/music/yandel150v2.jpg'),
-(9, 'Coco Chanel', 'Urbano Latino', '3MEN2 KBRN', '210', 'music/Eladio Carrión ft. Bad Bunny - Coco Chanel.mp3', './img/music/cocoChanel.jpg'),
+(9, 'Coco Chanel', 'Urbano Latino', '3MEN2 KBRN', '210', 'music/Eladio Carrion ft. Bad Bunny - Coco Chanel.mp3', './img/music/cocoChanel.jpg'),
 (10, 'Bottas', 'Urbano Latino', 'SR. SANTOS', '206', 'music/Arcangel, Duki, Bizarrap - Bottas.mp3', './img/music/bottas.jpg'),
 (11, 'Tu Principe', 'Reggaeton', 'Barrio fino', '205', 'music/Daddy Yankee, Zion & Lennox - Tu Principe.mp3', './img/music/tuPrincipe.jpg');
 
