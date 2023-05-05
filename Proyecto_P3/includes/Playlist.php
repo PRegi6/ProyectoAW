@@ -68,11 +68,11 @@ class Playlist{
             $contenidoPrincipal .= "<form method='POST' action='crearPlaylist.php'>";
             $contenidoPrincipal .= "<input type='hidden' name='accion' value='eliminarPlaylist'>";
             $contenidoPrincipal .= "<input type='hidden' name='idPlaylist' value='{$fila['idPlaylist']}'>";
-            $contenidoPrincipal .= "<button class='BotonForm' type='submit'><i class='fa fa-times'></i></button>";
+            $contenidoPrincipal .= "<button class='BotonForm' type='submit'><i class='fa fa-times' title='Borrar playlist'></i></button>";
             $contenidoPrincipal .= "</form>";
             $contenidoPrincipal .= "<form method='POST' action='modificarPlaylist.php'>";
             $contenidoPrincipal .= "<input type='hidden' name='idPlaylist' value='{$fila['idPlaylist']}'>";
-            $contenidoPrincipal .= "<button class='BotonForm' type='submit'><i class='fa fa-pencil'></i></button>";
+            $contenidoPrincipal .= "<button class='BotonForm' type='submit' title='Editar playlist'><i class='fa fa-pencil'></i></button>";
             $contenidoPrincipal .= "</form>";
             $contenidoPrincipal .= "</div>";
             $contenidoPrincipal .= "</div>";
