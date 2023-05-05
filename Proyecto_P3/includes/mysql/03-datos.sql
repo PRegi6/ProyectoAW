@@ -46,7 +46,7 @@ INSERT INTO `canciones` (`idCancion`, `nombreCancion`, `genero`, `nombreAlbum`, 
 (0, 'Antes de Perderte', 'Urbano Latino', 'Antes de Perderte', '174', 'music/DUKI - Antes de Perderte.mp3', './img/music/antesDePerderte.jpg'),
 (1, 'She Dont Give a FO', 'Trap', 'She Dont Give a FO', '230', 'music/Duki  She Dont Give a FO ft Khea.mp3', './img/music/SheDontGive.jpg'),
 (2, 'Jagger.mp3', 'Urbano Latino', 'Jagger.mp3', '156', 'music/Emilia - Jagger.mp3.mp3', './img/music/jaggerEmilia.jpg'),
-(3, 'Cuestion de Fe', 'Rap', 'Hijos de la ruina, vol. 3', '290', 'music/Natos, Waor, Recycled J - CUESTIÓN DE FE.mp3', './img/music/cuestionDeFe.jpg'),
+(3, 'Cuestion de Fe', 'Rap', 'Hijos de la ruina, vol. 3', '290', 'music/Natos, Waor, Recycled J - CUESTION DE FE.mp3', './img/music/cuestionDeFe.jpg'),
 (4, 'Cicatrices', 'Rap', 'Cicatrices', '182', 'music/Natos y Waor - CICATRICES.mp3', './img/music/cicatrices.jpg'),
 (5, 'Sudores Frios', 'Rap', 'Hijos de la ruina, vol. 3', '275', 'music/Natos,Waor, RecycledJ-SUDORES FRIOS.mp3', './img/music/SudoresFrios.jpg'),
 (6, 'Discoteka', 'Reggaeton', 'EL DRAGON', '176', 'music/LolaIndigo,MariaBecerra-DISCOTEKA.mp3', './img/music/discotecaLolaIndigo.jpg'),
@@ -54,7 +54,7 @@ INSERT INTO `canciones` (`idCancion`, `nombreCancion`, `genero`, `nombreAlbum`, 
 (8, 'Yandel 150', 'Reggaeton', 'Yandel 150', '218', 'music/yandel150.mp3', './img/music/yandel150v2.jpg'),
 (9, 'Coco Chanel', 'Urbano Latino', '3MEN2 KBRN', '210', 'music/Eladio Carrión ft. Bad Bunny - Coco Chanel.mp3', './img/music/cocoChanel.jpg'),
 (10, 'Bottas', 'Urbano Latino', 'SR. SANTOS', '206', 'music/Arcangel, Duki, Bizarrap - Bottas.mp3', './img/music/bottas.jpg'),
-(11, 'Tu Principe', 'Reggaeton', 'Barrio fino', '205', 'music/Daddy Yankee, Zion & Lennox - Tu Príncipe.mp3', './img/music/tuPrincipe.jpg');
+(11, 'Tu Principe', 'Reggaeton', 'Barrio fino', '205', 'music/Daddy Yankee, Zion & Lennox - Tu Principe.mp3', './img/music/tuPrincipe.jpg');
 
 --
 -- Volcado de datos para la tabla `contienen`
