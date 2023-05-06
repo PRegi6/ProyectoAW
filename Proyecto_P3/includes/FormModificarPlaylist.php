@@ -5,7 +5,7 @@ require_once __DIR__."/config.php";
 class FormModificarPlaylist extends Formulario {
 
     public function __construct() {
-        parent::__construct('formModificarPlaylist', ['url' => 'modificarPlaylist.php']);
+        parent::__construct('formModificarPlaylist');
     }
 
     protected function generaCamposFormulario(&$datos)
@@ -13,6 +13,7 @@ class FormModificarPlaylist extends Formulario {
         $idPlaylist = $datos[0] ?? '';
         $nombrePlaylist = $datos[1] ?? '';
         $duracionPlaylist = $datos[2] ?? '';
+        $cambio = $datos[2] ?? '';
         // $canciones = Playlist::mostrarCanciones($idPlaylist);
 
         // Se generan los mensajes de error si existen.
@@ -45,7 +46,6 @@ class FormModificarPlaylist extends Formulario {
     {
         $this->errores = [];
         $idPlaylist = $datos['idPlaylist'] ?? '';
-
         $nombrePlaylist = trim($datos['nombrePlaylist'] ?? '');
         $nombrePlaylist = filter_var($nombrePlaylist, FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         if (!$nombrePlaylist || empty($nombrePlaylist) || strlen($nombrePlaylist) > 16) {

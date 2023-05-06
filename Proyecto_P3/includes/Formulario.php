@@ -88,6 +88,30 @@ abstract class Formulario
         }
     }
 
+    public function gestionaModificarDatosMensaje($valores)
+    {
+        $datos = &$_POST;
+        if (strcasecmp('GET', $this->method) == 0) {
+            $datos = &$_GET;
+        }
+        $this->errores = [];
+        
+        if (!$this->formularioEnviado($datos)) {
+            return $this->generaFormulario($valores);
+        }
+
+        $this->procesaFormulario($datos);
+        $esValido = count($this->errores) === 0;
+
+        if (! $esValido ) {
+            return $this->generaFormulario($valores);
+        }
+
+        return "<div class='mensajeModificaciones'>
+            <h1>CAMBIOS REALIZADOS CORRECTAMENTE</h1> 
+        </div>";
+    }
+
     public function gestionaRegistro()
     {
         $datos = &$_POST;

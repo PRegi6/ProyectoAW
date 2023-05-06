@@ -77,7 +77,7 @@ if (crearPlaylistLink != null) {
             }
         };
         xhr.open('POST', url);
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=utf-8');
         xhr.send(`email=${email}&nombre=${nombre}&accion=crearPlaylist`);
 
     });
